@@ -55,3 +55,4 @@ embedded_iot_smart_home/
 ## 문서
 
 - **[SPEC.md](./SPEC.md)** — 하드웨어 핀맵, 통신 프로토콜, 펌웨어 요구사항, 테스트 시나리오 전체 포함
+- **[TEST.md](./TEST.md)** — 환경 확인, 빌드/플래시, SPIFFS 업로드, 3노드 통합 테스트 절차

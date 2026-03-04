@@ -1,0 +1,8 @@
+# Node A 커스텀 파티션 테이블
+# SPIFFS에 웹 파일(index.html, style.css, app.js) 저장을 위해 공간 확보
+#
+# Name,     Type,  SubType,  Offset,    Size
+nvs,        data,  nvs,      0x9000,    0x5000
+otadata,    data,  ota,      0xe000,    0x2000
+app0,       app,   ota_0,    0x10000,   0x1F0000
+spiffs,     data,  spiffs,   0x200000,  0x200000

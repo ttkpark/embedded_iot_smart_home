@@ -1,0 +1,20 @@
+# Node A — sdkconfig.defaults
+# idf.py menuconfig 또는 idf.py build 시 자동 적용
+
+# 커스텀 파티션 테이블 사용 (SPIFFS 공간 확보)
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# WebSocket 지원 활성화 (esp_http_server)
+CONFIG_HTTPD_WS_SUPPORT=y
+CONFIG_HTTPD_MAX_REQ_HDR_LEN=1024
+CONFIG_HTTPD_MAX_URI_LEN=512
+
+# 메인 태스크 스택 크기 (SPIFFS + HTTP 동시 처리)
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
+
+# FreeRTOS 틱 속도
+CONFIG_FREERTOS_HZ=1000
+
+# 로그 레벨 (개발 중 INFO, 배포 시 WARN으로 변경)
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y

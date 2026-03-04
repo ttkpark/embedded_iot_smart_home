@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartCare+ Ambient System</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="normal">
+
+<!-- 헤더 -->
+<header>
+  <div class="header-left">
+    <span class="logo">SmartCare+</span>
+    <span class="subtitle">Ambient Control System</span>
+  </div>
+  <div class="header-right">
+    <span id="ws-status" class="status-dot offline"></span>
+    <span id="ws-label">연결 중...</span>
+  </div>
+</header>
+
+<!-- All Clear 플래시 배너 (정상 복귀 시 3초 표시) -->
+<div id="all-clear" class="all-clear hidden">✓ All Clear — 환자 상태 정상</div>
+
+<!-- 응급 경고 배너 (응급 시에만 표시) -->
+<div id="alert-banner" class="alert-banner hidden">
+  <span>⚠ 응급 상황 감지 — Patient Room #101</span>
+  <button id="dismiss-btn" onclick="dismissAlert()">경고 해제</button>
+</div>
+
+<!-- 메인 그리드 -->
+<main class="grid">
+
+  <!-- 좌측: 환자 모니터링 -->
+  <section class="card monitor-card">
+    <h2>환자 모니터링</h2>
+    <div class="camera-view">
+      <div class="camera-label">Patient Room #101</div>
+      <div id="patient-icon" class="patient-icon stable">●</div>
+      <div id="patient-label" class="patient-label">안정 (Stable)</div>
+    </div>
+    <div class="sensor-summary">
+      <div class="sensor-row">
+        <span class="sensor-key">환자 상태</span>
+        <span id="stat-patient" class="sensor-val green">● 정상</span>
+      </div>
+      <div class="sensor-row">
+        <span class="sensor-key">환풍기</span>
+        <span id="stat-fan" class="sensor-val dim">● OFF</span>
+      </div>
+      <div class="sensor-row">
+        <span class="sensor-key">에어컨</span>
+        <span id="stat-ac" class="sensor-val dim">● OFF</span>
+      </div>
+      <div class="sensor-row">
+        <span class="sensor-key">창문</span>
+        <span id="stat-window" class="sensor-val dim">⏸ 정지</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 우측: 수동 제어 -->
+  <section class="card control-card">
+    <h2>환경 제어 <span class="mode-badge">수동</span></h2>
+
+    <!-- 환풍기 -->
+    <div class="control-group">
+      <label class="ctrl-label">환풍기</label>
+      <label class="toggle">
+        <input type="checkbox" id="fan-toggle" onchange="sendCmd('fan', this.checked?1:0)">
+        <span class="slider"></span>
+      </label>
+      <span id="fan-state-label" class="state-label">OFF</span>
+    </div>
+
+    <!-- 에어컨 -->
+    <div class="control-group ac-group">
+      <label class="ctrl-label">에어컨</label>
+      <div class="ac-control">
+        <div class="ac-slider-wrap">
+          <span class="ac-range-label">18°C</span>
+          <input type="range" id="ac-slider" min="18" max="30" value="24"
+                 oninput="updateAcLabel(this.value)"
+                 onchange="sendCmd('ac', parseInt(this.value))">
+          <span class="ac-range-label">30°C</span>
+        </div>
+        <div class="ac-row">
+          <span id="ac-label" class="state-label ac-off-label">OFF</span>
+          <button class="btn-small" onclick="sendCmd('ac',0)">OFF</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 창문 -->
+    <div class="control-group">
+      <label class="ctrl-label">창문</label>
+      <div class="btn-group">
+        <button id="win-open" class="btn-act" onclick="sendCmd('window',1)">🔓 열기 ↑</button>
+        <button id="win-close" class="btn-act" onclick="sendCmd('window',2)">🔒 닫기 ↓</button>
+        <button id="win-stop" class="btn-act" onclick="sendCmd('window',0)">⏸ 정지</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 하단: 이벤트 로그 -->
+<section class="log-section">
+  <div class="log-header">
+    <span>이벤트 로그</span>
+    <button class="btn-small" onclick="clearLog()">지우기</button>
+  </div>
+  <div id="log-console" class="log-console"></div>
+</section>
+
+<script src="/app.js"></script>
+</body>
+</html>

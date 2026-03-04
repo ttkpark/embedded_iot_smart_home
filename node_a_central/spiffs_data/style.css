@@ -1,0 +1,403 @@
+/* ── CSS 변수 & 기본 리셋 ──────────────────────────────────────────────────*/
+:root {
+  --bg:       #1E1E1E;
+  --bg2:      #2A2A2A;
+  --bg3:      #333333;
+  --border:   #444444;
+  --text:     #E0E0E0;
+  --text-dim: #888888;
+  --green:    #00E676;
+  --red:      #FF1744;
+  --orange:   #FFA726;
+  --blue:     #29B6F6;
+  --radius:   8px;
+  --font:     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid transparent;
+}
+
+/* 응급: body 테두리 점멸 */
+body.emergency {
+  animation: blink-border 1s step-end infinite;
+}
+@keyframes blink-border {
+  0%, 100% { border-color: var(--red); }
+  50%       { border-color: transparent; }
+}
+
+/* ── 헤더 ──────────────────────────────────────────────────────────────────*/
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.logo     { font-size: 18px; font-weight: 700; color: var(--green); letter-spacing: 0.5px; }
+.subtitle { font-size: 12px; color: var(--text-dim); margin-left: 8px; }
+.header-right { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+
+/* WebSocket 연결 상태 점 */
+.status-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.status-dot.online  { background: var(--green); }
+.status-dot.offline { background: var(--text-dim); animation: pulse-dot 1.5s ease-in-out infinite; }
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.85); }
+}
+
+/* ── 배너 영역 ─────────────────────────────────────────────────────────────*/
+/* All Clear 플래시 배너 */
+.all-clear {
+  background: var(--green);
+  color: #003d00;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  animation: flash-clear 0.5s ease-in-out 6 alternate;
+  flex-shrink: 0;
+}
+@keyframes flash-clear {
+  from { background: var(--green); color: #003d00; }
+  to   { background: #005a20;      color: #00E676; }
+}
+
+/* 응급 배너 */
+.alert-banner {
+  background: var(--red);
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: blink-bg 1s step-end infinite;
+  flex-shrink: 0;
+}
+@keyframes blink-bg {
+  0%, 100% { background: var(--red); }
+  50%       { background: #aa0000; }
+}
+.hidden { display: none !important; }
+
+/* 경고 해제 버튼 */
+#dismiss-btn {
+  padding: 4px 14px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+#dismiss-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* ── 메인 그리드 ───────────────────────────────────────────────────────────*/
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  flex: 1;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* ── 카드 공통 ─────────────────────────────────────────────────────────────*/
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.card h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── 환자 모니터링 카드 ────────────────────────────────────────────────────*/
+.camera-view {
+  background: var(--bg3);
+  border-radius: var(--radius);
+  padding: 28px 16px 20px;
+  text-align: center;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+.camera-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.patient-icon {
+  font-size: 52px;
+  margin-bottom: 10px;
+  display: block;
+  transition: color 0.3s;
+  line-height: 1;
+}
+.patient-icon.stable    { color: var(--green); }
+.patient-icon.emergency { color: var(--red); animation: beat 0.7s ease-in-out infinite; }
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  40%       { transform: scale(1.18); }
+  60%       { transform: scale(1.12); }
+}
+
+.patient-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* 상태 요약 행 */
+.sensor-summary { display: flex; flex-direction: column; gap: 6px; }
+.sensor-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+  background: var(--bg3);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.sensor-key { color: var(--text-dim); font-size: 13px; }
+.sensor-val { font-weight: 600; font-size: 13px; }
+
+/* 색상 헬퍼 클래스 */
+.green  { color: var(--green); }
+.red    { color: var(--red); }
+.orange { color: var(--orange); }
+.blue   { color: var(--blue); }
+.dim    { color: var(--text-dim); }
+
+/* ── 환경 제어 카드 ────────────────────────────────────────────────────────*/
+.mode-badge {
+  font-size: 10px;
+  background: var(--blue);
+  color: #000;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.control-group:last-child { border-bottom: none; }
+
+.ctrl-label {
+  width: 52px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.state-label {
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 36px;
+}
+
+/* 토글 스위치 */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.toggle input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute;
+  inset: 0;
+  background: var(--bg3);
+  border-radius: 26px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: background 0.2s, border-color 0.2s;
+}
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 20px; height: 20px;
+  left: 3px; top: 3px;
+  background: var(--text-dim);
+  border-radius: 50%;
+  transition: transform 0.2s, background 0.2s;
+}
+input:checked + .slider              { background: var(--green); border-color: var(--green); }
+input:checked + .slider::before { transform: translateX(20px); background: #fff; }
+
+/* 에어컨 슬라이더 영역 */
+.ac-group { flex-wrap: nowrap; align-items: flex-start; }
+.ac-control { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+
+.ac-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ac-range-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ac-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 에어컨 온도에 따른 색상 그라디언트 (18°C 파랑 → 30°C 빨강) */
+input[type="range"]#ac-slider {
+  -webkit-appearance: none;
+  flex: 1;
+  height: 6px;
+  background: linear-gradient(to right,
+    #1565C0 0%, #1976D2 15%,
+    var(--blue) 35%,
+    #26C6DA 50%,
+    var(--orange) 75%,
+    #EF5350 90%,
+    #B71C1C 100%
+  );
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+input[type="range"]#ac-slider.ac-off {
+  background: var(--bg3);
+  opacity: 0.5;
+}
+input[type="range"]#ac-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  background: #fff;
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  transition: border-color 0.2s;
+}
+input[type="range"]#ac-slider.ac-off::-webkit-slider-thumb {
+  border-color: var(--text-dim);
+}
+.ac-off-label { color: var(--text-dim); }
+
+/* 창문 버튼 */
+.btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
+.btn-act {
+  padding: 6px 11px;
+  background: var(--bg3);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.btn-act:hover  { background: #444; }
+.btn-act.active {
+  background: var(--orange);
+  color: #000;
+  border-color: var(--orange);
+  font-weight: 700;
+}
+
+/* 공통 소형 버튼 */
+.btn-small {
+  padding: 4px 10px;
+  background: var(--bg3);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.btn-small:hover { background: #444; }
+
+/* ── 이벤트 로그 콘솔 ─────────────────────────────────────────────────────*/
+.log-section {
+  margin: 0 16px 16px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.log-console {
+  height: 170px;
+  overflow-y: auto;
+  padding: 8px 12px;
+  font-family: "Courier New", "Consolas", monospace;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.log-console::-webkit-scrollbar       { width: 4px; }
+.log-console::-webkit-scrollbar-track { background: var(--bg2); }
+.log-console::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.log-entry          { color: var(--text); }
+.log-entry.warning  { color: var(--orange); }
+.log-entry.emergency { color: var(--red); font-weight: 700; }
+
+/* 부팅 커서 깜빡임 */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.boot-cursor { animation: cursor-blink 0.8s step-end infinite; }
