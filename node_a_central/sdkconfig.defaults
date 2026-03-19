@@ -1,6 +1,9 @@
 # Node A — sdkconfig.defaults
 # idf.py menuconfig 또는 idf.py build 시 자동 적용
 
+# 플래시 4MB (app0 + SPIFFS 2MB 파티션 사용)
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+
 # 커스텀 파티션 테이블 사용 (SPIFFS 공간 확보)
 CONFIG_PARTITION_TABLE_CUSTOM=y
 CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"

@@ -1,10 +1,14 @@
 idf_component_register(
-    SRCS "main.c"
+    SRCS
+        "main.c"
+        "../../common/oled_ssd1306.c"
     INCLUDE_DIRS "." "../../common"
     PRIV_REQUIRES
         nvs_flash
         esp_wifi
+        esp_hw_support
         esp_event
         esp_netif
+        esp_timer
         driver
 )

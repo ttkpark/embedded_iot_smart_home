@@ -21,6 +21,7 @@
 #include "esp_system.h"
 #include "esp_log.h"
 #include "esp_wifi.h"
+#include "esp_mac.h"
 #include "esp_event.h"
 #include "esp_now.h"
 #include "esp_netif.h"
@@ -304,6 +305,18 @@ static esp_err_t wifi_init(void)
     ESP_ERROR_CHECK(esp_event_handler_instance_register(
         IP_EVENT, IP_EVENT_STA_GOT_IP, wifi_event_handler, NULL, NULL));
 
+#if NODE_A_TEST_SKIP_WIFI
+    /* 테스트 모드: STA만 사용 (ESP-NOW 전용) */
+    wifi_config_t wifi_cfg = {
+        .sta = {
+            .ssid     = WIFI_SSID,
+            .password = WIFI_PASSWORD,
+        },
+    };
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_cfg));
+    ESP_ERROR_CHECK(esp_wifi_start());
+#else
     /* APSTA 모드: 공유기 연결(웹 서버) + ESP-NOW 채널 공존 */
     wifi_config_t wifi_cfg = {
         .sta = {
@@ -314,6 +327,7 @@ static esp_err_t wifi_init(void)
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_APSTA));
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_cfg));
     ESP_ERROR_CHECK(esp_wifi_start());
+#endif
 
     EventBits_t bits = xEventGroupWaitBits(
         s_wifi_event_group,
@@ -324,8 +338,20 @@ static esp_err_t wifi_init(void)
         ESP_LOGI(TAG, "Wi-Fi 연결 성공: %s", WIFI_SSID);
         return ESP_OK;
     }
+
+#if NODE_A_TEST_SKIP_WIFI
+    /* Wi-Fi 실패해도 ESP-NOW 채널 설정 후 진행 */
+    esp_err_t ch_ret = esp_wifi_set_channel(ESPNOW_CHANNEL, WIFI_SECOND_CHAN_NONE);
+    if (ch_ret != ESP_OK) {
+        ESP_LOGE(TAG, "채널 설정 실패: %s", esp_err_to_name(ch_ret));
+        return ch_ret;
+    }
+    ESP_LOGW(TAG, "Wi-Fi 연결 실패 — ESP-NOW 전용 모드로 진행 (채널 %d)", ESPNOW_CHANNEL);
+    return ESP_OK;
+#else
     ESP_LOGE(TAG, "Wi-Fi 연결 실패");
     return ESP_FAIL;
+#endif
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -538,21 +564,26 @@ void app_main(void)
     gpio_config(&led_cfg);
     gpio_set_level(PIN_STATUS_LED, 1);
 
+    /* Wi-Fi → ESP-NOW → (SPIFFS/HTTP) 순서 준수 */
+    ESP_ERROR_CHECK(wifi_init());
+
     /* 본인 MAC 출력 (config.h에 기입하기 위해) */
     uint8_t mac[6];
     esp_wifi_get_mac(WIFI_IF_STA, mac);
     ESP_LOGI(TAG, "MAC: " MACSTR, MAC2STR(mac));
 
-    /* Wi-Fi → ESP-NOW → SPIFFS → HTTP 서버 순서 준수 */
-    ESP_ERROR_CHECK(wifi_init());
     ESP_ERROR_CHECK(espnow_init());
-    ESP_ERROR_CHECK(spiffs_init());
 
+#if NODE_A_TEST_SKIP_WIFI
+    ESP_LOGW(TAG, "테스트 모드: SPIFFS/웹 서버 생략");
+#else
+    ESP_ERROR_CHECK(spiffs_init());
     g_server = start_webserver();
     if (!g_server) {
         ESP_LOGE(TAG, "웹 서버 시작 실패 — 재부팅");
         esp_restart();
     }
+#endif
 
     log_event("시스템 부팅 완료 — ESP-NOW 네트워크 준비", 0);
 

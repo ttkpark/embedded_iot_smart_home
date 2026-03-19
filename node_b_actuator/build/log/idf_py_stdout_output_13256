@@ -1,0 +1,69 @@
+[1/5] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\GH\Desktop\embedded_iot_smart_home\node_b_actuator\build\esp-idf\esptool_py && C:\Users\GH\.espressif\python_env\idf5.4_py3.12_env\Scripts\python.exe C:/Users/GH/esp/v5.4.2/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/partition_table/partition-table.bin C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/node_b_actuator.bin"
+node_b_actuator.bin binary size 0xb4b90 bytes. Smallest app partition is 0x100000 bytes. 0x4b470 bytes (29%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\GH\Desktop\embedded_iot_smart_home\node_b_actuator\build\bootloader\esp-idf\esptool_py && C:\Users\GH\.espressif\python_env\idf5.4_py3.12_env\Scripts\python.exe C:/Users/GH/esp/v5.4.2/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6570 bytes. 0xa90 bytes (9%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\GH\esp\v5.4.2\esp-idf\components\esptool_py && C:\Users\GH\.espressif\tools\cmake\3.30.2\bin\cmake.exe -D IDF_PATH=C:/Users/GH/esp/v5.4.2/esp-idf -D SERIAL_TOOL=C:/Users/GH/.espressif/python_env/idf5.4_py3.12_env/Scripts/python.exe;;C:/Users/GH/esp/v5.4.2/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args -D WORKING_DIRECTORY=C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build -P C:/Users/GH/esp/v5.4.2/esp-idf/components/esptool_py/run_serial_tool.cmake"
+esptool.py --chip esp32 -p COM24 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 node_b_actuator.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.11.0
+Serial port COM24
+Connecting.....
+Chip is ESP32-D0WDQ6 (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: 24:6f:28:22:39:68
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x000c4fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 25968 bytes to 16362...
+Writing at 0x00001000... (100 %)
+Wrote 25968 bytes (16362 compressed) at 0x00001000 in 0.8 seconds (effective 270.3 kbit/s)...
+Hash of data verified.
+Compressed 740240 bytes to 468938...
+Writing at 0x00010000... (3 %)
+Writing at 0x0001c5e4... (6 %)
+Writing at 0x00024e25... (10 %)
+Writing at 0x0002f556... (13 %)
+Writing at 0x00034ed6... (17 %)
+Writing at 0x0003aef3... (20 %)
+Writing at 0x00040bce... (24 %)
+Writing at 0x00046c35... (27 %)
+Writing at 0x0004c6a5... (31 %)
+Writing at 0x00052a48... (34 %)
+Writing at 0x000580b9... (37 %)
+Writing at 0x0005d578... (41 %)
+Writing at 0x00062f8f... (44 %)
+Writing at 0x00068a5b... (48 %)
+Writing at 0x0006e22c... (51 %)
+Writing at 0x00073cf1... (55 %)
+Writing at 0x00079c74... (58 %)
+Writing at 0x0007f4c2... (62 %)
+Writing at 0x00085022... (65 %)
+Writing at 0x0008acf7... (68 %)
+Writing at 0x00090749... (72 %)
+Writing at 0x000964b9... (75 %)
+Writing at 0x0009bf7d... (79 %)
+Writing at 0x000a1907... (82 %)
+Writing at 0x000aa4cf... (86 %)
+Writing at 0x000b0075... (89 %)
+Writing at 0x000b5c26... (93 %)
+Writing at 0x000bbfc0... (96 %)
+Writing at 0x000c137f... (100 %)
+Wrote 740240 bytes (468938 compressed) at 0x00010000 in 11.9 seconds (effective 496.1 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 231.8 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

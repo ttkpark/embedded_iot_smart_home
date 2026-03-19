@@ -13,7 +13,7 @@
 | 노드 | MCU | 역할 |
 |------|-----|------|
 | **Node A** (Central) | ESP32-WROOM | Wi-Fi 웹 서버 + 대시보드 호스팅 + ESP-NOW 중계 |
-| **Node B** (Actuator) | ESP32-LoRa / Pico | 릴레이(환풍기), IR(에어컨), 모터(창문) 제어 |
+| **Node B** (Actuator) | ESP32-LoRa / Pico | 릴레이(환풍기), IR(에어컨), SG90-HV Continuous(창문) 제어 |
 | **Node C** (Sensor Mock) | ESP32-LoRa / Pico | 물리 버튼으로 정상/응급 상태 시뮬레이션 |
 
 ## 핵심 기술

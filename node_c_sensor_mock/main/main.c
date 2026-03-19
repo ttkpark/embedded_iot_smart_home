@@ -14,21 +14,117 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
+#include "freertos/portmacro.h"
 
 #include "esp_system.h"
 #include "esp_log.h"
 #include "esp_wifi.h"
+#include "esp_mac.h"
 #include "esp_event.h"
 #include "esp_now.h"
 #include "esp_netif.h"
 #include "esp_timer.h"
 #include "nvs_flash.h"
 #include "driver/gpio.h"
+#include "driver/i2c.h"
 
 #include "struct_message.h"
 #include "config.h"
+#include "oled_ssd1306.h"
 
 static const char *TAG = "NODE_C";
+static bool s_oled_ready = false;
+static portMUX_TYPE s_ui_lock = portMUX_INITIALIZER_UNLOCKED;
+
+static volatile uint32_t s_tx_ok = 0;
+static volatile uint32_t s_tx_fail = 0;
+static volatile uint32_t s_btn_normal_count = 0;
+static volatile uint32_t s_btn_emergency_count = 0;
+static volatile uint8_t  s_last_sent_stat = 0xFF;
+static volatile esp_now_send_status_t s_last_send_status = ESP_NOW_SEND_FAIL;
+
+static const char *stat_to_str(uint8_t stat)
+{
+    if (stat == PATIENT_EMERGENCY) return "EMERGENCY";
+    if (stat == PATIENT_NORMAL) return "NORMAL";
+    return "--";
+}
+
+static void oled_render(void)
+{
+    if (!s_oled_ready) return;
+
+    uint32_t tx_ok, tx_fail, n_cnt, e_cnt;
+    uint8_t last_stat;
+    esp_now_send_status_t last_status;
+    taskENTER_CRITICAL(&s_ui_lock);
+    tx_ok = s_tx_ok;
+    tx_fail = s_tx_fail;
+    n_cnt = s_btn_normal_count;
+    e_cnt = s_btn_emergency_count;
+    last_stat = s_last_sent_stat;
+    last_status = s_last_send_status;
+    taskEXIT_CRITICAL(&s_ui_lock);
+
+    char line[24];
+    uint32_t total = tx_ok + tx_fail;
+    uint8_t ok_ratio = (total == 0) ? 0 : (uint8_t)((tx_ok * 100) / total);
+
+    oled_ssd1306_clear();
+    oled_ssd1306_draw_text(0, 0, "NODE C SENSOR");
+
+    snprintf(line, sizeof(line), "LAST:%s", stat_to_str(last_stat));
+    oled_ssd1306_draw_text(0, 1, line);
+
+    snprintf(line, sizeof(line), "SEND:%s",
+             last_status == ESP_NOW_SEND_SUCCESS ? "OK" : "FAIL");
+    oled_ssd1306_draw_text(0, 2, line);
+
+    snprintf(line, sizeof(line), "BTN N:%lu E:%lu",
+             (unsigned long)n_cnt, (unsigned long)e_cnt);
+    oled_ssd1306_draw_text(0, 3, line);
+
+    snprintf(line, sizeof(line), "TX OK:%lu", (unsigned long)tx_ok);
+    oled_ssd1306_draw_text(0, 4, line);
+
+    snprintf(line, sizeof(line), "TX NG:%lu CH:%d",
+             (unsigned long)tx_fail, ESPNOW_CHANNEL);
+    oled_ssd1306_draw_text(0, 5, line);
+
+#if TEST_AUTO_TRIGGER
+    oled_ssd1306_draw_text(0, 6, "MODE: AUTO TEST");
+#else
+    oled_ssd1306_draw_text(0, 6, "MODE: BUTTON");
+#endif
+
+    oled_ssd1306_draw_hbar(0, 56, 128, 8, ok_ratio);
+    oled_ssd1306_refresh();
+}
+
+static void oled_init_if_enabled(void)
+{
+#if USE_ONBOARD_OLED_C
+    oled_ssd1306_cfg_t cfg = {
+        .i2c_port = I2C_NUM_0,
+        .sda_io_num = OLED_I2C_SDA,
+        .scl_io_num = OLED_I2C_SCL,
+        .rst_io_num = OLED_RST_PIN,
+        .i2c_addr = OLED_I2C_ADDR,
+        .i2c_clk_hz = OLED_I2C_CLK_HZ,
+        .flip_vertical = false,
+    };
+    esp_err_t ret = oled_ssd1306_init(&cfg);
+    if (ret == ESP_OK) {
+        s_oled_ready = true;
+        oled_ssd1306_clear();
+        oled_ssd1306_draw_text(0, 1, "NODE C BOOTING...");
+        oled_ssd1306_draw_text(0, 3, "WAIT BUTTON EVENT");
+        oled_ssd1306_refresh();
+    } else {
+        ESP_LOGW(TAG, "OLED init 실패: %s", esp_err_to_name(ret));
+    }
+#endif
+}
 
 /* ── 버튼 디바운싱 상태 (IRAM_ATTR ISR 에서 접근) ─────────────────────────*/
 static volatile uint8_t  s_pending_status = 0xFF; /* 0xFF = 없음 */
@@ -47,6 +143,9 @@ static void send_trigger(uint8_t patient_stat)
     };
 
     esp_err_t ret = esp_now_send(mac_node_a, (uint8_t *)&msg, sizeof(msg));
+    taskENTER_CRITICAL(&s_ui_lock);
+    s_last_sent_stat = patient_stat;
+    taskEXIT_CRITICAL(&s_ui_lock);
     if (ret == ESP_OK) {
         ESP_LOGI(TAG, "트리거 전송 — %s",
                  patient_stat == PATIENT_EMERGENCY ? "응급" : "정상");
@@ -68,6 +167,7 @@ static void IRAM_ATTR isr_normal_btn(void *arg)
     if (now - s_last_press_us >= (uint64_t)DEBOUNCE_MS * 1000) {
         s_last_press_us  = now;
         s_pending_status = PATIENT_NORMAL;
+        s_btn_normal_count++;
     }
 }
 
@@ -77,6 +177,7 @@ static void IRAM_ATTR isr_emergency_btn(void *arg)
     if (now - s_last_press_us >= (uint64_t)DEBOUNCE_MS * 1000) {
         s_last_press_us  = now;
         s_pending_status = PATIENT_EMERGENCY;
+        s_btn_emergency_count++;
     }
 }
 
@@ -110,6 +211,12 @@ static void gpio_init_buttons(void)
 static void espnow_send_cb(const uint8_t *mac_addr,
                            esp_now_send_status_t status)
 {
+    taskENTER_CRITICAL(&s_ui_lock);
+    s_last_send_status = status;
+    if (status == ESP_NOW_SEND_SUCCESS) s_tx_ok++;
+    else s_tx_fail++;
+    taskEXIT_CRITICAL(&s_ui_lock);
+
     ESP_LOGD(TAG, "전송 결과 " MACSTR ": %s",
              MAC2STR(mac_addr),
              status == ESP_NOW_SEND_SUCCESS ? "성공" : "실패");
@@ -162,6 +269,20 @@ static void keepalive_timer_cb(void *arg)
     esp_now_send(mac_node_a, (uint8_t *)&ka, sizeof(ka));
 }
 
+#if TEST_AUTO_TRIGGER
+/* ── 테스트: 주기적 자동 트리거 (버튼 없이 동작 확인용) ──────────────────────*/
+static uint8_t s_test_toggle = 0;  /* 0=정상, 1=응급 교대 */
+
+static void test_auto_trigger_cb(void *arg)
+{
+    uint8_t stat = s_test_toggle ? PATIENT_EMERGENCY : PATIENT_NORMAL;
+    s_test_toggle = !s_test_toggle;
+    send_trigger(stat);
+    ESP_LOGI(TAG, "[TEST] auto trigger -> %s",
+             stat == PATIENT_EMERGENCY ? "EMERGENCY" : "NORMAL");
+}
+#endif
+
 /* ── app_main ───────────────────────────────────────────────────────────────*/
 
 void app_main(void)
@@ -177,8 +298,10 @@ void app_main(void)
     ESP_ERROR_CHECK(ret);
 
     gpio_init_buttons();
+    oled_init_if_enabled();
     ESP_ERROR_CHECK(wifi_init());
     ESP_ERROR_CHECK(espnow_init());
+    oled_render();
 
     /* Keep-alive 타이머 (5초 주기) */
     esp_timer_handle_t ka_timer;
@@ -189,7 +312,20 @@ void app_main(void)
     esp_timer_create(&ka_args, &ka_timer);
     esp_timer_start_periodic(ka_timer, 5000000);
 
+#if TEST_AUTO_TRIGGER
+    /* 테스트: 주기적 자동 트리거 (정상↔응급 8초마다 교대) */
+    esp_timer_handle_t test_timer;
+    esp_timer_create_args_t test_args = {
+        .callback = test_auto_trigger_cb,
+        .name     = "test_auto_trigger",
+    };
+    esp_timer_create(&test_args, &test_timer);
+    esp_timer_start_periodic(test_timer, TEST_TRIGGER_INTERVAL_MS * 1000);
+    ESP_LOGI(TAG, "Init OK [TEST MODE] auto trigger every %ds (NORMAL<->EMERGENCY)",
+             TEST_TRIGGER_INTERVAL_MS / 1000);
+#else
     ESP_LOGI(TAG, "초기화 완료 — 버튼 입력 대기 중");
+#endif
 
     /* 메인 루프: ISR 플래그를 루프에서 안전하게 처리 */
     while (1) {
@@ -197,6 +333,13 @@ void app_main(void)
             uint8_t stat     = s_pending_status;
             s_pending_status = 0xFF; /* 초기화 먼저 (재진입 방지) */
             send_trigger(stat);
+            oled_render();
+        }
+        static int64_t s_last_oled_us = 0;
+        int64_t now = esp_timer_get_time();
+        if (now - s_last_oled_us >= 300000) {
+            s_last_oled_us = now;
+            oled_render();
         }
         vTaskDelay(pdMS_TO_TICKS(10));
     }

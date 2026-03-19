@@ -1,0 +1,125 @@
+ET),boot:0x1ot: Enabling RNG early entropy source...
+[0;32mI (49) boot: Partition Table:[0m
+[0;32mI (51) boo�I (13) boot: ESP-IDF v5.4.3 2nd stage bootloader[0m
+[0;32mI (13) boot: compile time Mar  8 2026 09:20:29[0m
+[0;32mI (13) boot: Multicore bootloader[0m
+[0;32mI (13) boot: chip revision: v1.0[0m
+[0;32mI (16) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (20) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (23) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (27) boot: Enabling RNG early entropy source...[0m
+[0;32mI (31) boot: Partition Table:[0m
+[0;32mI (34) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (40) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (47) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (53) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (60) boot: End of partition table[0m
+[0;32mI (63) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=19aa8h (105128) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=00029ad0 vaddr=3ffb0000 size=0402ch ( 16428) load[0m
+[0;32mI (113) esp_image: segment 2: paddr=0002db04 vaddr=40080000 size=02514h (  9492) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=80a90h (526992) map[0m
+[0;32mI (298) esp_image: segment 4: paddr=000b0ab8 vaddr=40082514 size=169a0h ( 92576) load[0m
+[0;32mI (334) esp_image: segment 5: paddr=000c7460 vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (346) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (346) boot: Disabling RNG early entropy source...[0m
+[0;32mI (357) cpu_start: Multicore app[0m
+[0;32mI (365) cpu_start: Pro cpu start user code[0m
+[0;32mI (365) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (366) app_init: Application information:[0m
+[0;32mI (366) app_init: Project name:     node_c_sensor_mock[0m
+[0;32mI (370) app_init: App version:      e593b85-dirty[0m
+[0;32mI (375) app_init: Compile time:     Mar  8 2026 09:20:06[0m
+[0;32mI (380) app_init: ELF file SHA256:  03db26f0e...[0m
+[0;32mI (384) app_init: ESP-IDF:          v5.4.3[0m
+[0;32mI (388) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (392) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (396) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (400) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (406) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (411) heap_init: At 3FFB8530 len 00027AD0 (158 KiB): DRAM[0m
+[0;32mI (416) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (422) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (427) heap_init: At 40098EB4 len 0000714C (28 KiB): IRAM[0m
+[0;32mI (434) spi_flash: detected chip: winbond[0m
+[0;32mI (436) spi_flash: flash io: dio[0m
+[0;33mW (439) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (451) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (462) main_task: Started on CPU0[0m
+[0;32mI (465) main_task: Calling app_main()[0m
+[0;32mI (467) NODE_C: Node C 부팅[0m
+[0;32mI (504) gpio: GPIO[32]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (505) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (511) NODE_C: 버튼 GPIO 초기화 완료 (정상:32, 응급:33)[0m
+[0;32mI (517) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (642) OLED: SSD1306 init done (addr=0x3C, SDA=4, SCL=15)[0m
+[0;32mI (679) wifi:wifi driver task: 3ffc0624, prio:23, stack:6656, core=0[0m
+[0;32mI (699) wifi:wifi firmware version: e8ce6e2[0m
+[0;32mI (700) wifi:wifi certification version: v7.0[0m
+[0;32mI (700) wifi:config NVS flash: enabled[0m
+[0;32mI (700) wifi:config nano formatting: disabled[0m
+[0;32mI (705) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (709) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (713) wifi:Init management short buffer num: 32[0m
+[0;32mI (718) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (722) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (726) wifi:Init static rx buffer num: 10[0m
+[0;32mI (729) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (735) wifi_init: rx ba win: 6[0m
+[0;32mI (736) wifi_init: accept mbox: 6[0m
+[0;32mI (739) wifi_init: tcpip mbox: 32[0m
+[0;32mI (742) wifi_init: udp mbox: 6[0m
+[0;32mI (745) wifi_init: tcp mbox: 6[0m
+[0;32mI (748) wifi_init: tcp tx win: 5760[0m
+[0;32mI (751) wifi_init: tcp rx win: 5760[0m
+[0;32mI (754) wifi_init: tcp mss: 1440[0m
+[0;32mI (757) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (761) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (766) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (843) wifi:mode : sta (24:6f:28:22:39:68)[0m
+[0;32mI (844) wifi:enable tsf[0m
+[0;32mI (847) NODE_C: MAC: 24:6f:28:22:39:68[0m
+[0;32mI (849) ESPNOW: espnow [version: 2.0] init[0m
+[0;32mI (849) NODE_C: ESP-NOW 초기화 완료[0m
+[0;32mI (885) NODE_C: Init OK [TEST MODE] auto trigger every 8s (NORMAL<->EMERGENCY)[0m
+[0;32mI (8886) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (8886) NODE_C: [TEST] auto trigger -> NORMAL[0m
+[0;32mI (16886) NODE_C: 트리거 전송 — 응급[0m
+[0;32mI (16886) NODE_C: [TEST] auto trigger -> EMERGENCY[0m
+[0;32mI (24886) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (24886) NODE_C: [TEST] auto trigger -> NORMAL[0m
+[0;32mI (32886) NODE_C: 트리거 전송 — 응급[0m
+[0;32mI (32886) NODE_C: [TEST] auto trigger -> EMERGENCY[0m
+[0;32mI (40886) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (40886) NODE_C: [TEST] auto trigger -> NORMAL[0m
+[0;32mI (48886) NODE_C: 트리거 전송 — 응급[0m
+[0;32mI (48886) NODE_C: [TEST] auto trigger -> EMERGENCY[0m
+[0;32mI (56886) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (56886) NODE_C: [TEST] auto trigger -> NORMAL[0m
+[0;32mI (64886) NODE_C: 트리거 전송 — 응급[0m
+[0;32mI (64886) NODE_C: [TEST] auto trigger -> EMERGENCY[0m
+[0;32mI (72886) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (72886) NODE_C: [TEST] auto trigger -> NORMAL[0m
+�S	��ѹesp32: SPI Mode       : DIO
+[0;32mI (40) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (48) boot: Partition Table:[0m
+[0;32mI (51) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (57) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (70) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (77) boot: End of partition table[0m
+[0;32mI (80) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=19aa8h (105128) map[0m
+[0;32mI (124) esp_image: segment 1: paddr=00029ad0 vaddr=3ffb0000 size=0402ch ( 16428) load[0m
+[0;32mI (130) esp_image: segment 2: paddr=0002db04 vaddr=40080000 size=02514h (  9492) load[0m
+[0;32mI (134) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=80a90h (526992) map[0m
+[0;32mI (315) esp_image: segment 4: paddr=000b0ab8 vaddr=40082514 size=169a0h ( 92576) load[0m
+[0;32mI (351) esp_image: segment 5: paddr=000c7460 vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (363) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (363) boot: Disabling RNG early entropy source...[0m
+[0;32mI (374) cpu_start: Multicore app[0m
+[0;32mI (382) cpu_start: Pro cpu start user code[0m
+[0;32mI (383) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (383) app_init: Application information:[0m
+[0;32mI (383) app_init: Project name:     node_c_sensor_mock[0m
+[0;32mI (387) app_init: App version:      e593b85-dirty[0m
+[0;32mI (392) app_init: Compile time:     Mar  8 2026 09:20:

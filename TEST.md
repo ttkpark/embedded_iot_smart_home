@@ -29,7 +29,10 @@
 ### Windows에서 ESP-IDF 터미널 열기
 
 - **ESP-IDF 5.x 설치 시:** 시작 메뉴에서 `ESP-IDF 5.x CMD` 또는 `ESP-IDF 5.x PowerShell` 실행
-- 또는 수동: `%IDF_PATH%\export.bat` 실행 후 같은 창에서 작업
+- **PowerShell에서 수동 로드:**  
+  `. C:\Users\GH\esp\v5.4.2\esp-idf\export.ps1`  
+  실행 후 같은 창에서 `idf.py build` 등 사용
+- **CMD에서 수동:** `%IDF_PATH%\export.bat` 실행 후 같은 창에서 작업
 
 ---
 
@@ -215,7 +218,7 @@ python -m esptool --chip esp32 --port COM3 write_flash 0x200000 build/spiffs.bin
 | 4 | Node C **정상 버튼** 누름 | 경고 배너 사라짐, 환자 상태 "● 정상" (녹색) 복귀 |
 | 5 | 대시보드에서 **환풍기 토글** ON | Node B에서 릴레이 동작 (연결된 경우 LED/팬 등으로 확인) |
 | 6 | 대시보드에서 **에어컨 슬라이더** 조절 | Node B에서 IR LED 신호 출력 (IR 리시버로 확인 가능) |
-| 7 | 대시보드에서 **창문 열기/닫기** 클릭 | Node B에서 모터 구동 (리니어 액추에이터 연결 시) |
+| 7 | 대시보드에서 **창문 열기/닫기** 클릭 | Node B에서 SG90-HV Continuous 서보 구동 |
 
 ### 6-3. 하드웨어 없이 확인할 수 있는 것
 
@@ -223,7 +226,7 @@ python -m esptool --chip esp32 --port COM3 write_flash 0x200000 build/spiffs.bin
 - Node B: 시리얼에 "명령 수신 — fan:x ac:x window:x" 로그
 - Node C: 버튼 누를 때 시리얼에 "트리거 전송 — 응급/정상" 로그
 
-릴레이/모터/IR 없이도 **시리얼 로그**만으로 3노드 간 ESP-NOW·대시보드 연동은 검증 가능합니다.
+릴레이/서보/IR 없이도 **시리얼 로그**만으로 3노드 간 ESP-NOW·대시보드 연동은 검증 가능합니다.
 
 ---
 
