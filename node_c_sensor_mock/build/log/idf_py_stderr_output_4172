@@ -1,0 +1,37 @@
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM9 instead...[0m
+[0;33m--- esp-idf-monitor 1.9.0 on \\.\COM9 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- Warning: Checksum mismatch between flashed and built applications. Checksum of built application is e241e97c0649c7a87e0518b2f0df0f60897411cbef6c52e0c7562cad7aa506e1[0m
+[0m--- 0x400d8d49: [0;33moled_ssd1306_refresh[0m[0m at [0;32mC:/Users/GH/Desktop/embedded_iot_smart_home/common/oled_ssd1306.c[0m[0m:[1;31m194[0m
+[0m--- 0x400d8d5f: [0;33moled_ssd1306_refresh[0m[0m at [0;32mC:/Users/GH/Desktop/embedded_iot_smart_home/common/oled_ssd1306.c[0m[0m:[1;31m195[0m
+[0m--- 0x400d8d76: [0;33moled_ssd1306_refresh[0m[0m at [0;32mC:/Users/GH/Desktop/embedded_iot_smart_home/common/oled_ssd1306.c[0m[0m:[1;31m196[0m
+[0m--- 0x400d8d8c: [0;33moled_ssd1306_refresh[0m[0m at [0;32mC:/Users/GH/Desktop/embedded_iot_smart_home/common/oled_ssd1306.c[0m[0m:[1;31m197[0m
+[0m--- 0x400d8da2: [0;33moled_ssd1306_refresh[0m[0m at [0;32mC:/Users/GH/Desktop/embedded_iot_smart_home/common/oled_ssd1306.c[0m[0m:[1;31m198[0m
+[0m--- 0x400d8db8: [0;33moled_ssd1306_refresh[0m[0m at [0;32mC:/Users/GH/Desktop/embedded_iot_smart_home/common/oled_ssd1306.c[0m[0m:[1;31m199[0m
+[0m--- 0x400d8dd2: [0;33moled_ssd1306_refresh[0m[0m at [0;32mC:/Users/GH/Desktop/embedded_iot_smart_home/common/oled_ssd1306.c[0m[0m:[1;31m200[0m
+[0m--- 0x40080400: [0;33m_init[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0m--- 0x40080400: [0;33m_init[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0;33m--- Warning: Checksum mismatch between flashed and built applications. Checksum of built application is e241e97c0649c7a87e0518b2f0df0f60897411cbef6c52e0c7562cad7aa506e1[0m
+[0;33m--- Warning: Checksum mismatch between flashed and built applications. Checksum of built application is e241e97c0649c7a87e0518b2f0df0f60897411cbef6c52e0c7562cad7aa506e1[0m
+[0;33m--- Warning: Checksum mismatch between flashed and built applications. Checksum of built application is e241e97c0649c7a87e0518b2f0df0f60897411cbef6c52e0c7562cad7aa506e1[0m
+[0;33m--- To exit from IDF monitor please use "Ctrl+]". Alternatively, you can use Ctrl+T Ctrl+X to exit.[0m
+[0m--- 0x40080400: [0;33m_init[0m[0m at [0;32m??[0m[0m:[1;31m?[0m
+[0;33m--- Warning: Checksum mismatch between flashed and built applications. Checksum of built application is e241e97c0649c7a87e0518b2f0df0f60897411cbef6c52e0c7562cad7aa506e1[0m
+[0m
+Traceback (most recent call last):
+  File "C:\Users\GH\esp\v5.4.2\esp-idf\tools/idf_monitor.py", line 11, in <module>
+    sys.exit(subprocess.run([sys.executable, '-m', 'esp_idf_monitor'] + sys.argv[1:]).returncode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GH\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GH\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1201, in communicate
+    self.wait()
+  File "C:\Users\GH\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GH\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1590, in _wait
+    result = _winapi.WaitForSingleObject(self._handle,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

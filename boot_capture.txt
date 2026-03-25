@@ -1,0 +1,198 @@
+
+===== COM6 =====
+I (310) esp_image: segment 4: paddr=000ae528 vaddr=40083b58 size=13fc4h ( 81860) load
+I (342) esp_image: segment 5: paddr=000c24f4 vaddr=50000000 size=0001ch (    28) load
+I (354) boot: Loaded app from partition at offset 0x10000
+I (354) boot: Disabling RNG early entropy source...
+I (365) cpu_start: Multicore app
+I (373) cpu_start: Pro cpu start user code
+I (373) cpu_start: cpu freq: 160000000 Hz
+I (373) app_init: Application information:
+I (373) app_init: Project name:     node_c_sensor_mock
+I (378) app_init: App version:      e593b85-dirty
+I (383) app_init: Compile time:     Mar  8 2026 09:20:06
+I (388) app_init: ELF file SHA256:  6681a0ba2...
+I (392) app_init: ESP-IDF:          v5.4.3
+I (396) efuse_init: Min chip rev:     v0.0
+I (400) efuse_init: Max chip rev:     v3.99
+I (404) efuse_init: Chip rev:         v1.0
+I (408) heap_init: Initializing. RAM available for dynamic allocation:
+I (414) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
+I (419) heap_init: At 3FFB8090 len 00027F70 (159 KiB): DRAM
+I (424) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
+I (429) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (435) heap_init: At 40097B1C len 000084E4 (33 KiB): IRAM
+I (442) spi_flash: detected chip: gd
+I (443) spi_flash: flash io: dio
+W (446) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (460) main_task: Started on CPU0
+I (463) main_task: Calling app_main()
+I (465) NODE_C: Node C 부팅
+I (488) gpio: GPIO[32]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2
+I (489) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2
+I (495) NODE_C: 버튼 GPIO 초기화 완료 (정상:32, 응급:33)
+I (504) wifi:wifi driver task: 3ffc00f8, prio:23, stack:6656, core=0
+I (519) wifi:wifi firmware version: e8ce6e2
+I (520) wifi:wifi certification version: v7.0
+I (520) wifi:config NVS flash: enabled
+I (520) wifi:config nano formatting: disabled
+I (524) wifi:Init data frame dynamic rx buffer num: 32
+I (529) wifi:Init static rx mgmt buffer num: 5
+I (533) wifi:Init management short buffer num: 32
+I (537) wifi:Init dynamic tx buffer num: 32
+I (542) wifi:Init static rx buffer size: 1600
+I (546) wifi:Init static rx buffer num: 10
+I (549) wifi:Init dynamic rx buffer num: 32
+I (554) wifi_init: rx ba win: 6
+I (556) wifi_init: accept mbox: 6
+I (559) wifi_init: tcpip mbox: 32
+I (562) wifi_init: udp mbox: 6
+I (565) wifi_init: tcp mbox: 6
+I (568) wifi_init: tcp tx win: 5760
+I (571) wifi_init: tcp rx win: 5760
+I (574) wifi_init: tcp mss: 1440
+I (577) wifi_init: WiFi IRAM OP enabled
+I (581) wifi_init: WiFi RX IRAM OP enabled
+I (586) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06
+I (668) wifi:mode : sta (30:ae:a4:84:0d:0c)
+I (669) wifi:enable tsf
+I (671) NODE_C: MAC: 30:ae:a4:84:0d:0c
+I (673) ESPNOW: espnow [version: 2.0] init
+I (673) NODE_C: ESP-NOW 초기화 완료
+I (674) NODE_C: Init OK [TEST MODE] auto trigger every 8s (NORMAL<->EMERGENCY)
+I (8675) NODE_C: 트리거 전송 — 정상
+I (8675) NODE_C: [TEST] auto trigger -> NORMAL
+
+===== COM24 =====
+I (303) esp_image: segment 4: paddr=000b3128 vaddr=40081020 size=1875ch (100188) load
+I (342) esp_image: segment 5: paddr=000cb88c vaddr=50000000 size=0001ch (    28) load
+I (354) boot: Loaded app from partition at offset 0x10000
+I (355) boot: Disabling RNG early entropy source...
+I (365) cpu_start: Multicore app
+I (373) cpu_start: Pro cpu start user code
+I (374) cpu_start: cpu freq: 160000000 Hz
+I (374) app_init: Application information:
+I (374) app_init: Project name:     node_b_actuator
+I (378) app_init: App version:      e593b85-dirty
+I (383) app_init: Compile time:     Mar  8 2026 10:13:45
+I (388) app_init: ELF file SHA256:  3e67f19de...
+I (392) app_init: ESP-IDF:          v5.4.3
+I (396) efuse_init: Min chip rev:     v0.0
+I (400) efuse_init: Max chip rev:     v3.99
+I (404) efuse_init: Chip rev:         v1.0
+I (408) heap_init: Initializing. RAM available for dynamic allocation:
+I (414) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
+I (419) heap_init: At 3FFB8888 len 00027778 (157 KiB): DRAM
+I (424) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
+I (430) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (435) heap_init: At 4009977C len 00006884 (26 KiB): IRAM
+I (442) spi_flash: detected chip: winbond
+I (444) spi_flash: flash io: dio
+W (447) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+W (459) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`
+I (470) main_task: Started on CPU0
+I (473) main_task: Calling app_main()
+I (475) NODE_B: Node B 부팅
+I (508) gpio: GPIO[13]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
+I (508) gpio: GPIO[25]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
+I (514) NODE_B: GPIO 출력 초기화 완료
+I (558) NODE_B: SG90-HV Continuous 초기화 완료 (GPIO 27)
+I (560) NODE_B: RMT IR 초기화 완료 (GPIO 26)
+I (561) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
+I (683) OLED: SSD1306 init done (addr=0x3C, SDA=4, SCL=15)
+I (721) wifi:wifi driver task: 3ffc1ec0, prio:23, stack:6656, core=0
+I (738) wifi:wifi firmware version: e8ce6e2
+I (739) wifi:wifi certification version: v7.0
+I (739) wifi:config NVS flash: enabled
+I (739) wifi:config nano formatting: disabled
+I (743) wifi:Init data frame dynamic rx buffer num: 32
+I (748) wifi:Init static rx mgmt buffer num: 5
+I (752) wifi:Init management short buffer num: 32
+I (756) wifi:Init dynamic tx buffer num: 32
+I (761) wifi:Init static rx buffer size: 1600
+I (765) wifi:Init static rx buffer num: 10
+I (768) wifi:Init dynamic rx buffer num: 32
+I (773) wifi_init: rx ba win: 6
+I (775) wifi_init: accept mbox: 6
+I (778) wifi_init: tcpip mbox: 32
+I (781) wifi_init: udp mbox: 6
+I (784) wifi_init: tcp mbox: 6
+I (787) wifi_init: tcp tx win: 5760
+I (790) wifi_init: tcp rx win: 5760
+I (793) wifi_init: tcp mss: 1440
+I (796) wifi_init: WiFi IRAM OP enabled
+I (800) wifi_init: WiFi RX IRAM OP enabled
+I (805) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06
+I (882) wifi:mode : sta (24:6f:28:22:37:d8)
+I (883) wifi:enable tsf
+I (886) NODE_B: MAC: 24:6f:28:22:37:d8
+I (888) ESPNOW: espnow [version: 2.0] init
+I (888) NODE_B: ESP-NOW 초기화 완료
+I (925) NODE_B: 초기화 완료 — 명령 대기 중
+
+===== COM9 =====
+I (298) esp_image: segment 4: paddr=000b0ab8 vaddr=40082514 size=169a0h ( 92576) load
+I (334) esp_image: segment 5: paddr=000c7460 vaddr=50000000 size=0001ch (    28) load
+I (346) boot: Loaded app from partition at offset 0x10000
+I (346) boot: Disabling RNG early entropy source...
+I (357) cpu_start: Multicore app
+I (366) cpu_start: Pro cpu start user code
+I (366) cpu_start: cpu freq: 160000000 Hz
+I (366) app_init: Application information:
+I (366) app_init: Project name:     node_c_sensor_mock
+I (371) app_init: App version:      e593b85-dirty
+I (375) app_init: Compile time:     Mar  8 2026 09:20:06
+I (380) app_init: ELF file SHA256:  03db26f0e...
+I (384) app_init: ESP-IDF:          v5.4.3
+I (388) efuse_init: Min chip rev:     v0.0
+I (392) efuse_init: Max chip rev:     v3.99
+I (396) efuse_init: Chip rev:         v1.0
+I (400) heap_init: Initializing. RAM available for dynamic allocation:
+I (406) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
+I (411) heap_init: At 3FFB8530 len 00027AD0 (158 KiB): DRAM
+I (417) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
+I (422) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (427) heap_init: At 40098EB4 len 0000714C (28 KiB): IRAM
+I (434) spi_flash: detected chip: winbond
+I (436) spi_flash: flash io: dio
+W (439) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+W (452) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`
+I (462) main_task: Started on CPU0
+I (465) main_task: Calling app_main()
+I (467) NODE_C: Node C 부팅
+I (503) gpio: GPIO[32]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2
+I (504) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2
+I (510) NODE_C: 버튼 GPIO 초기화 완료 (정상:32, 응급:33)
+I (516) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
+I (641) OLED: SSD1306 init done (addr=0x3C, SDA=4, SCL=15)
+I (679) wifi:wifi driver task: 3ffc06a8, prio:23, stack:6656, core=0
+I (700) wifi:wifi firmware version: e8ce6e2
+I (700) wifi:wifi certification version: v7.0
+I (700) wifi:config NVS flash: enabled
+I (700) wifi:config nano formatting: disabled
+I (705) wifi:Init data frame dynamic rx buffer num: 32
+I (710) wifi:Init static rx mgmt buffer num: 5
+I (713) wifi:Init management short buffer num: 32
+I (718) wifi:Init dynamic tx buffer num: 32
+I (722) wifi:Init static rx buffer size: 1600
+I (726) wifi:Init static rx buffer num: 10
+I (730) wifi:Init dynamic rx buffer num: 32
+I (735) wifi_init: rx ba win: 6
+I (736) wifi_init: accept mbox: 6
+I (740) wifi_init: tcpip mbox: 32
+I (743) wifi_init: udp mbox: 6
+I (745) wifi_init: tcp mbox: 6
+I (748) wifi_init: tcp tx win: 5760
+I (751) wifi_init: tcp rx win: 5760
+I (755) wifi_init: tcp mss: 1440
+I (757) wifi_init: WiFi IRAM OP enabled
+I (761) wifi_init: WiFi RX IRAM OP enabled
+I (766) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06
+I (843) wifi:mode : sta (24:6f:28:22:39:68)
+I (844) wifi:enable tsf
+I (847) NODE_C: MAC: 24:6f:28:22:39:68
+I (848) ESPNOW: espnow [version: 2.0] init
+I (849) NODE_C: ESP-NOW 초기화 완료
+I (885) NODE_C: Init OK [TEST MODE] auto trigger every 8s (NORMAL<->EMERGENCY)
+I (8886) NODE_C: 트리거 전송 — 정상
+I (8887) NODE_C: [TEST] auto trigger -> NORMAL

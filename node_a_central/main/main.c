@@ -43,6 +43,11 @@ static const char *TAG        = "NODE_A";
 #define MAX_WS_CLIENTS          4
 #define LOG_RING_SIZE           50
 #define WS_BUF_SIZE             384
+#define WIFI_SCAN_MAX           20  /* 스캔 결과 최대 개수 */
+
+/* ── Wi-Fi AP 목록 ─────────────────────────────────────────────────────────*/
+static const wifi_ap_entry_t s_wifi_list[] = WIFI_AP_LIST;
+static char s_connected_ssid[33] = {0}; /* 현재 연결된 SSID */
 
 /* ── 이벤트 로그 링 버퍼 ───────────────────────────────────────────────────*/
 typedef struct {
@@ -222,11 +227,16 @@ static void espnow_recv_cb(const esp_now_recv_info_t *recv_info,
             broadcast_log("Node B 제어 명령 전송 완료", 1);
 
         } else {
-            /* 정상 복귀 */
+            /* 정상 복귀 → Node B에 원상복구 명령 */
             g_state.patient_stat = PATIENT_NORMAL;
+            g_state.fan_state    = FAN_OFF;
+            g_state.ac_temp      = AC_OFF;
+            g_state.window_act   = WINDOW_CLOSE;
+
+            send_command_to_b(FAN_OFF, AC_OFF, WINDOW_CLOSE);
             broadcast_status();
-            log_event("환자 상태 정상 복귀", 0);
-            broadcast_log("환자 상태 정상 복귀", 0);
+            log_event("환자 정상 복귀 — 환경 원상복구 명령 전송", 0);
+            broadcast_log("환자 정상 복귀 — 환경 원상복구 명령 전송", 0);
         }
         break;
 
@@ -254,7 +264,7 @@ static esp_err_t espnow_init(void)
     ESP_ERROR_CHECK(esp_now_register_send_cb(espnow_send_cb));
 
     esp_now_peer_info_t peer = {
-        .channel = ESPNOW_CHANNEL,
+        .channel = 0,  /* 0 = 현재 STA 채널 자동 사용 */
         .encrypt = false,
     };
     memcpy(peer.peer_addr, mac_node_b, ESP_NOW_ETH_ALEN);
@@ -272,7 +282,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
                                int32_t event_id, void *event_data)
 {
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
-        esp_wifi_connect();
+        /* 스캔 기반 연결이므로 여기서는 자동 connect 하지 않음 */
     } else if (event_base == WIFI_EVENT
                && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         if (s_retry_num < WIFI_MAX_RETRY) {
@@ -290,6 +300,78 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
     }
 }
 
+/**
+ * Wi-Fi 스캔 후 WIFI_AP_LIST에 등록된 AP 중 RSSI가 가장 높은 것을 선택하여 연결.
+ * 매칭되는 AP가 없으면 ESP_FAIL 반환.
+ */
+static esp_err_t wifi_scan_and_select(void)
+{
+    wifi_scan_config_t scan_cfg = {
+        .show_hidden = false,
+    };
+    ESP_ERROR_CHECK(esp_wifi_scan_start(&scan_cfg, true)); /* 블로킹 스캔 */
+
+    uint16_t ap_count = 0;
+    esp_wifi_scan_get_ap_num(&ap_count);
+    if (ap_count == 0) {
+        ESP_LOGW(TAG, "Wi-Fi 스캔 결과 없음");
+        return ESP_FAIL;
+    }
+    if (ap_count > WIFI_SCAN_MAX) ap_count = WIFI_SCAN_MAX;
+
+    wifi_ap_record_t *ap_records = malloc(sizeof(wifi_ap_record_t) * ap_count);
+    if (!ap_records) return ESP_ERR_NO_MEM;
+
+    ESP_ERROR_CHECK(esp_wifi_scan_get_ap_records(&ap_count, ap_records));
+
+    ESP_LOGI(TAG, "═══ Wi-Fi 스캔 결과 (%d개) ═══", ap_count);
+    for (int i = 0; i < ap_count; i++) {
+        ESP_LOGI(TAG, "  [%d] %-32s  ch:%d  rssi:%d",
+                 i, (char *)ap_records[i].ssid,
+                 ap_records[i].primary, ap_records[i].rssi);
+    }
+
+    /* 등록된 AP 목록과 매칭 — RSSI 가장 높은 것 선택 */
+    int best_idx = -1;
+    int best_list_idx = -1;
+    int8_t best_rssi = -127;
+
+    for (int i = 0; i < ap_count; i++) {
+        for (int j = 0; j < WIFI_AP_COUNT; j++) {
+            if (strcmp((char *)ap_records[i].ssid, s_wifi_list[j].ssid) == 0) {
+                ESP_LOGI(TAG, "  → 매칭: \"%s\" (rssi:%d)", s_wifi_list[j].ssid, ap_records[i].rssi);
+                if (ap_records[i].rssi > best_rssi) {
+                    best_rssi = ap_records[i].rssi;
+                    best_idx = i;
+                    best_list_idx = j;
+                }
+            }
+        }
+    }
+
+    if (best_idx < 0) {
+        ESP_LOGW(TAG, "등록된 AP를 찾지 못함");
+        free(ap_records);
+        return ESP_FAIL;
+    }
+
+    ESP_LOGI(TAG, "═══ 선택: \"%s\" (ch:%d, rssi:%d) ═══",
+             s_wifi_list[best_list_idx].ssid,
+             ap_records[best_idx].primary, best_rssi);
+
+    /* STA 설정 적용 */
+    wifi_config_t wifi_cfg = {0};
+    strlcpy((char *)wifi_cfg.sta.ssid,     s_wifi_list[best_list_idx].ssid,     sizeof(wifi_cfg.sta.ssid));
+    strlcpy((char *)wifi_cfg.sta.password,  s_wifi_list[best_list_idx].password, sizeof(wifi_cfg.sta.password));
+    strlcpy(s_connected_ssid, s_wifi_list[best_list_idx].ssid, sizeof(s_connected_ssid));
+
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_cfg));
+    esp_wifi_connect();
+
+    free(ap_records);
+    return ESP_OK;
+}
+
 static esp_err_t wifi_init(void)
 {
     s_wifi_event_group = xEventGroupCreate();
@@ -305,28 +387,30 @@ static esp_err_t wifi_init(void)
     ESP_ERROR_CHECK(esp_event_handler_instance_register(
         IP_EVENT, IP_EVENT_STA_GOT_IP, wifi_event_handler, NULL, NULL));
 
+    /* 등록된 AP 목록 출력 */
+    ESP_LOGI(TAG, "등록된 Wi-Fi AP 목록 (%d개):", WIFI_AP_COUNT);
+    for (int i = 0; i < WIFI_AP_COUNT; i++) {
+        ESP_LOGI(TAG, "  [%d] %s", i, s_wifi_list[i].ssid);
+    }
+
 #if NODE_A_TEST_SKIP_WIFI
-    /* 테스트 모드: STA만 사용 (ESP-NOW 전용) */
-    wifi_config_t wifi_cfg = {
-        .sta = {
-            .ssid     = WIFI_SSID,
-            .password = WIFI_PASSWORD,
-        },
-    };
+    /* 테스트 모드: STA만 사용 (ESP-NOW 전용, AP 연결 생략) */
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
-    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_cfg));
     ESP_ERROR_CHECK(esp_wifi_start());
+    ESP_ERROR_CHECK(esp_wifi_set_channel(ESPNOW_CHANNEL_DEFAULT, WIFI_SECOND_CHAN_NONE));
+    ESP_LOGW(TAG, "테스트 모드: Wi-Fi 연결 생략 — ESP-NOW 전용 (채널 %d)", ESPNOW_CHANNEL_DEFAULT);
+    return ESP_OK;
 #else
-    /* APSTA 모드: 공유기 연결(웹 서버) + ESP-NOW 채널 공존 */
-    wifi_config_t wifi_cfg = {
-        .sta = {
-            .ssid     = WIFI_SSID,
-            .password = WIFI_PASSWORD,
-        },
-    };
+    /* APSTA 모드로 시작 → 스캔 → 매칭된 AP에 연결 */
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_APSTA));
-    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_cfg));
     ESP_ERROR_CHECK(esp_wifi_start());
+
+    esp_err_t scan_ret = wifi_scan_and_select();
+    if (scan_ret != ESP_OK) {
+        ESP_LOGW(TAG, "등록된 AP 없음 — ESP-NOW 채널 %d 고정", ESPNOW_CHANNEL_DEFAULT);
+        esp_wifi_set_channel(ESPNOW_CHANNEL_DEFAULT, WIFI_SECOND_CHAN_NONE);
+        return ESP_FAIL;
+    }
 #endif
 
     EventBits_t bits = xEventGroupWaitBits(
@@ -335,23 +419,15 @@ static esp_err_t wifi_init(void)
         pdFALSE, pdFALSE, pdMS_TO_TICKS(10000));
 
     if (bits & WIFI_CONNECTED_BIT) {
-        ESP_LOGI(TAG, "Wi-Fi 연결 성공: %s", WIFI_SSID);
+        uint8_t primary_ch = 0;
+        wifi_second_chan_t secondary_ch = 0;
+        esp_wifi_get_channel(&primary_ch, &secondary_ch);
+        ESP_LOGI(TAG, "Wi-Fi 연결 성공: %s (채널 %d)", s_connected_ssid, primary_ch);
         return ESP_OK;
     }
 
-#if NODE_A_TEST_SKIP_WIFI
-    /* Wi-Fi 실패해도 ESP-NOW 채널 설정 후 진행 */
-    esp_err_t ch_ret = esp_wifi_set_channel(ESPNOW_CHANNEL, WIFI_SECOND_CHAN_NONE);
-    if (ch_ret != ESP_OK) {
-        ESP_LOGE(TAG, "채널 설정 실패: %s", esp_err_to_name(ch_ret));
-        return ch_ret;
-    }
-    ESP_LOGW(TAG, "Wi-Fi 연결 실패 — ESP-NOW 전용 모드로 진행 (채널 %d)", ESPNOW_CHANNEL);
-    return ESP_OK;
-#else
     ESP_LOGE(TAG, "Wi-Fi 연결 실패");
     return ESP_FAIL;
-#endif
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -565,23 +641,36 @@ void app_main(void)
     gpio_set_level(PIN_STATUS_LED, 1);
 
     /* Wi-Fi → ESP-NOW → (SPIFFS/HTTP) 순서 준수 */
-    ESP_ERROR_CHECK(wifi_init());
+    bool wifi_ok = (wifi_init() == ESP_OK);
 
     /* 본인 MAC 출력 (config.h에 기입하기 위해) */
     uint8_t mac[6];
     esp_wifi_get_mac(WIFI_IF_STA, mac);
     ESP_LOGI(TAG, "MAC: " MACSTR, MAC2STR(mac));
 
+    if (!wifi_ok) {
+        /* Wi-Fi 실패 시 ESP-NOW 채널 수동 설정 후 진행 */
+        esp_wifi_disconnect();
+        vTaskDelay(pdMS_TO_TICKS(100));
+        esp_wifi_set_channel(ESPNOW_CHANNEL_DEFAULT, WIFI_SECOND_CHAN_NONE);
+        ESP_LOGW(TAG, "Wi-Fi 연결 실패 — ESP-NOW 전용 모드 (채널 %d)", ESPNOW_CHANNEL_DEFAULT);
+    }
+
     ESP_ERROR_CHECK(espnow_init());
 
 #if NODE_A_TEST_SKIP_WIFI
     ESP_LOGW(TAG, "테스트 모드: SPIFFS/웹 서버 생략");
 #else
-    ESP_ERROR_CHECK(spiffs_init());
-    g_server = start_webserver();
-    if (!g_server) {
-        ESP_LOGE(TAG, "웹 서버 시작 실패 — 재부팅");
-        esp_restart();
+    if (wifi_ok) {
+        ESP_ERROR_CHECK(spiffs_init());
+        g_server = start_webserver();
+        if (g_server) {
+            ESP_LOGI(TAG, "웹 대시보드 활성화");
+        } else {
+            ESP_LOGW(TAG, "웹 서버 시작 실패 — ESP-NOW만 동작");
+        }
+    } else {
+        ESP_LOGW(TAG, "Wi-Fi 없음 — 웹 대시보드 비활성화, ESP-NOW만 동작");
     }
 #endif
 

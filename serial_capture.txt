@@ -1,0 +1,13 @@
+
+===== Node_A (COM6) =====
+I (1024700) NODE_C: 트리거 전송 — 응급
+I (1024700) NODE_C: [TEST] auto trigger -> EMERGENCY
+  (total 2 lines)
+
+===== Node_B (COM24) =====
+  (total 0 lines)
+
+===== Node_C (COM9) =====
+I (264958) NODE_C: 트리거 전송 — 정상
+I (264959) NODE_C: [TEST] auto trigger -> NORMAL
+  (total 2 lines)

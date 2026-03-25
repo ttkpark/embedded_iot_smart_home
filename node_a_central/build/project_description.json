@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "node_a_central",
-    "project_version":    "e593b85-dirty",
+    "project_version":    "b8e6c78-dirty",
     "project_path":       "C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central",
     "idf_path":           "C:/Users/GH/esp/v5.4.2/esp-idf",
     "build_dir":          "C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build",

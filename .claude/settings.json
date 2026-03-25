@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import serial; print\\(''pyserial available''\\)\")",
+      "Bash(pip install:*)"
+    ]
+  }
+}

@@ -88,7 +88,7 @@ static void oled_render(void)
     oled_ssd1306_draw_text(0, 4, line);
 
     snprintf(line, sizeof(line), "TX NG:%lu CH:%d",
-             (unsigned long)tx_fail, ESPNOW_CHANNEL);
+             (unsigned long)tx_fail, ESPNOW_CHANNEL_DEFAULT);
     oled_ssd1306_draw_text(0, 5, line);
 
 #if TEST_AUTO_TRIGGER
@@ -129,6 +129,8 @@ static void oled_init_if_enabled(void)
 /* ── 버튼 디바운싱 상태 (IRAM_ATTR ISR 에서 접근) ─────────────────────────*/
 static volatile uint8_t  s_pending_status = 0xFF; /* 0xFF = 없음 */
 static volatile uint64_t s_last_press_us  = 0;    /* 마지막 누름 시각(µs) */
+static volatile bool     s_emergency_active = false; /* 응급 상태 활성 여부 */
+static volatile int64_t  s_emergency_start_us = 0;   /* 응급 시작 시각 */
 
 /* ── ESP-NOW 전송 함수 ──────────────────────────────────────────────────────*/
 
@@ -161,9 +163,10 @@ static void send_trigger(uint8_t patient_stat)
  *   DEBOUNCE_MS 이상일 때만 pending_status를 갱신한다.
  *   실제 전송은 loop에서 ISR 바깥에서 처리.
  * ────────────────────────────────────────────────────────────────────────── */
+/** 정상 버튼: 응급 상태를 즉시 수동 해제 */
 static void IRAM_ATTR isr_normal_btn(void *arg)
 {
-    uint64_t now = esp_timer_get_time(); /* µs */
+    uint64_t now = esp_timer_get_time();
     if (now - s_last_press_us >= (uint64_t)DEBOUNCE_MS * 1000) {
         s_last_press_us  = now;
         s_pending_status = PATIENT_NORMAL;
@@ -171,6 +174,7 @@ static void IRAM_ATTR isr_normal_btn(void *arg)
     }
 }
 
+/** 응급 버튼: EMERGENCY 발송 → 쿨다운 후 자동 NORMAL 복귀 */
 static void IRAM_ATTR isr_emergency_btn(void *arg)
 {
     uint64_t now = esp_timer_get_time();
@@ -229,7 +233,7 @@ static esp_err_t espnow_init(void)
 
     uint8_t mac_node_a[] = MAC_NODE_A;
     esp_now_peer_info_t peer = {
-        .channel = ESPNOW_CHANNEL,
+        .channel = ESPNOW_CHANNEL_DEFAULT,
         .encrypt = false,
     };
     memcpy(peer.peer_addr, mac_node_a, ESP_NOW_ETH_ALEN);
@@ -250,7 +254,7 @@ static esp_err_t wifi_init(void)
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_start());
-    ESP_ERROR_CHECK(esp_wifi_set_channel(ESPNOW_CHANNEL, WIFI_SECOND_CHAN_NONE));
+    ESP_ERROR_CHECK(esp_wifi_set_channel(ESPNOW_CHANNEL_DEFAULT, WIFI_SECOND_CHAN_NONE));
 
     /* 본인 MAC 출력 */
     uint8_t mac[6];
@@ -327,18 +331,52 @@ void app_main(void)
     ESP_LOGI(TAG, "초기화 완료 — 버튼 입력 대기 중");
 #endif
 
-    /* 메인 루프: ISR 플래그를 루프에서 안전하게 처리 */
+    /* 메인 루프: ISR 플래그 처리 + 응급 쿨다운 자동 해제 */
+    static int64_t s_last_gpio_log_us = 0;
     while (1) {
         if (s_pending_status != 0xFF) {
             uint8_t stat     = s_pending_status;
-            s_pending_status = 0xFF; /* 초기화 먼저 (재진입 방지) */
+            s_pending_status = 0xFF;
             send_trigger(stat);
+
+            if (stat == PATIENT_EMERGENCY) {
+                s_emergency_active   = true;
+                s_emergency_start_us = esp_timer_get_time();
+                ESP_LOGW(TAG, "응급 활성화 — %d초 후 자동 해제",
+                         EMERGENCY_COOLDOWN_MS / 1000);
+            } else {
+                if (s_emergency_active) {
+                    ESP_LOGI(TAG, "응급 수동 해제 (정상 버튼)");
+                }
+                s_emergency_active = false;
+            }
             oled_render();
         }
-        static int64_t s_last_oled_us = 0;
+
+        /* 응급 쿨다운 자동 해제 */
+        if (s_emergency_active) {
+            int64_t elapsed_us = esp_timer_get_time() - s_emergency_start_us;
+            if (elapsed_us >= (int64_t)EMERGENCY_COOLDOWN_MS * 1000) {
+                s_emergency_active = false;
+                send_trigger(PATIENT_NORMAL);
+                ESP_LOGI(TAG, "응급 자동 해제 (쿨다운 %d초 경과)",
+                         EMERGENCY_COOLDOWN_MS / 1000);
+                oled_render();
+            }
+        }
+
         int64_t now = esp_timer_get_time();
-        if (now - s_last_oled_us >= 300000) {
-            s_last_oled_us = now;
+
+        /* 2초마다 버튼 GPIO 상태 출력 */
+        if (now - s_last_gpio_log_us >= 2000000) {
+            s_last_gpio_log_us = now;
+            int btn_n = gpio_get_level(PIN_BTN_NORMAL);
+            int btn_e = gpio_get_level(PIN_BTN_EMERGENCY);
+            ESP_LOGI(TAG, "IO [BTN_N|BTN_E] = [%d|%d]  emg=%s  last=%s  tx_ok=%lu tx_ng=%lu",
+                     btn_n, btn_e,
+                     s_emergency_active ? "ACTIVE" : "idle",
+                     stat_to_str(s_last_sent_stat),
+                     (unsigned long)s_tx_ok, (unsigned long)s_tx_fail);
             oled_render();
         }
         vTaskDelay(pdMS_TO_TICKS(10));
