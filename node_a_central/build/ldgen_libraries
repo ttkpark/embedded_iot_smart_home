@@ -53,6 +53,7 @@ C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/wpa_sup
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/esp_coex/libesp_coex.a
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/esp_wifi/libesp_wifi.a
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/esp_gdbstub/libesp_gdbstub.a
+C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/bt/libbt.a
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/unity/libunity.a
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/cmock/libcmock.a
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/console/libconsole.a

@@ -569,6 +569,7 @@ C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/esp_gdb
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/esp_gdbstub/CMakeFiles/install.dir
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/esp_gdbstub/CMakeFiles/install/local.dir
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/esp_gdbstub/CMakeFiles/install/strip.dir
+C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/bt/CMakeFiles/__idf_bt.dir
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/bt/CMakeFiles/edit_cache.dir
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/bt/CMakeFiles/rebuild_cache.dir
 C:/Users/GH/Desktop/embedded_iot_smart_home/node_a_central/build/esp-idf/bt/CMakeFiles/list_install_components.dir

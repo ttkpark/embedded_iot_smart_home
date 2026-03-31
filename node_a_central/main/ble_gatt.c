@@ -79,10 +79,10 @@ static const struct ble_gatt_svc_def gatt_svcs[] = {
                 .val_handle = &s_status_val_handle,
                 .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_NOTIFY,
             },
-            {   /* Command: Write */
+            {   /* Command: Write (with/without response) */
                 .uuid = &chr_cmd_uuid.u,
                 .access_cb = chr_cmd_access,
-                .flags = BLE_GATT_CHR_F_WRITE,
+                .flags = BLE_GATT_CHR_F_WRITE | BLE_GATT_CHR_F_WRITE_NO_RSP,
             },
             { 0 }, /* sentinel */
         },
@@ -156,7 +156,8 @@ static void start_advertise(void)
 
 static void ble_on_sync(void)
 {
-    ble_hs_id_infer_auto(0, NULL);
+    uint8_t addr_type;
+    ble_hs_id_infer_auto(0, &addr_type);
     start_advertise();
 }
 

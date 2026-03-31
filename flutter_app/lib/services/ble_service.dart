@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../models/device_state.dart';
 import '../models/log_entry.dart';
@@ -37,22 +39,41 @@ class BleService extends ChangeNotifier {
   bool get scanning => _scanning;
   String? get deviceName => _device?.platformName;
 
+  /// BLE 권한 요청 (Android 12+)
+  Future<bool> _requestPermissions() async {
+    if (!Platform.isAndroid) return true;
+
+    final statuses = await [
+      Permission.bluetoothScan,
+      Permission.bluetoothConnect,
+      Permission.locationWhenInUse,
+    ].request();
+
+    return statuses.values.every(
+      (s) => s.isGranted || s.isLimited,
+    );
+  }
+
   /// BLE 스캔 시작 → SmartHome-A 자동 연결
   Future<void> scanAndConnect() async {
     if (_scanning || _status == ConnectionStatus.connected) return;
+
+    // 권한 확인
+    if (!await _requestPermissions()) {
+      debugPrint('BLE permissions denied');
+      return;
+    }
 
     _scanning = true;
     _status = ConnectionStatus.connecting;
     notifyListeners();
 
-    await FlutterBluePlus.startScan(
-      timeout: const Duration(seconds: 10),
-      withNames: [_targetName],
-    );
-
     _scanSub = FlutterBluePlus.scanResults.listen((results) {
       for (final r in results) {
-        if (r.device.platformName == _targetName) {
+        final name = r.device.platformName.isNotEmpty
+            ? r.device.platformName
+            : r.advertisementData.advName;
+        if (name == _targetName) {
           FlutterBluePlus.stopScan();
           _scanning = false;
           _connectToDevice(r.device);
@@ -60,6 +81,10 @@ class BleService extends ChangeNotifier {
         }
       }
     });
+
+    await FlutterBluePlus.startScan(
+      timeout: const Duration(seconds: 10),
+    );
 
     // 스캔 타임아웃
     Future.delayed(const Duration(seconds: 12), () {
