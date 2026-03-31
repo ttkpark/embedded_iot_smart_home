@@ -34,6 +34,7 @@
 
 #include "struct_message.h"
 #include "config.h"
+#include "ble_gatt.h"
 
 /* ── 상수 ──────────────────────────────────────────────────────────────────*/
 static const char *TAG        = "NODE_A";
@@ -160,6 +161,7 @@ static void broadcast_status(void)
              g_state.patient_stat, g_state.fan_state,
              g_state.ac_temp,      g_state.window_act);
     ws_broadcast(buf);
+    ble_notify_json(buf);
 }
 
 /* 로그 하나를 JSON으로 브로드캐스트 */
@@ -174,6 +176,60 @@ static void broadcast_log(const char *msg, uint8_t level)
              "\"message\":\"%s\",\"level\":%d}",
              time_buf, msg, level);
     ws_broadcast(buf);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * BLE 명령 처리 (ble_gatt.c에서 호출)
+ * WebSocket handler와 동일한 JSON 포맷: {"cmd":"...","value":N}
+ * ═══════════════════════════════════════════════════════════════════════════*/
+
+void handle_ble_command(const char *json, int len)
+{
+    cJSON *root = cJSON_Parse(json);
+    if (!root) return;
+
+    cJSON *cmd_j   = cJSON_GetObjectItem(root, "cmd");
+    cJSON *value_j = cJSON_GetObjectItem(root, "value");
+
+    if (cJSON_IsString(cmd_j) && cJSON_IsNumber(value_j)) {
+        const char *cmd = cmd_j->valuestring;
+        int val         = value_j->valueint;
+
+        if (strcmp(cmd, "fan") == 0) {
+            g_state.fan_state = (uint8_t)val;
+        } else if (strcmp(cmd, "ac") == 0) {
+            g_state.ac_temp = (uint8_t)val;
+        } else if (strcmp(cmd, "window") == 0) {
+            g_state.window_act = (uint8_t)val;
+        } else if (strcmp(cmd, "emergency") == 0) {
+            g_state.patient_stat = PATIENT_EMERGENCY;
+            g_state.fan_state    = AUTO_FAN_STATE;
+            g_state.ac_temp      = AUTO_AC_TEMP;
+            g_state.window_act   = AUTO_WINDOW_ACT;
+        } else if (strcmp(cmd, "dismiss") == 0) {
+            g_state.patient_stat = PATIENT_NORMAL;
+            g_state.fan_state    = FAN_OFF;
+            g_state.ac_temp      = AC_OFF;
+            g_state.window_act   = WINDOW_CLOSE;
+        } else {
+            cJSON_Delete(root);
+            return;
+        }
+
+        /* Node B에 명령 전송 */
+        struct_message_t ctrl = {
+            .msg_type   = MSG_COMMAND,
+            .node_id    = NODE_A,
+            .fan_state  = g_state.fan_state,
+            .ac_temp    = g_state.ac_temp,
+            .window_act = g_state.window_act,
+        };
+        esp_now_send(mac_node_b, (uint8_t *)&ctrl, sizeof(ctrl));
+        broadcast_status();
+
+        ESP_LOGI(TAG, "BLE CMD: %s=%d → Node B", cmd, val);
+    }
+    cJSON_Delete(root);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -217,6 +273,7 @@ static void espnow_recv_cb(const esp_now_recv_info_t *recv_info,
                      "{\"type\":\"alert\",\"alert\":\"EMERGENCY\","
                      "\"patient_stat\":1}");
             ws_broadcast(alert_buf);
+            ble_notify_json(alert_buf);
             broadcast_status();
 
             log_event("환자 이상 감지 — 자동 환경 제어 실행", 2);
@@ -227,13 +284,20 @@ static void espnow_recv_cb(const esp_now_recv_info_t *recv_info,
             broadcast_log("Node B 제어 명령 전송 완료", 1);
 
         } else {
-            /* 정상 복귀 → Node B에 원상복구 명령 */
+            /* 정상 복귀 → Node B에 원상복구 명령 + 대시보드 동기화 */
             g_state.patient_stat = PATIENT_NORMAL;
             g_state.fan_state    = FAN_OFF;
             g_state.ac_temp      = AC_OFF;
             g_state.window_act   = WINDOW_CLOSE;
 
             send_command_to_b(FAN_OFF, AC_OFF, WINDOW_CLOSE);
+
+            char dismiss_buf[128];
+            snprintf(dismiss_buf, sizeof(dismiss_buf),
+                     "{\"type\":\"alert\",\"alert\":\"DISMISS\","
+                     "\"patient_stat\":0}");
+            ws_broadcast(dismiss_buf);
+            ble_notify_json(dismiss_buf);
             broadcast_status();
             log_event("환자 정상 복귀 — 환경 원상복구 명령 전송", 0);
             broadcast_log("환자 정상 복귀 — 환경 원상복구 명령 전송", 0);
@@ -372,6 +436,24 @@ static esp_err_t wifi_scan_and_select(void)
     return ESP_OK;
 }
 
+static void softap_setup(uint8_t channel)
+{
+    esp_netif_create_default_wifi_ap();
+
+    wifi_config_t ap_cfg = {
+        .ap = {
+            .ssid           = SOFTAP_SSID,
+            .password       = SOFTAP_PASS,
+            .ssid_len       = strlen(SOFTAP_SSID),
+            .channel        = channel,
+            .max_connection = SOFTAP_MAX_CONN,
+            .authmode       = WIFI_AUTH_WPA2_PSK,
+        },
+    };
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_AP, &ap_cfg));
+    ESP_LOGI(TAG, "SoftAP 시작: SSID=\"%s\" 채널=%d (192.168.4.1)", SOFTAP_SSID, channel);
+}
+
 static esp_err_t wifi_init(void)
 {
     s_wifi_event_group = xEventGroupCreate();
@@ -393,22 +475,22 @@ static esp_err_t wifi_init(void)
         ESP_LOGI(TAG, "  [%d] %s", i, s_wifi_list[i].ssid);
     }
 
-#if NODE_A_TEST_SKIP_WIFI
-    /* 테스트 모드: STA만 사용 (ESP-NOW 전용, AP 연결 생략) */
-    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
-    ESP_ERROR_CHECK(esp_wifi_start());
-    ESP_ERROR_CHECK(esp_wifi_set_channel(ESPNOW_CHANNEL_DEFAULT, WIFI_SECOND_CHAN_NONE));
-    ESP_LOGW(TAG, "테스트 모드: Wi-Fi 연결 생략 — ESP-NOW 전용 (채널 %d)", ESPNOW_CHANNEL_DEFAULT);
-    return ESP_OK;
-#else
-    /* APSTA 모드로 시작 → 스캔 → 매칭된 AP에 연결 */
+    /* 항상 APSTA 모드 → SoftAP + (선택적) STA */
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_APSTA));
     ESP_ERROR_CHECK(esp_wifi_start());
 
+#if NODE_A_TEST_SKIP_WIFI
+    /* 테스트 모드: 공유기 연결 생략, ESP-NOW + SoftAP만 */
+    ESP_ERROR_CHECK(esp_wifi_set_channel(ESPNOW_CHANNEL_DEFAULT, WIFI_SECOND_CHAN_NONE));
+    softap_setup(ESPNOW_CHANNEL_DEFAULT);
+    ESP_LOGW(TAG, "테스트 모드: 공유기 연결 생략 — ESP-NOW + SoftAP (채널 %d)", ESPNOW_CHANNEL_DEFAULT);
+    return ESP_OK;
+#else
     esp_err_t scan_ret = wifi_scan_and_select();
     if (scan_ret != ESP_OK) {
-        ESP_LOGW(TAG, "등록된 AP 없음 — ESP-NOW 채널 %d 고정", ESPNOW_CHANNEL_DEFAULT);
+        ESP_LOGW(TAG, "등록된 AP 없음 — ESP-NOW 채널 %d + SoftAP 폴백", ESPNOW_CHANNEL_DEFAULT);
         esp_wifi_set_channel(ESPNOW_CHANNEL_DEFAULT, WIFI_SECOND_CHAN_NONE);
+        softap_setup(ESPNOW_CHANNEL_DEFAULT);
         return ESP_FAIL;
     }
 #endif
@@ -422,11 +504,14 @@ static esp_err_t wifi_init(void)
         uint8_t primary_ch = 0;
         wifi_second_chan_t secondary_ch = 0;
         esp_wifi_get_channel(&primary_ch, &secondary_ch);
+        softap_setup(primary_ch);
         ESP_LOGI(TAG, "Wi-Fi 연결 성공: %s (채널 %d)", s_connected_ssid, primary_ch);
         return ESP_OK;
     }
 
-    ESP_LOGE(TAG, "Wi-Fi 연결 실패");
+    ESP_LOGW(TAG, "Wi-Fi 연결 실패 — SoftAP 폴백");
+    esp_wifi_set_channel(ESPNOW_CHANNEL_DEFAULT, WIFI_SECOND_CHAN_NONE);
+    softap_setup(ESPNOW_CHANNEL_DEFAULT);
     return ESP_FAIL;
 }
 
@@ -553,11 +638,57 @@ static esp_err_t ws_handler(httpd_req_t *req)
                              val < 3 ? wstr[val] : "창문 ?");
                     log_event(lmsg, 0);
                     broadcast_log(lmsg, 0);
+                } else if (strcmp(cmd, "motor") == 0) {
+                    /* 모터 개별/양쪽 1바퀴 jog (val: 3~8) */
+                    ctrl.window_act = (uint8_t)val;
+                    const char *mstr[] = {
+                        "L-CW", "L-CCW", "R-CW", "R-CCW", "Both-CW", "Both-CCW"
+                    };
+                    char lmsg[64];
+                    int idx = val - MOTOR_JOG_L_CW;
+                    snprintf(lmsg, sizeof(lmsg), "모터 Jog — %s 1rev",
+                             (idx >= 0 && idx < 6) ? mstr[idx] : "?");
+                    log_event(lmsg, 0);
+                    broadcast_log(lmsg, 0);
+                } else if (strcmp(cmd, "emergency") == 0) {
+                    /* 앱/대시보드에서 응급 트리거 */
+                    g_state.patient_stat = PATIENT_EMERGENCY;
+                    g_state.fan_state    = AUTO_FAN_STATE;
+                    g_state.ac_temp      = AUTO_AC_TEMP;
+                    g_state.window_act   = AUTO_WINDOW_ACT;
+                    ctrl.patient_stat = PATIENT_EMERGENCY;
+                    ctrl.fan_state    = AUTO_FAN_STATE;
+                    ctrl.ac_temp      = AUTO_AC_TEMP;
+                    ctrl.window_act   = AUTO_WINDOW_ACT;
+                    {
+                        char abuf[128];
+                        snprintf(abuf, sizeof(abuf),
+                                 "{\"type\":\"alert\",\"alert\":\"EMERGENCY\","
+                                 "\"patient_stat\":1}");
+                        ws_broadcast(abuf);
+                        ble_notify_json(abuf);
+                        broadcast_status();
+                    }
+                    log_event("앱 응급 트리거 — 자동 환경 제어 실행", 2);
+                    broadcast_log("앱 응급 트리거 — 자동 환경 제어 실행", 2);
                 } else if (strcmp(cmd, "dismiss") == 0) {
-                    /* 응급 경고 수동 해제 */
+                    /* 응급 경고 수동 해제 → 환경 원상복구 */
                     g_state.patient_stat = PATIENT_NORMAL;
-                    log_event("응급 경고 수동 해제", 1);
-                    broadcast_log("응급 경고 수동 해제", 1);
+                    g_state.fan_state    = FAN_OFF;
+                    g_state.ac_temp      = AC_OFF;
+                    g_state.window_act   = WINDOW_CLOSE;
+                    ctrl.patient_stat = PATIENT_NORMAL;
+                    ctrl.fan_state    = FAN_OFF;
+                    ctrl.ac_temp      = AC_OFF;
+                    ctrl.window_act   = WINDOW_CLOSE;
+                    log_event("응급 해제 — 환경 원상복구", 1);
+                    broadcast_log("응급 해제 — 환경 원상복구", 1);
+                } else if (strcmp(cmd, "get_status") == 0) {
+                    /* 상태 조회만 — Node B 전송 불필요 */
+                    broadcast_status();
+                    cJSON_Delete(root);
+                    free(buf);
+                    return ret;
                 }
 
                 esp_now_send(mac_node_b, (uint8_t *)&ctrl, sizeof(ctrl));
@@ -658,21 +789,15 @@ void app_main(void)
 
     ESP_ERROR_CHECK(espnow_init());
 
-#if NODE_A_TEST_SKIP_WIFI
-    ESP_LOGW(TAG, "테스트 모드: SPIFFS/웹 서버 생략");
-#else
-    if (wifi_ok) {
-        ESP_ERROR_CHECK(spiffs_init());
-        g_server = start_webserver();
-        if (g_server) {
-            ESP_LOGI(TAG, "웹 대시보드 활성화");
-        } else {
-            ESP_LOGW(TAG, "웹 서버 시작 실패 — ESP-NOW만 동작");
-        }
+    /* SoftAP가 항상 뜨므로 SPIFFS/웹서버도 항상 시작 */
+    ESP_ERROR_CHECK(spiffs_init());
+    g_server = start_webserver();
+    if (g_server) {
+        ESP_LOGI(TAG, "웹 대시보드 활성화 (SoftAP: 192.168.4.1%s)",
+                 wifi_ok ? " + STA" : "");
     } else {
-        ESP_LOGW(TAG, "Wi-Fi 없음 — 웹 대시보드 비활성화, ESP-NOW만 동작");
+        ESP_LOGW(TAG, "웹 서버 시작 실패 — ESP-NOW만 동작");
     }
-#endif
 
     log_event("시스템 부팅 완료 — ESP-NOW 네트워크 준비", 0);
 
@@ -685,7 +810,10 @@ void app_main(void)
     esp_timer_create(&ka_args, &ka_timer);
     esp_timer_start_periodic(ka_timer, 5000000); /* 5s */
 
-    ESP_LOGI(TAG, "초기화 완료 — 대기 중");
+    /* BLE GATT 서버 시작 */
+    ble_gatt_init();
+
+    ESP_LOGI(TAG, "초기화 완료 — 대기 중 (Wi-Fi + BLE + ESP-NOW)");
 
     /* 메인 루프: 상태 변화 시 브로드캐스트 (필요 시 확장) */
     while (1) {

@@ -1,6 +1,8 @@
 idf_component_register(
     SRCS
         "main.c"
+        "motor_ctrl.c"
+        "cal_console.c"
         "../../common/oled_ssd1306.c"
     INCLUDE_DIRS "." "../../common"
     PRIV_REQUIRES
@@ -11,4 +13,7 @@ idf_component_register(
         esp_netif
         esp_timer
         driver
+        esp_adc
+        console
+        vfs
 )

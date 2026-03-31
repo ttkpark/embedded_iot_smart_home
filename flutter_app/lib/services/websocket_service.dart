@@ -52,6 +52,7 @@ class WebSocketService extends ChangeNotifier {
         _status = ConnectionStatus.connected;
         _reconnectTimer?.cancel();
         notifyListeners();
+        sendCommand('get_status', 1);
       }).catchError((error) {
         _status = ConnectionStatus.disconnected;
         notifyListeners();
@@ -109,7 +110,12 @@ class WebSocketService extends ChangeNotifier {
           if (_logs.length > 100) _logs.removeLast();
           break;
         case 'alert':
-          _emergencyAlert = true;
+          final alertType = data['alert'] as String?;
+          if (alertType == 'DISMISS') {
+            _emergencyAlert = false;
+          } else {
+            _emergencyAlert = true;
+          }
           if (data.containsKey('patient_stat')) {
             _deviceState = _deviceState.copyWith(
               patientStat: data['patient_stat'] as int?,
@@ -134,8 +140,9 @@ class WebSocketService extends ChangeNotifier {
   void setFan(bool on) => sendCommand('fan', on ? 1 : 0);
   void setAcTemp(int temp) => sendCommand('ac', temp);
   void setWindow(int action) => sendCommand('window', action);
+  void triggerEmergency() => sendCommand('emergency', 1);
   void dismissAlert() {
-    sendCommand('dismiss', 0);
+    sendCommand('dismiss', 1);
     _emergencyAlert = false;
     notifyListeners();
   }

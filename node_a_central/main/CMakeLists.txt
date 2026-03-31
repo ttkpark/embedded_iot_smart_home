@@ -1,5 +1,5 @@
 idf_component_register(
-    SRCS "main.c"
+    SRCS "main.c" "ble_gatt.c"
     INCLUDE_DIRS "." "../../common"
     PRIV_REQUIRES
         nvs_flash
@@ -12,4 +12,5 @@ idf_component_register(
         esp_timer
         json
         driver
+        bt
 )

@@ -39,3 +39,11 @@ typedef struct {
 #define WINDOW_STOP   0
 #define WINDOW_OPEN   1
 #define WINDOW_CLOSE  2
+
+/* window_act extended: motor jog (1 rev) */
+#define MOTOR_JOG_L_CW    3   /* Left motor CW 1rev  */
+#define MOTOR_JOG_L_CCW   4   /* Left motor CCW 1rev */
+#define MOTOR_JOG_R_CW    5   /* Right motor CW 1rev */
+#define MOTOR_JOG_R_CCW   6   /* Right motor CCW 1rev */
+#define MOTOR_JOG_BOTH_CW  7  /* Both motors CW 1rev */
+#define MOTOR_JOG_BOTH_CCW 8  /* Both motors CCW 1rev */

@@ -1,23 +1,31 @@
-# Node A — sdkconfig.defaults
-# idf.py menuconfig 또는 idf.py build 시 자동 적용
+# Node A sdkconfig.defaults
 
-# 플래시 4MB (app0 + SPIFFS 2MB 파티션 사용)
+# Flash 4MB (app0 + SPIFFS 2MB partition)
 CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
 
-# 커스텀 파티션 테이블 사용 (SPIFFS 공간 확보)
+# Custom partition table (SPIFFS)
 CONFIG_PARTITION_TABLE_CUSTOM=y
 CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
 
-# WebSocket 지원 활성화 (esp_http_server)
+# WebSocket support (esp_http_server)
 CONFIG_HTTPD_WS_SUPPORT=y
 CONFIG_HTTPD_MAX_REQ_HDR_LEN=1024
 CONFIG_HTTPD_MAX_URI_LEN=512
 
-# 메인 태스크 스택 크기 (SPIFFS + HTTP 동시 처리)
+# Main task stack size (SPIFFS + HTTP)
 CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
 
-# FreeRTOS 틱 속도
+# FreeRTOS tick rate
 CONFIG_FREERTOS_HZ=1000
 
-# 로그 레벨 (개발 중 INFO, 배포 시 WARN으로 변경)
+# BLE (NimBLE — 경량, Wi-Fi 동시 사용 가능)
+CONFIG_BT_ENABLED=y
+CONFIG_BT_NIMBLE_ENABLED=y
+CONFIG_BT_NIMBLE_MAX_CONNECTIONS=3
+CONFIG_BT_NIMBLE_ROLE_PERIPHERAL=y
+CONFIG_BT_NIMBLE_ROLE_CENTRAL=n
+CONFIG_BT_NIMBLE_ROLE_OBSERVER=n
+CONFIG_BT_NIMBLE_ROLE_BROADCASTER=y
+
+# Log level (INFO for dev, WARN for release)
 CONFIG_LOG_DEFAULT_LEVEL_INFO=y

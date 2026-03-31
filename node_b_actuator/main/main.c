@@ -5,15 +5,19 @@
  * 역할:
  *   - ESP-NOW 수신: Node A 제어 명령 파싱
  *   - GPIO 25: SSR 릴레이 — 환풍기 ON/OFF
- *   - GPIO 26: 왼쪽 커튼 SG90 Continuous 모터
+ *   - GPIO 23: 왼쪽 커튼 SG90 Continuous 모터
  *   - GPIO 27: 오른쪽 커튼 SG90 Continuous 모터
- *   - GPIO 17: 커튼 리밋 스위치 (Active LOW)
+ *   - GPIO 36: 왼쪽 홀센서 (WSH135-XPAN2, ADC1_CH0, 아날로그 엣지 검출)
+ *   - GPIO 39: 오른쪽 홀센서 (WSH135-XPAN2, ADC1_CH3, 아날로그 엣지 검출)
+ *   - GPIO 17: 커튼 리밋 스위치 (Active LOW, 폴백 안전장치)
  *   - GPIO  2: 내장 LED — 상태 표시
  *   - OLED: 상태 표시 (I2C SSD1306)
+ *   - UART 콘솔: 캘리브레이션 모드 (cal/jog/pos 명령)
  */
 
 #include <string.h>
 #include <stdio.h>
+#include <stdint.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -30,15 +34,20 @@
 #include "esp_timer.h"
 #include "nvs_flash.h"
 #include "driver/gpio.h"
-#include "driver/ledc.h"
 #include "driver/i2c.h"
 
 #include "struct_message.h"
 #include "config.h"
 #include "oled_ssd1306.h"
+#include "motor_ctrl.h"
 
 static const char *TAG = "NODE_B";
 static bool s_oled_ready = false;
+
+/* ── 콘솔 초기화 (cal_console.c) ──────────────────────────────────────────── */
+extern void cal_console_init(void);
+
+/* ── UI 상태 ──────────────────────────────────────────────────────────────── */
 
 typedef struct {
     uint8_t fan_state;
@@ -67,7 +76,7 @@ static const char *curtain_to_str(uint8_t action)
     }
 }
 
-/* ── OLED 표시 ─────────────────────────────────────────────────────────────*/
+/* ── OLED 표시 ─────────────────────────────────────────────────────────────── */
 
 static void oled_render(const node_b_ui_state_t *st)
 {
@@ -77,7 +86,7 @@ static void oled_render(const node_b_ui_state_t *st)
     uint32_t up_s = (uint32_t)(esp_timer_get_time() / 1000000ULL);
 
     oled_ssd1306_clear();
-    oled_ssd1306_draw_text(0, 0, "NODE B ACTUATOR");
+    oled_ssd1306_draw_text(0, 0, g_cal_mode ? "NODE B [CAL]" : "NODE B ACTUATOR");
 
     snprintf(line, sizeof(line), "FAN: %s",
              st->fan_state ? "ON" : "OFF");
@@ -86,16 +95,15 @@ static void oled_render(const node_b_ui_state_t *st)
     snprintf(line, sizeof(line), "CURTAIN: %s", curtain_to_str(st->curtain_act));
     oled_ssd1306_draw_text(0, 2, line);
 
-    snprintf(line, sizeof(line), "LIMIT: %s",
-             gpio_get_level(PIN_CURTAIN_LIMIT) == 0 ? "HIT" : "---");
+    snprintf(line, sizeof(line), "x:%.1f/%.1f", g_cal.x_pos, g_cal.travel);
     oled_ssd1306_draw_text(0, 3, line);
 
-    snprintf(line, sizeof(line), "CMD:%lu KA:%lu",
-             (unsigned long)st->cmd_count, (unsigned long)st->keepalive_count);
+    snprintf(line, sizeof(line), "cal:%.0f/%.0f ms",
+             g_cal.ms_per_rev_l, g_cal.ms_per_rev_r);
     oled_ssd1306_draw_text(0, 4, line);
 
-    snprintf(line, sizeof(line), "LINK:%s CH:%d",
-             st->link_ok ? "OK" : "--", ESPNOW_CHANNEL_DEFAULT);
+    snprintf(line, sizeof(line), "LINK:%s CMD:%lu",
+             st->link_ok ? "OK" : "--", (unsigned long)st->cmd_count);
     oled_ssd1306_draw_text(0, 5, line);
 
     snprintf(line, sizeof(line), "UP:%lus", (unsigned long)up_s);
@@ -139,14 +147,12 @@ static void oled_init_if_enabled(void)
 #endif
 }
 
-/* ── GPIO 초기화 ───────────────────────────────────────────────────────────*/
+/* ── GPIO 초기화 (릴레이, LED, 리밋 스위치) ────────────────────────────────── */
 
 static void gpio_init_outputs(void)
 {
-    /* 출력 핀: 환풍기 릴레이 + 내장 LED */
     gpio_config_t out_cfg = {
-        .pin_bit_mask = ((1ULL << PIN_FAN_RELAY) |
-                         (1ULL << PIN_BUILTIN_LED)),
+        .pin_bit_mask = ((1ULL << PIN_FAN_RELAY) | (1ULL << PIN_BUILTIN_LED)),
         .mode         = GPIO_MODE_OUTPUT,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .pull_up_en   = GPIO_PULLUP_DISABLE,
@@ -156,7 +162,6 @@ static void gpio_init_outputs(void)
     gpio_set_level(PIN_FAN_RELAY, 0);
     gpio_set_level(PIN_BUILTIN_LED, 0);
 
-    /* 입력 핀: 커튼 리밋 스위치 (Active LOW, 내부 풀업) */
     gpio_config_t in_cfg = {
         .pin_bit_mask = (1ULL << PIN_CURTAIN_LIMIT),
         .mode         = GPIO_MODE_INPUT,
@@ -165,12 +170,9 @@ static void gpio_init_outputs(void)
         .intr_type    = GPIO_INTR_DISABLE,
     };
     ESP_ERROR_CHECK(gpio_config(&in_cfg));
-
-    ESP_LOGI(TAG, "GPIO 초기화 완료 (릴레이:%d LED:%d 리밋SW:%d)",
-             PIN_FAN_RELAY, PIN_BUILTIN_LED, PIN_CURTAIN_LIMIT);
 }
 
-/* ── 내장 LED 상태 표시 ───────────────────────────────────────────────────*/
+/* ── 내장 LED ─────────────────────────────────────────────────────────────── */
 
 static void builtin_led_set(bool on)
 {
@@ -187,136 +189,8 @@ static void builtin_led_blink(int count, int on_ms, int off_ms)
     }
 }
 
-/* ── SG90 Continuous 듀얼 서보 (커튼 좌/우) ────────────────────────────────*/
+/* ── 액추에이터 제어 태스크 ────────────────────────────────────────────────── */
 
-#define SERVO_LEDC_MODE      LEDC_LOW_SPEED_MODE
-#define SERVO_LEDC_TIMER     LEDC_TIMER_0
-#define SERVO_LEDC_CH_L      LEDC_CHANNEL_0   /* 왼쪽 모터 */
-#define SERVO_LEDC_CH_R      LEDC_CHANNEL_1   /* 오른쪽 모터 */
-#define SERVO_LEDC_RES       LEDC_TIMER_16_BIT
-
-static void servo_set_pulse_us(ledc_channel_t ch, uint32_t pulse_us)
-{
-    const uint32_t period_us = 1000000UL / SERVO_PWM_HZ;
-    const uint32_t max_duty  = (1UL << SERVO_LEDC_RES) - 1UL;
-    const uint32_t duty      = (pulse_us * max_duty) / period_us;
-
-    ESP_ERROR_CHECK(ledc_set_duty(SERVO_LEDC_MODE, ch, duty));
-    ESP_ERROR_CHECK(ledc_update_duty(SERVO_LEDC_MODE, ch));
-}
-
-static void servo_both_stop(void)
-{
-    ESP_LOGI(TAG, "MOTOR L(GPIO%d)=STOP  R(GPIO%d)=STOP",
-             PIN_CURTAIN_MOTOR_L, PIN_CURTAIN_MOTOR_R);
-    servo_set_pulse_us(SERVO_LEDC_CH_L, SERVO_PULSE_STOP_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_R, SERVO_PULSE_STOP_US);
-}
-
-static void servo_both_open(void)
-{
-    ESP_LOGI(TAG, "MOTOR L(GPIO%d)=%luus  R(GPIO%d)=%luus  [OPEN]",
-             PIN_CURTAIN_MOTOR_L, (unsigned long)SERVO_L_OPEN_US,
-             PIN_CURTAIN_MOTOR_R, (unsigned long)SERVO_R_OPEN_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_L, SERVO_L_OPEN_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_R, SERVO_R_OPEN_US);
-}
-
-static void servo_both_close(void)
-{
-    ESP_LOGI(TAG, "MOTOR L(GPIO%d)=%luus  R(GPIO%d)=%luus  [CLOSE]",
-             PIN_CURTAIN_MOTOR_L, (unsigned long)SERVO_L_CLOSE_US,
-             PIN_CURTAIN_MOTOR_R, (unsigned long)SERVO_R_CLOSE_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_L, SERVO_L_CLOSE_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_R, SERVO_R_CLOSE_US);
-}
-
-static void servo_init(void)
-{
-    ledc_timer_config_t timer_cfg = {
-        .speed_mode       = SERVO_LEDC_MODE,
-        .timer_num        = SERVO_LEDC_TIMER,
-        .duty_resolution  = SERVO_LEDC_RES,
-        .freq_hz          = SERVO_PWM_HZ,
-        .clk_cfg          = LEDC_AUTO_CLK,
-    };
-    ESP_ERROR_CHECK(ledc_timer_config(&timer_cfg));
-
-    /* 왼쪽 모터 채널 */
-    ledc_channel_config_t ch_l = {
-        .gpio_num   = PIN_CURTAIN_MOTOR_L,
-        .speed_mode = SERVO_LEDC_MODE,
-        .channel    = SERVO_LEDC_CH_L,
-        .intr_type  = LEDC_INTR_DISABLE,
-        .timer_sel  = SERVO_LEDC_TIMER,
-        .duty       = 0,
-        .hpoint     = 0,
-    };
-    ESP_ERROR_CHECK(ledc_channel_config(&ch_l));
-
-    /* 오른쪽 모터 채널 */
-    ledc_channel_config_t ch_r = {
-        .gpio_num   = PIN_CURTAIN_MOTOR_R,
-        .speed_mode = SERVO_LEDC_MODE,
-        .channel    = SERVO_LEDC_CH_R,
-        .intr_type  = LEDC_INTR_DISABLE,
-        .timer_sel  = SERVO_LEDC_TIMER,
-        .duty       = 0,
-        .hpoint     = 0,
-    };
-    ESP_ERROR_CHECK(ledc_channel_config(&ch_r));
-
-    servo_both_stop();
-    ESP_LOGI(TAG, "듀얼 SG90 Continuous 초기화 완료 (L:%d R:%d)",
-             PIN_CURTAIN_MOTOR_L, PIN_CURTAIN_MOTOR_R);
-}
-
-/** 커튼 제어 — 좌/우 반대 방향 구동, 리밋 스위치 감지 시 조기 정지 */
-static void control_curtain(uint8_t action)
-{
-    switch (action) {
-    case WINDOW_OPEN:
-        ESP_LOGI(TAG, "커튼 열기 시작");
-        builtin_led_set(true);
-        servo_both_open();
-        for (int elapsed = 0; elapsed < MOTOR_RUN_MS; elapsed += 50) {
-            vTaskDelay(pdMS_TO_TICKS(50));
-            if (gpio_get_level(PIN_CURTAIN_LIMIT) == 0) {
-                ESP_LOGI(TAG, "리밋 스위치 감지 — 커튼 열기 조기 정지");
-                break;
-            }
-        }
-        servo_both_stop();
-        builtin_led_set(false);
-        ESP_LOGI(TAG, "커튼 열기 완료");
-        break;
-
-    case WINDOW_CLOSE:
-        ESP_LOGI(TAG, "커튼 닫기 시작");
-        builtin_led_set(true);
-        servo_both_close();
-        for (int elapsed = 0; elapsed < MOTOR_RUN_MS; elapsed += 50) {
-            vTaskDelay(pdMS_TO_TICKS(50));
-            if (gpio_get_level(PIN_CURTAIN_LIMIT) == 0) {
-                ESP_LOGI(TAG, "리밋 스위치 감지 — 커튼 닫기 조기 정지");
-                break;
-            }
-        }
-        servo_both_stop();
-        builtin_led_set(false);
-        ESP_LOGI(TAG, "커튼 닫기 완료");
-        break;
-
-    case WINDOW_STOP:
-    default:
-        servo_both_stop();
-        builtin_led_set(false);
-        ESP_LOGI(TAG, "커튼 정지");
-        break;
-    }
-}
-
-/* ── 액추에이터 제어 태스크 ─────────────────────────────────────────────────*/
 typedef struct {
     uint8_t fan_state;
     uint8_t ac_temp;
@@ -330,15 +204,31 @@ static void actuator_task(void *arg)
     actuator_cmd_t cmd;
     while (1) {
         if (xQueueReceive(s_act_queue, &cmd, portMAX_DELAY) == pdTRUE) {
-            /* 환풍기 */
             gpio_set_level(PIN_FAN_RELAY, cmd.fan_state);
             ESP_LOGI(TAG, "환풍기: %s", cmd.fan_state ? "ON" : "OFF");
-
-            /* 명령 수신 LED 깜빡임 */
             builtin_led_blink(2, 50, 50);
 
-            /* 커튼 */
-            control_curtain(cmd.curtain_act);
+            if (g_cal_mode) {
+                ESP_LOGW(TAG, "캘리브레이션 모드 — 커튼 명령 무시");
+            } else if (cmd.curtain_act >= MOTOR_JOG_L_CW) {
+                /* 개별/양쪽 모터 1바퀴 jog */
+                switch (cmd.curtain_act) {
+                case MOTOR_JOG_L_CW:
+                    motor_jog_single_revs(true, true, 1);  break;
+                case MOTOR_JOG_L_CCW:
+                    motor_jog_single_revs(true, false, 1); break;
+                case MOTOR_JOG_R_CW:
+                    motor_jog_single_revs(false, true, 1);  break;
+                case MOTOR_JOG_R_CCW:
+                    motor_jog_single_revs(false, false, 1); break;
+                case MOTOR_JOG_BOTH_CW:
+                    motor_jog_both_revs(true, 1);  break;
+                case MOTOR_JOG_BOTH_CCW:
+                    motor_jog_both_revs(false, 1); break;
+                }
+            } else {
+                control_curtain(cmd.curtain_act);
+            }
 
             if (s_ui_mutex && xSemaphoreTake(s_ui_mutex, pdMS_TO_TICKS(50)) == pdTRUE) {
                 s_ui.fan_state = cmd.fan_state;
@@ -350,23 +240,20 @@ static void actuator_task(void *arg)
                 xSemaphoreGive(s_ui_mutex);
             }
 
-            /* 환풍기 ON이면 내장 LED 점등 유지 */
             builtin_led_set(cmd.fan_state == FAN_ON);
             oled_render_from_state();
         }
     }
 }
 
-/* ── ESP-NOW ────────────────────────────────────────────────────────────────*/
+/* ── ESP-NOW ──────────────────────────────────────────────────────────────── */
 
 static void espnow_recv_cb(const esp_now_recv_info_t *recv_info,
                            const uint8_t *data, int data_len)
 {
     if (data_len != sizeof(struct_message_t)) return;
-
     struct_message_t msg;
     memcpy(&msg, data, sizeof(msg));
-
     if (msg.msg_type != MSG_COMMAND) return;
 
     ESP_LOGI(TAG, "명령 수신 — fan:%d ac:%d curtain:%d",
@@ -378,7 +265,7 @@ static void espnow_recv_cb(const esp_now_recv_info_t *recv_info,
         .curtain_act = msg.window_act,
     };
     if (xQueueSend(s_act_queue, &cmd, 0) != pdTRUE) {
-        ESP_LOGW(TAG, "명령 큐 가득 참, 최신 명령 유실");
+        ESP_LOGW(TAG, "명령 큐 가득 참");
     }
 }
 
@@ -394,18 +281,15 @@ static esp_err_t espnow_init(void)
     };
     memcpy(peer.peer_addr, mac_node_a, ESP_NOW_ETH_ALEN);
     ESP_ERROR_CHECK(esp_now_add_peer(&peer));
-
-    ESP_LOGI(TAG, "ESP-NOW 초기화 완료");
     return ESP_OK;
 }
 
-/* ── Wi-Fi (ESP-NOW 전용 채널 고정) ─────────────────────────────────────────*/
+/* ── Wi-Fi ────────────────────────────────────────────────────────────────── */
 
 static esp_err_t wifi_init(void)
 {
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
@@ -415,16 +299,15 @@ static esp_err_t wifi_init(void)
     uint8_t mac[6];
     esp_wifi_get_mac(WIFI_IF_STA, mac);
     ESP_LOGI(TAG, "MAC: " MACSTR, MAC2STR(mac));
-
     return ESP_OK;
 }
 
-/* ── Keep-alive 타이머 ──────────────────────────────────────────────────────*/
+/* ── Keep-alive 타이머 ─────────────────────────────────────────────────────── */
 
 static void keepalive_timer_cb(void *arg)
 {
     uint8_t mac_node_a[] = MAC_NODE_A;
-    struct_message_t ka  = { .msg_type = MSG_KEEPALIVE, .node_id = NODE_B };
+    struct_message_t ka = { .msg_type = MSG_KEEPALIVE, .node_id = NODE_B };
     esp_now_send(mac_node_a, (uint8_t *)&ka, sizeof(ka));
 
     if (s_ui_mutex && xSemaphoreTake(s_ui_mutex, 0) == pdTRUE) {
@@ -434,15 +317,14 @@ static void keepalive_timer_cb(void *arg)
     oled_render_from_state();
 }
 
-/* ── app_main ───────────────────────────────────────────────────────────────*/
+/* ── app_main ──────────────────────────────────────────────────────────────── */
 
 void app_main(void)
 {
     ESP_LOGI(TAG, "Node B 부팅");
 
     esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES
-        || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         ESP_ERROR_CHECK(nvs_flash_erase());
         ret = nvs_flash_init();
     }
@@ -451,52 +333,35 @@ void app_main(void)
     s_ui_mutex = xSemaphoreCreateMutex();
 
     gpio_init_outputs();
-    servo_init();
+    motor_ctrl_init();       /* ADC + LEDC + NVS 로드 */
     oled_init_if_enabled();
 
-    /* 부팅 LED 깜빡임 */
     builtin_led_blink(3, 100, 100);
 
-    /* ── 부팅 모터 개별 테스트 (각 1.5초씩) ──────────────────────────────── */
+#if BOOT_MOTOR_TEST
     ESP_LOGW(TAG, "=== 모터 테스트 시작 ===");
-
-    ESP_LOGW(TAG, "[TEST] L(GPIO%d) CW  → %luus", PIN_CURTAIN_MOTOR_L, (unsigned long)SERVO_L_OPEN_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_L, SERVO_L_OPEN_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_R, SERVO_PULSE_STOP_US);
+    servo_set_pulse(SERVO_LEDC_CH_L, SERVO_L_OPEN_US);
+    servo_set_pulse(SERVO_LEDC_CH_R, SERVO_PULSE_STOP_US);
     vTaskDelay(pdMS_TO_TICKS(1500));
-    servo_set_pulse_us(SERVO_LEDC_CH_L, SERVO_PULSE_STOP_US);
+    servo_set_pulse(SERVO_LEDC_CH_L, SERVO_PULSE_STOP_US);
     vTaskDelay(pdMS_TO_TICKS(500));
 
-    ESP_LOGW(TAG, "[TEST] R(GPIO%d) CCW → %luus", PIN_CURTAIN_MOTOR_R, (unsigned long)SERVO_R_OPEN_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_L, SERVO_PULSE_STOP_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_R, SERVO_R_OPEN_US);
-    vTaskDelay(pdMS_TO_TICKS(1500));
-    servo_set_pulse_us(SERVO_LEDC_CH_R, SERVO_PULSE_STOP_US);
-    vTaskDelay(pdMS_TO_TICKS(500));
-
-    ESP_LOGW(TAG, "[TEST] L(GPIO%d) CCW → %luus", PIN_CURTAIN_MOTOR_L, (unsigned long)SERVO_L_CLOSE_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_L, SERVO_L_CLOSE_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_R, SERVO_PULSE_STOP_US);
-    vTaskDelay(pdMS_TO_TICKS(1500));
-    servo_set_pulse_us(SERVO_LEDC_CH_L, SERVO_PULSE_STOP_US);
-    vTaskDelay(pdMS_TO_TICKS(500));
-
-    ESP_LOGW(TAG, "[TEST] R(GPIO%d) CW  → %luus", PIN_CURTAIN_MOTOR_R, (unsigned long)SERVO_R_CLOSE_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_L, SERVO_PULSE_STOP_US);
-    servo_set_pulse_us(SERVO_LEDC_CH_R, SERVO_R_CLOSE_US);
+    servo_set_pulse(SERVO_LEDC_CH_R, SERVO_R_OPEN_US);
     vTaskDelay(pdMS_TO_TICKS(1500));
     servo_both_stop();
-
     ESP_LOGW(TAG, "=== 모터 테스트 완료 ===");
+#endif
 
     s_act_queue = xQueueCreate(4, sizeof(actuator_cmd_t));
-    xTaskCreate(actuator_task, "actuator", 4096, NULL, 5, NULL);
+    xTaskCreate(actuator_task, "actuator", 8192, NULL, 5, NULL);
 
     ESP_ERROR_CHECK(wifi_init());
     ESP_ERROR_CHECK(espnow_init());
-    oled_render_from_state();
 
-    /* Keep-alive 타이머 (5초 주기) */
+    /* UART 콘솔 (캘리브레이션 명령) */
+    cal_console_init();
+
+    /* Keep-alive 타이머 */
     esp_timer_handle_t ka_timer;
     esp_timer_create_args_t ka_args = {
         .callback = keepalive_timer_cb,
@@ -505,17 +370,20 @@ void app_main(void)
     esp_timer_create(&ka_args, &ka_timer);
     esp_timer_start_periodic(ka_timer, 5000000);
 
-    ESP_LOGI(TAG, "초기화 완료 — 명령 대기 중");
+    oled_render_from_state();
+    ESP_LOGI(TAG, "초기화 완료 — 명령 대기 중 (콘솔: cal/jog/pos)");
 
-    /* 메인 루프: 2초마다 GPIO 상태 출력 (FAN|MOT_L|MOT_R|LIMIT|LED) */
+    /* 메인 루프: 홀센서 폴링 + 상태 출력 */
     while (1) {
-        int fan   = gpio_get_level(PIN_FAN_RELAY);
-        int led   = gpio_get_level(PIN_BUILTIN_LED);
-        int limit = gpio_get_level(PIN_CURTAIN_LIMIT);  /* 0=HIT, 1=OPEN */
+        hall_poll();
 
-        ESP_LOGI(TAG, "IO [FAN|LED|LIMIT] = [%d|%d|%d]  curtain=%s",
-                 fan, led, limit,
-                 curtain_to_str(s_ui.curtain_act));
+        int raw_l = 0, raw_r = 0;
+        adc_oneshot_read(g_adc_handle, HALL_ADC_CH_L, &raw_l);
+        adc_oneshot_read(g_adc_handle, HALL_ADC_CH_R, &raw_r);
+
+        ESP_LOGI(TAG, "HALL[L:%d R:%d] x=%.2f/%.1f cal[L:%.0f R:%.0f]",
+                 raw_l, raw_r, g_cal.x_pos, g_cal.travel,
+                 g_cal.ms_per_rev_l, g_cal.ms_per_rev_r);
         vTaskDelay(pdMS_TO_TICKS(2000));
     }
 }
