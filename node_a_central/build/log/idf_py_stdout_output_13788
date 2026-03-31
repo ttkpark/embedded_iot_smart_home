@@ -1,0 +1,113 @@
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6276
+load:0x40078000,len:15736
+load:0x40080400,len:4
+load:0x40080404,len:3860
+entry 0x4008063c
+[0;32mI (29) boot: ESP-IDF v5.4.3 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Mar 23 2026 21:32:47[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (30) boot: chip revision: v1.0[0m
+[0;32mI (33) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (36) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (40) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (44) boot: Enabling RNG early entropy source...[0m
+[0;32mI (48) boot: Partition Table:[0m
+[0;32mI (51) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (57) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (63) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (70) boot:  2 app0             OTA app          00 10 00010000 001f0000[0m
+[0;32mI (77) boot:  3 spiffs           Unknown data     01 82 00200000 00200000[0m
+[0;32mI (83) boot: End of partition table[0m
+[0;32mI (86) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1d108h (119048) map[0m
+[0;32mI (134) esp_image: segment 1: paddr=0002d130 vaddr=3ffb0000 size=02ee8h ( 12008) load[0m
+[0;32mI (139) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=9519ch (610716) map[0m
+[0;32mI (348) esp_image: segment 3: paddr=000c51c4 vaddr=3ffb2ee8 size=010f4h (  4340) load[0m
+[0;32mI (350) esp_image: segment 4: paddr=000c62c0 vaddr=40080000 size=17aa4h ( 96932) load[0m
+[0;32mI (389) esp_image: segment 5: paddr=000ddd6c vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (401) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (401) boot: Disabling RNG early entropy source...[0m
+[0;32mI (412) cpu_start: Multicore app[0m
+[0;32mI (420) cpu_start: Pro cpu start user code[0m
+[0;32mI (420) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (420) app_init: Application information:[0m
+[0;32mI (420) app_init: Project name:     node_a_central[0m
+[0;32mI (425) app_init: App version:      b8e6c78-dirty[0m
+[0;32mI (429) app_init: Compile time:     Mar 23 2026 21:32:26[0m
+[0;32mI (434) app_init: ELF file SHA256:  460e198f7...[0m
+[0;32mI (439) app_init: ESP-IDF:          v5.4.3[0m
+[0;32mI (442) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (446) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (450) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (454) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (460) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (465) heap_init: At 3FFB9A98 len 00026568 (153 KiB): DRAM[0m
+[0;32mI (471) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (476) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (482) heap_init: At 40097AA4 len 0000855C (33 KiB): IRAM[0m
+[0;32mI (488) spi_flash: detected chip: gd[0m
+[0;32mI (490) spi_flash: flash io: dio[0m
+[0;32mI (494) main_task: Started on CPU0[0m
+[0;32mI (497) main_task: Calling app_main()[0m
+[0;32mI (499) NODE_A: Node A 부팅[0m
+[0;32mI (525) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (531) wifi:wifi driver task: 3ffc2ccc, prio:23, stack:6656, core=0[0m
+[0;32mI (545) wifi:wifi firmware version: e8ce6e2[0m
+[0;32mI (546) wifi:wifi certification version: v7.0[0m
+[0;32mI (546) wifi:config NVS flash: enabled[0m
+[0;32mI (547) wifi:config nano formatting: disabled[0m
+[0;32mI (551) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (556) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (559) wifi:Init management short buffer num: 32[0m
+[0;32mI (564) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (568) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (572) wifi:Init static rx buffer num: 10[0m
+[0;32mI (576) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (581) wifi_init: rx ba win: 6[0m
+[0;32mI (582) wifi_init: accept mbox: 6[0m
+[0;32mI (585) wifi_init: tcpip mbox: 32[0m
+[0;32mI (588) wifi_init: udp mbox: 6[0m
+[0;32mI (591) wifi_init: tcp mbox: 6[0m
+[0;32mI (594) wifi_init: tcp tx win: 5760[0m
+[0;32mI (597) wifi_init: tcp rx win: 5760[0m
+[0;32mI (600) wifi_init: tcp mss: 1440[0m
+[0;32mI (603) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (607) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;33mW (612) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (620) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (699) wifi:mode : sta (30:ae:a4:84:0d:0c) + softAP (30:ae:a4:84:0d:0d)[0m
+[0;32mI (700) wifi:enable tsf[0m
+[0;32mI (701) wifi:Total power save buffer number: 16[0m
+[0;32mI (702) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (706) wifi:Init max length of beacon: 752/752[0m
+[0;33mW (3557) NODE_A: Wi-Fi 재연결 시도 1/5[0m
+[0;33mW (6400) NODE_A: Wi-Fi 재연결 시도 2/5[0m
+[0;33mW (9243) NODE_A: Wi-Fi 재연결 시도 3/5[0m
+[1;31mE (10711) NODE_A: Wi-Fi 연결 실패[0m
+[0;32mI (10711) NODE_A: MAC: 30:ae:a4:84:0d:0c[0m
+[0;33mW (10814) NODE_A: Wi-Fi 연결 실패 — ESP-NOW 전용 모드 (채널 1)[0m
+[0;32mI (10815) ESPNOW: espnow [version: 2.0] init[0m
+[0;32mI (10815) NODE_A: ESP-NOW initialized[0m
+[0;33mW (10817) NODE_A: Wi-Fi 없음 — 웹 대시보드 비활성화, ESP-NOW만 동작[0m
+[0;32mI (10825) NODE_A: [LOG] 시스템 부팅 완료 — ESP-NOW 네트워크 준비[0m
+[0;32mI (10831) NODE_A: 초기화 완료 — 대기 중[0m
+[0;32mI (819372) wifi:new:<1,0>, old:<1,0>, ap:<1,0>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (819373) wifi:station: 12:42:4d:6b:87:6c join, AID=1, bgn, 20[0m
+[0;32mI (837504) wifi:station: 12:42:4d:6b:87:6c leave, AID = 1, reason = 3, bss_flags is 33721443, bss:0x3ffca690[0m
+[0;32mI (837505) wifi:new:<1,0>, old:<1,0>, ap:<1,0>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (837511) wifi:new:<1,0>, old:<1,0>, ap:<1,0>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (840170) wifi:new:<1,0>, old:<1,0>, ap:<1,0>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (840171) wifi:station: 12:42:4d:6b:87:6c join, AID=1, bgn, 20[0m
+[0;32mI (858230) wifi:station: 12:42:4d:6b:87:6c leave, AID = 1, reason = 3, bss_flags is 33721443, bss:0x3ffca690[0m
+[0;32mI (858231) wifi:new:<1,0>, old:<1,0>, ap:<1,0>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (858237) wifi:new:<1,0>, old:<1,0>, ap:<1,0>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (860939) wifi:new:<1,0>, old:<1,0>, ap:<1,0>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (860940) wifi:station: 12:42:4d:6b:87:6c join, AID=1, bgn, 20[0m
+[0;32mI (879010) wifi:station: 12:42:4d:6b:87:6c leave, AID = 1, reason = 3, bss_flags is 33721443, bss:0x3ffca690[0m
+[0;32mI (879011) wifi:new:<1,0>, old:<1,0>, ap:<1,0>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (879017) wifi:new:<1,0>, old:<1,0>, ap:<1,0>, sta:<0,0>, prof:1, snd_ch_cfg:0x0[0m

@@ -101,6 +101,31 @@
         <button id="win-stop" class="btn-act" onclick="sendCmd('window',0)">⏸ 정지</button>
       </div>
     </div>
+
+    <!-- 모터 개별 제어 (1바퀴) -->
+    <div class="motor-jog-section">
+      <h3 class="motor-jog-title">모터 Jog 제어 <span class="mode-badge">1 Rev</span></h3>
+
+      <div class="motor-jog-row">
+        <span class="motor-label">L<br><small class="motor-type">Belt</small></span>
+        <button class="btn-jog jog-open"  onclick="sendCmd('motor',3)">◀ 열기</button>
+        <button class="btn-jog jog-close" onclick="sendCmd('motor',4)">닫기 ▶</button>
+      </div>
+
+      <div class="motor-jog-row">
+        <span class="motor-label">R<br><small class="motor-type">Spool</small></span>
+        <button class="btn-jog jog-open"  onclick="sendCmd('motor',5)">◀ 열기</button>
+        <button class="btn-jog jog-close" onclick="sendCmd('motor',6)">닫기 ▶</button>
+      </div>
+
+      <div class="motor-jog-divider"></div>
+
+      <div class="motor-jog-row both">
+        <span class="motor-label">L+R</span>
+        <button class="btn-jog jog-open both-btn"  onclick="sendCmd('motor',7)">◀ 열기</button>
+        <button class="btn-jog jog-close both-btn" onclick="sendCmd('motor',8)">닫기 ▶</button>
+      </div>
+    </div>
   </section>
 
 </main>

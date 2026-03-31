@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/CMakeFiles/bootloader"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/CMakeFiles/bootloader"
 		},
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/CMakeFiles/bootloader.rule"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/CMakeFiles/bootloader.rule"
 		},
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/CMakeFiles/bootloader-complete.rule"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/CMakeFiles/bootloader-complete.rule"
 		},
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
 		},
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
 		},
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
 		},
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
 		},
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
 		},
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
 		},
 		{
-			"file" : "C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+			"file" : "E:/\ubc14\ud0d5\ud654\uba74/archived project/embedded_iot_smart_home/node_b_actuator/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
 		}
 	],
 	"target" : 

@@ -1,0 +1,1168 @@
+	i�J���� Parti�I (13) boot: ESP-IDF v5.4.3 2nd stage bootloader
+[0;32mI (13) boot: compile time Mar  8 2026 09:20:29[0m
+[0;32mI (13) boot: Multicore bootloader[0m
+[0;32mI (13) boot: chip revision: v1.0[0m
+[0;32mI (16) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (20) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (23) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (27) boot: Enabling RNG early entropy source...[0m
+[0;32mI (31) boot: Partition Table:[0m
+[0;32mI (34) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (40) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (47) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (53) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (60) boot: End of partition table[0m
+[0;32mI (63) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=19b68h (105320) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=00029b90 vaddr=3ffb0000 size=0402ch ( 16428) load[0m
+[0;32mI (113) esp_image: segment 2: paddr=0002dbc4 vaddr=40080000 size=02454h (  9300) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=80b6ch (527212) map[0m
+[0;32mI (298) esp_image: segment 4: paddr=000b0b94 vaddr=40082454 size=16a60h ( 92768) load[0m
+[0;32mI (334) esp_image: segment 5: paddr=000c75fc vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (347) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (347) boot: Disabling RNG early entropy source...[0m
+[0;32mI (357) cpu_start: Multicore app[0m
+[0;32mI (366) cpu_start: Pro cpu start user code[0m
+[0;32mI (366) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (366) app_init: Application information:[0m
+[0;32mI (366) app_init: Project name:     node_c_sensor_mock[0m
+[0;32mI (371) app_init: App version:      b8e6c78-dirty[0m
+[0;32mI (375) app_init: Compile time:     Mar 23 2026 20:55:25[0m
+[0;32mI (380) app_init: ELF file SHA256:  c66e18bca...[0m
+[0;32mI (385) app_init: ESP-IDF:          v5.4.3[0m
+[0;32mI (388) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (392) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (396) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (400) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (406) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (411) heap_init: At 3FFB8538 len 00027AC8 (158 KiB): DRAM[0m
+[0;32mI (417) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (422) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (428) heap_init: At 40098EB4 len 0000714C (28 KiB): IRAM[0m
+[0;32mI (434) spi_flash: detected chip: winbond[0m
+[0;32mI (437) spi_flash: flash io: dio[0m
+[0;33mW (439) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (452) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (462) main_task: Started on CPU0[0m
+[0;32mI (465) main_task: Calling app_main()[0m
+[0;32mI (467) NODE_C: Node C 부팅[0m
+[0;32mI (502) gpio: GPIO[32]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (503) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (509) NODE_C: 버튼 GPIO 초기화 완료 (정상:32, 응급:33)[0m
+[0;32mI (516) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (640) OLED: SSD1306 init done (addr=0x3C, SDA=4, SCL=15)[0m
+[0;32mI (678) wifi:wifi driver task: 3ffc062c, prio:23, stack:6656, core=0[0m
+[0;32mI (698) wifi:wifi firmware version: e8ce6e2[0m
+[0;32mI (698) wifi:wifi certification version: v7.0[0m
+[0;32mI (698) wifi:config NVS flash: enabled[0m
+[0;32mI (698) wifi:config nano formatting: disabled[0m
+[0;32mI (703) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (708) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (712) wifi:Init management short buffer num: 32[0m
+[0;32mI (716) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (720) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (724) wifi:Init static rx buffer num: 10[0m
+[0;32mI (728) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (733) wifi_init: rx ba win: 6[0m
+[0;32mI (735) wifi_init: accept mbox: 6[0m
+[0;32mI (738) wifi_init: tcpip mbox: 32[0m
+[0;32mI (741) wifi_init: udp mbox: 6[0m
+[0;32mI (743) wifi_init: tcp mbox: 6[0m
+[0;32mI (746) wifi_init: tcp tx win: 5760[0m
+[0;32mI (749) wifi_init: tcp rx win: 5760[0m
+[0;32mI (753) wifi_init: tcp mss: 1440[0m
+[0;32mI (756) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (759) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (764) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (844) wifi:mode : sta (24:6f:28:22:39:68)[0m
+[0;32mI (845) wifi:enable tsf[0m
+[0;32mI (848) NODE_C: MAC: 24:6f:28:22:39:68[0m
+[0;32mI (849) ESPNOW: espnow [version: 2.0] init[0m
+[0;32mI (849) NODE_C: ESP-NOW 초기화 완료[0m
+[0;32mI (886) NODE_C: 초기화 완료 — 버튼 입력 대기 중[0m
+[0;32mI (2436) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=0 tx_ng=0[0m
+[0;32mI (4441) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=0 tx_ng=0[0m
+[0;32mI (6446) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=1 tx_ng=0[0m
+[0;32mI (8451) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=1 tx_ng=0[0m
+[0;32mI (10456) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=1 tx_ng=0[0m
+[0;32mI (12461) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=2 tx_ng=0[0m
+[0;32mI (14466) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=2 tx_ng=0[0m
+[0;32mI (16471) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=3 tx_ng=0[0m
+[0;32mI (18476) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=3 tx_ng=0[0m
+[0;32mI (20481) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=3 tx_ng=0[0m
+[0;32mI (22486) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=4 tx_ng=0[0m
+[0;32mI (24491) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=4 tx_ng=0[0m
+[0;32mI (26496) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=5 tx_ng=0[0m
+[0;32mI (28501) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=5 tx_ng=0[0m
+[0;32mI (30506) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=5 tx_ng=0[0m
+[0;32mI (32511) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=6 tx_ng=0[0m
+[0;32mI (34516) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=6 tx_ng=0[0m
+[0;32mI (36521) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=7 tx_ng=0[0m
+[0;32mI (38526) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=7 tx_ng=0[0m
+[0;32mI (40531) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=7 tx_ng=0[0m
+[0;32mI (42536) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=8 tx_ng=0[0m
+[0;32mI (44541) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=8 tx_ng=0[0m
+[0;32mI (46546) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=9 tx_ng=0[0m
+[0;32mI (48551) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=9 tx_ng=0[0m
+[0;32mI (50556) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=9 tx_ng=0[0m
+[0;32mI (52561) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=10 tx_ng=0[0m
+[0;32mI (54566) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=10 tx_ng=0[0m
+[0;32mI (56571) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=11 tx_ng=0[0m
+[0;32mI (58576) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=11 tx_ng=0[0m
+[0;32mI (60581) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=11 tx_ng=0[0m
+[0;32mI (62586) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=12 tx_ng=0[0m
+[0;32mI (64591) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=12 tx_ng=0[0m
+[0;32mI (66596) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=13 tx_ng=0[0m
+[0;32mI (68601) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=13 tx_ng=0[0m
+[0;32mI (70606) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=13 tx_ng=0[0m
+[0;32mI (72611) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=14 tx_ng=0[0m
+[0;32mI (74616) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=14 tx_ng=0[0m
+[0;32mI (76621) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=15 tx_ng=0[0m
+[0;32mI (78626) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=15 tx_ng=0[0m
+[0;32mI (80631) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=15 tx_ng=0[0m
+[0;32mI (82636) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=16 tx_ng=0[0m
+[0;32mI (84641) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=16 tx_ng=0[0m
+[0;32mI (86646) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=17 tx_ng=0[0m
+[0;32mI (88651) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=17 tx_ng=0[0m
+[0;32mI (90656) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=17 tx_ng=0[0m
+[0;32mI (92661) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=18 tx_ng=0[0m
+[0;32mI (94666) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=18 tx_ng=0[0m
+[0;32mI (96671) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=19 tx_ng=0[0m
+[0;32mI (98676) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=19 tx_ng=0[0m
+[0;32mI (100681) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=19 tx_ng=0[0m
+[0;32mI (102686) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=20 tx_ng=0[0m
+[0;32mI (104691) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=20 tx_ng=0[0m
+[0;32mI (106696) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=21 tx_ng=0[0m
+[0;32mI (108701) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=21 tx_ng=0[0m
+[0;32mI (110706) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=21 tx_ng=0[0m
+[0;32mI (112711) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=22 tx_ng=0[0m
+[0;32mI (114716) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=22 tx_ng=0[0m
+[0;32mI (116721) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=23 tx_ng=0[0m
+[0;32mI (118726) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=23 tx_ng=0[0m
+[0;32mI (120731) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=23 tx_ng=0[0m
+[0;32mI (122736) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=24 tx_ng=0[0m
+[0;32mI (124741) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=24 tx_ng=0[0m
+[0;32mI (126746) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=25 tx_ng=0[0m
+[0;32mI (128751) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=25 tx_ng=0[0m
+[0;32mI (130756) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=25 tx_ng=0[0m
+[0;32mI (132761) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=26 tx_ng=0[0m
+[0;32mI (134766) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=26 tx_ng=0[0m
+[0;32mI (136771) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=27 tx_ng=0[0m
+[0;32mI (138776) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=27 tx_ng=0[0m
+[0;32mI (140781) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=27 tx_ng=0[0m
+[0;32mI (142786) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=28 tx_ng=0[0m
+[0;32mI (144791) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=28 tx_ng=0[0m
+[0;32mI (146796) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=29 tx_ng=0[0m
+[0;32mI (148801) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=29 tx_ng=0[0m
+[0;32mI (150806) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=29 tx_ng=0[0m
+[0;32mI (152811) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=30 tx_ng=0[0m
+[0;32mI (154816) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=30 tx_ng=0[0m
+[0;32mI (156821) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=31 tx_ng=0[0m
+[0;32mI (158826) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=31 tx_ng=0[0m
+[0;32mI (160831) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=31 tx_ng=0[0m
+[0;32mI (162836) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=32 tx_ng=0[0m
+[0;32mI (164841) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=32 tx_ng=0[0m
+[0;32mI (166846) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=33 tx_ng=0[0m
+[0;32mI (168851) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=33 tx_ng=0[0m
+[0;32mI (170856) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=33 tx_ng=0[0m
+[0;32mI (172861) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=--  tx_ok=34 tx_ng=0[0m
+[0;32mI (173496) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (173496) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (174863) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=35 tx_ng=0[0m
+[0;32mI (176868) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=36 tx_ng=0[0m
+[0;32mI (178873) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=36 tx_ng=0[0m
+[0;32mI (180878) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=36 tx_ng=0[0m
+[0;32mI (182884) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=37 tx_ng=0[0m
+[0;32mI (184889) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=37 tx_ng=0[0m
+[0;32mI (186894) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=38 tx_ng=0[0m
+[0;32mI (188899) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=38 tx_ng=0[0m
+[0;32mI (190904) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=39 tx_ng=0[0m
+[0;32mI (192909) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=39 tx_ng=0[0m
+[0;32mI (194914) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=39 tx_ng=0[0m
+[0;32mI (196919) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=40 tx_ng=0[0m
+[0;32mI (198924) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=40 tx_ng=0[0m
+[0;32mI (200929) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=41 tx_ng=0[0m
+[0;32mI (202934) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=41 tx_ng=0[0m
+[0;32mI (203499) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (203499) NODE_C: 응급 자동 해제 (쿨다운 30초 경과)[0m
+[0;32mI (204935) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=42 tx_ng=0[0m
+[0;32mI (206940) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=43 tx_ng=0[0m
+[0;32mI (208945) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=43 tx_ng=0[0m
+[0;32mI (210950) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=44 tx_ng=0[0m
+[0;32mI (212955) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=44 tx_ng=0[0m
+[0;32mI (214960) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=44 tx_ng=0[0m
+[0;32mI (216965) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=45 tx_ng=0[0m
+[0;32mI (218970) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=45 tx_ng=0[0m
+[0;32mI (220975) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=46 tx_ng=0[0m
+[0;32mI (222980) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=46 tx_ng=0[0m
+[0;32mI (224985) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=46 tx_ng=0[0m
+[0;32mI (226990) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=47 tx_ng=0[0m
+[0;32mI (228995) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=47 tx_ng=0[0m
+[0;32mI (231000) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=48 tx_ng=0[0m
+[0;32mI (233005) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=48 tx_ng=0[0m
+[0;32mI (235010) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=48 tx_ng=0[0m
+[0;32mI (237015) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=49 tx_ng=0[0m
+[0;32mI (239020) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=49 tx_ng=0[0m
+[0;32mI (241025) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=50 tx_ng=0[0m
+[0;32mI (243030) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=50 tx_ng=0[0m
+[0;32mI (245035) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=50 tx_ng=0[0m
+[0;32mI (247040) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=51 tx_ng=0[0m
+[0;32mI (249045) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=51 tx_ng=0[0m
+[0;32mI (251050) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=52 tx_ng=0[0m
+[0;32mI (253055) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=52 tx_ng=0[0m
+[0;32mI (255060) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=52 tx_ng=0[0m
+[0;32mI (257065) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=53 tx_ng=0[0m
+[0;32mI (259070) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=53 tx_ng=0[0m
+[0;32mI (261075) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=54 tx_ng=0[0m
+[0;32mI (263080) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=54 tx_ng=0[0m
+[0;32mI (265085) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=54 tx_ng=0[0m
+[0;32mI (267090) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=55 tx_ng=0[0m
+[0;32mI (269095) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=55 tx_ng=0[0m
+[0;32mI (271100) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=56 tx_ng=0[0m
+[0;32mI (273105) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=56 tx_ng=0[0m
+[0;32mI (275110) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=56 tx_ng=0[0m
+[0;32mI (277115) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=57 tx_ng=0[0m
+[0;32mI (279120) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=57 tx_ng=0[0m
+[0;32mI (281125) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=58 tx_ng=0[0m
+[0;32mI (283130) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=58 tx_ng=0[0m
+[0;32mI (285135) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=58 tx_ng=0[0m
+[0;32mI (287140) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=59 tx_ng=0[0m
+[0;32mI (289145) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=59 tx_ng=0[0m
+[0;32mI (291150) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=60 tx_ng=0[0m
+[0;32mI (293155) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=60 tx_ng=0[0m
+[0;32mI (295160) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=60 tx_ng=0[0m
+[0;32mI (297165) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=61 tx_ng=0[0m
+[0;32mI (299170) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=61 tx_ng=0[0m
+[0;32mI (301175) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=62 tx_ng=0[0m
+[0;32mI (303180) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=62 tx_ng=0[0m
+[0;32mI (305185) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=62 tx_ng=0[0m
+[0;32mI (307190) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=63 tx_ng=0[0m
+[0;32mI (309195) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=63 tx_ng=0[0m
+[0;32mI (311200) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=64 tx_ng=0[0m
+[0;32mI (313205) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=64 tx_ng=0[0m
+[0;32mI (315210) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=64 tx_ng=0[0m
+[0;32mI (317215) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=65 tx_ng=0[0m
+[0;32mI (319220) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=65 tx_ng=0[0m
+[0;32mI (321225) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=66 tx_ng=0[0m
+[0;32mI (323230) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=66 tx_ng=0[0m
+[0;32mI (324395) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (324395) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (325231) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=67 tx_ng=0[0m
+[0;32mI (327236) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=68 tx_ng=0[0m
+[0;32mI (329241) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=68 tx_ng=0[0m
+[0;32mI (331246) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=69 tx_ng=0[0m
+[0;32mI (333251) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=69 tx_ng=0[0m
+[0;32mI (335256) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=69 tx_ng=0[0m
+[0;32mI (337261) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=70 tx_ng=0[0m
+[0;32mI (339266) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=70 tx_ng=0[0m
+[0;32mI (341271) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=71 tx_ng=0[0m
+[0;32mI (343276) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=71 tx_ng=0[0m
+[0;32mI (345281) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=71 tx_ng=0[0m
+[0;32mI (347286) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=72 tx_ng=0[0m
+[0;32mI (349291) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=72 tx_ng=0[0m
+[0;32mI (351296) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=73 tx_ng=0[0m
+[0;32mI (353301) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=73 tx_ng=0[0m
+[0;32mI (354396) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (354396) NODE_C: 응급 자동 해제 (쿨다운 30초 경과)[0m
+[0;32mI (355302) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=74 tx_ng=0[0m
+[0;32mI (357307) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=75 tx_ng=0[0m
+[0;32mI (359312) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=75 tx_ng=0[0m
+[0;32mI (361317) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=76 tx_ng=0[0m
+[0;32mI (363322) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=76 tx_ng=0[0m
+[0;32mI (365327) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=76 tx_ng=0[0m
+[0;32mI (367332) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=77 tx_ng=0[0m
+[0;32mI (369337) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=77 tx_ng=0[0m
+[0;32mI (371342) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=78 tx_ng=0[0m
+[0;32mI (373347) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=78 tx_ng=0[0m
+[0;32mI (375352) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=78 tx_ng=0[0m
+[0;32mI (377357) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=79 tx_ng=0[0m
+[0;32mI (379362) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=79 tx_ng=0[0m
+[0;32mI (381367) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=80 tx_ng=0[0m
+[0;32mI (383372) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=80 tx_ng=0[0m
+[0;32mI (385377) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=80 tx_ng=0[0m
+[0;32mI (387382) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=81 tx_ng=0[0m
+[0;32mI (389387) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=81 tx_ng=0[0m
+[0;32mI (391392) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=82 tx_ng=0[0m
+[0;32mI (393397) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=82 tx_ng=0[0m
+[0;32mI (395402) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=82 tx_ng=0[0m
+[0;32mI (397407) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=83 tx_ng=0[0m
+[0;32mI (399412) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=83 tx_ng=0[0m
+[0;32mI (401417) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=84 tx_ng=0[0m
+[0;32mI (403422) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=84 tx_ng=0[0m
+[0;32mI (405427) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=84 tx_ng=0[0m
+[0;32mI (407432) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=85 tx_ng=0[0m
+[0;32mI (409437) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=85 tx_ng=0[0m
+[0;32mI (411442) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=86 tx_ng=0[0m
+[0;32mI (413447) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=86 tx_ng=0[0m
+[0;32mI (415452) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=86 tx_ng=0[0m
+[0;32mI (417457) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=87 tx_ng=0[0m
+[0;32mI (419462) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=87 tx_ng=0[0m
+[0;32mI (421467) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=88 tx_ng=0[0m
+[0;32mI (423472) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=88 tx_ng=0[0m
+[0;32mI (425477) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=88 tx_ng=0[0m
+[0;32mI (427482) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=89 tx_ng=0[0m
+[0;32mI (429487) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=89 tx_ng=0[0m
+[0;32mI (431492) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=90 tx_ng=0[0m
+[0;32mI (433497) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=90 tx_ng=0[0m
+[0;32mI (435502) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=90 tx_ng=0[0m
+[0;32mI (437507) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=91 tx_ng=0[0m
+[0;32mI (439512) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=91 tx_ng=0[0m
+[0;32mI (441517) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=92 tx_ng=0[0m
+[0;32mI (443522) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=92 tx_ng=0[0m
+[0;32mI (445527) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=92 tx_ng=0[0m
+[0;32mI (447532) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=93 tx_ng=0[0m
+[0;32mI (449537) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=93 tx_ng=0[0m
+[0;32mI (451542) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=94 tx_ng=0[0m
+[0;32mI (453547) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=94 tx_ng=0[0m
+[0;32mI (455552) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=94 tx_ng=0[0m
+[0;32mI (457557) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=95 tx_ng=0[0m
+[0;32mI (459562) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=95 tx_ng=0[0m
+[0;32mI (461567) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=96 tx_ng=0[0m
+[0;32mI (463572) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=96 tx_ng=0[0m
+[0;32mI (465577) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=96 tx_ng=0[0m
+[0;32mI (467582) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=97 tx_ng=0[0m
+[0;32mI (469587) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=97 tx_ng=0[0m
+[0;32mI (471592) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=98 tx_ng=0[0m
+[0;32mI (473597) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=98 tx_ng=0[0m
+[0;32mI (475602) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=98 tx_ng=0[0m
+[0;32mI (477607) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=99 tx_ng=0[0m
+[0;32mI (479612) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=99 tx_ng=0[0m
+[0;32mI (481617) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=100 tx_ng=0[0m
+[0;32mI (483622) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=100 tx_ng=0[0m
+[0;32mI (485627) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=100 tx_ng=0[0m
+[0;32mI (487632) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=101 tx_ng=0[0m
+[0;32mI (489637) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=101 tx_ng=0[0m
+[0;32mI (491642) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=102 tx_ng=0[0m
+[0;32mI (493647) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=102 tx_ng=0[0m
+[0;32mI (495652) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=102 tx_ng=0[0m
+[0;32mI (497657) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=103 tx_ng=0[0m
+[0;32mI (499662) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=103 tx_ng=0[0m
+[0;32mI (501667) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=104 tx_ng=0[0m
+[0;32mI (503672) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=104 tx_ng=0[0m
+[0;32mI (505677) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=104 tx_ng=0[0m
+[0;32mI (507682) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=105 tx_ng=0[0m
+[0;32mI (509687) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=105 tx_ng=0[0m
+[0;32mI (511692) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=106 tx_ng=0[0m
+[0;32mI (513697) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=106 tx_ng=0[0m
+[0;32mI (515702) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=106 tx_ng=0[0m
+[0;32mI (517707) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=107 tx_ng=0[0m
+[0;32mI (519712) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=107 tx_ng=0[0m
+[0;32mI (521717) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=108 tx_ng=0[0m
+[0;32mI (523722) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=108 tx_ng=0[0m
+[0;32mI (525727) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=108 tx_ng=0[0m
+[0;32mI (527732) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=109 tx_ng=0[0m
+[0;32mI (529737) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=109 tx_ng=0[0m
+[0;32mI (531742) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=110 tx_ng=0[0m
+[0;32mI (533747) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=110 tx_ng=0[0m
+[0;32mI (535752) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=110 tx_ng=0[0m
+[0;32mI (537757) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=111 tx_ng=0[0m
+[0;32mI (539762) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=111 tx_ng=0[0m
+[0;32mI (541767) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=112 tx_ng=0[0m
+[0;32mI (543772) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=112 tx_ng=0[0m
+[0;32mI (545777) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=112 tx_ng=0[0m
+[0;32mI (547782) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=113 tx_ng=0[0m
+[0;32mI (549787) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=113 tx_ng=0[0m
+[0;32mI (551792) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=114 tx_ng=0[0m
+[0;32mI (553797) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=114 tx_ng=0[0m
+[0;32mI (555802) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=114 tx_ng=0[0m
+[0;32mI (557807) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=115 tx_ng=0[0m
+[0;32mI (559812) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=115 tx_ng=0[0m
+[0;32mI (561817) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=116 tx_ng=0[0m
+[0;32mI (563822) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=116 tx_ng=0[0m
+[0;32mI (565827) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=116 tx_ng=0[0m
+[0;32mI (567832) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=117 tx_ng=0[0m
+[0;32mI (569837) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=117 tx_ng=0[0m
+[0;32mI (571842) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=118 tx_ng=0[0m
+[0;32mI (573847) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=118 tx_ng=0[0m
+[0;32mI (575852) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=118 tx_ng=0[0m
+[0;32mI (577857) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=119 tx_ng=0[0m
+[0;32mI (579862) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=119 tx_ng=0[0m
+[0;32mI (581867) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=120 tx_ng=0[0m
+[0;32mI (583872) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=120 tx_ng=0[0m
+[0;32mI (585877) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=120 tx_ng=0[0m
+[0;32mI (587883) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=121 tx_ng=0[0m
+[0;32mI (589888) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=121 tx_ng=0[0m
+[0;32mI (591893) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=122 tx_ng=0[0m
+[0;32mI (593898) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=122 tx_ng=0[0m
+[0;32mI (595903) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=123 tx_ng=0[0m
+[0;32mI (597908) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=123 tx_ng=0[0m
+[0;32mI (599913) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=123 tx_ng=0[0m
+[0;32mI (601918) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=124 tx_ng=0[0m
+[0;32mI (603923) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=124 tx_ng=0[0m
+[0;32mI (605928) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=125 tx_ng=0[0m
+[0;32mI (607933) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=125 tx_ng=0[0m
+[0;32mI (609938) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=125 tx_ng=0[0m
+[0;32mI (611943) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=126 tx_ng=0[0m
+[0;32mI (613948) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=126 tx_ng=0[0m
+[0;32mI (615953) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=127 tx_ng=0[0m
+[0;32mI (617958) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=127 tx_ng=0[0m
+[0;32mI (619963) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=127 tx_ng=0[0m
+[0;32mI (621968) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=128 tx_ng=0[0m
+[0;32mI (623973) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=128 tx_ng=0[0m
+[0;32mI (625978) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=129 tx_ng=0[0m
+[0;32mI (627983) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=129 tx_ng=0[0m
+[0;32mI (629988) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=129 tx_ng=0[0m
+[0;32mI (631993) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=130 tx_ng=0[0m
+[0;32mI (633998) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=130 tx_ng=0[0m
+[0;32mI (636003) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=131 tx_ng=0[0m
+[0;32mI (638008) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=131 tx_ng=0[0m
+[0;32mI (640013) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=131 tx_ng=0[0m
+[0;32mI (642018) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=132 tx_ng=0[0m
+[0;32mI (644023) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=132 tx_ng=0[0m
+[0;32mI (646028) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=133 tx_ng=0[0m
+[0;32mI (648033) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=133 tx_ng=0[0m
+[0;32mI (650038) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=133 tx_ng=0[0m
+[0;32mI (652043) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=134 tx_ng=0[0m
+[0;32mI (654048) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=134 tx_ng=0[0m
+[0;32mI (656053) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=135 tx_ng=0[0m
+[0;32mI (658058) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=135 tx_ng=0[0m
+[0;32mI (660063) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=135 tx_ng=0[0m
+[0;32mI (662068) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=136 tx_ng=0[0m
+[0;32mI (664073) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=136 tx_ng=0[0m
+[0;32mI (666078) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=137 tx_ng=0[0m
+[0;32mI (668083) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=137 tx_ng=0[0m
+[0;32mI (670088) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=137 tx_ng=0[0m
+[0;32mI (672093) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=138 tx_ng=0[0m
+[0;32mI (674098) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=138 tx_ng=0[0m
+[0;32mI (676103) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=139 tx_ng=0[0m
+[0;32mI (678108) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=139 tx_ng=0[0m
+[0;32mI (680113) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=139 tx_ng=0[0m
+[0;32mI (682118) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=140 tx_ng=0[0m
+[0;32mI (684123) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=140 tx_ng=0[0m
+[0;32mI (686128) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=141 tx_ng=0[0m
+[0;32mI (688133) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=141 tx_ng=0[0m
+[0;32mI (690138) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=141 tx_ng=0[0m
+[0;32mI (692143) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=142 tx_ng=0[0m
+[0;32mI (694148) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=142 tx_ng=0[0m
+[0;32mI (696153) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=143 tx_ng=0[0m
+[0;32mI (698158) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=143 tx_ng=0[0m
+[0;32mI (700163) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=143 tx_ng=0[0m
+[0;32mI (702168) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=144 tx_ng=0[0m
+[0;32mI (704173) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=144 tx_ng=0[0m
+[0;32mI (706178) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=145 tx_ng=0[0m
+[0;32mI (708183) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=145 tx_ng=0[0m
+[0;32mI (710188) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=145 tx_ng=0[0m
+[0;32mI (712193) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=146 tx_ng=0[0m
+[0;32mI (714198) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=146 tx_ng=0[0m
+[0;32mI (716203) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=147 tx_ng=0[0m
+[0;32mI (718208) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=147 tx_ng=0[0m
+[0;32mI (720213) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=147 tx_ng=0[0m
+[0;32mI (722218) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=148 tx_ng=0[0m
+[0;32mI (724223) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=148 tx_ng=0[0m
+[0;32mI (726228) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=149 tx_ng=0[0m
+[0;32mI (728233) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=149 tx_ng=0[0m
+[0;32mI (730238) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=149 tx_ng=0[0m
+[0;32mI (732243) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=150 tx_ng=0[0m
+[0;32mI (734248) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=150 tx_ng=0[0m
+[0;32mI (736253) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=151 tx_ng=0[0m
+[0;32mI (738258) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=151 tx_ng=0[0m
+[0;32mI (740263) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=151 tx_ng=0[0m
+[0;32mI (742268) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=152 tx_ng=0[0m
+[0;32mI (744273) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=152 tx_ng=0[0m
+[0;32mI (746278) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=153 tx_ng=0[0m
+[0;32mI (748283) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=153 tx_ng=0[0m
+[0;32mI (750288) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=153 tx_ng=0[0m
+[0;32mI (752293) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=154 tx_ng=0[0m
+[0;32mI (754298) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=154 tx_ng=0[0m
+[0;32mI (756303) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=155 tx_ng=0[0m
+[0;32mI (758308) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=155 tx_ng=0[0m
+[0;32mI (760313) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=155 tx_ng=0[0m
+[0;32mI (762318) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=156 tx_ng=0[0m
+[0;32mI (764323) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=156 tx_ng=0[0m
+[0;32mI (766328) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=157 tx_ng=0[0m
+[0;32mI (768333) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=157 tx_ng=0[0m
+[0;32mI (770338) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=157 tx_ng=0[0m
+[0;32mI (772343) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=158 tx_ng=0[0m
+[0;32mI (774348) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=158 tx_ng=0[0m
+[0;32mI (776353) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=159 tx_ng=0[0m
+[0;32mI (778358) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=159 tx_ng=0[0m
+[0;32mI (780363) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=159 tx_ng=0[0m
+[0;32mI (782368) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=160 tx_ng=0[0m
+[0;32mI (784373) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=160 tx_ng=0[0m
+[0;32mI (786378) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=161 tx_ng=0[0m
+[0;32mI (788383) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=161 tx_ng=0[0m
+[0;32mI (790388) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=161 tx_ng=0[0m
+[0;32mI (792393) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=162 tx_ng=0[0m
+[0;32mI (794398) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=162 tx_ng=0[0m
+[0;32mI (796403) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=163 tx_ng=0[0m
+[0;32mI (798408) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=163 tx_ng=0[0m
+[0;32mI (800413) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=163 tx_ng=0[0m
+[0;32mI (802418) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=164 tx_ng=0[0m
+[0;32mI (804423) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=164 tx_ng=0[0m
+[0;32mI (806428) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=165 tx_ng=0[0m
+[0;32mI (808433) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=165 tx_ng=0[0m
+[0;32mI (810438) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=165 tx_ng=0[0m
+[0;32mI (812443) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=166 tx_ng=0[0m
+[0;32mI (814448) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=166 tx_ng=0[0m
+[0;32mI (816453) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=167 tx_ng=0[0m
+[0;32mI (818458) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=167 tx_ng=0[0m
+[0;32mI (820463) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=167 tx_ng=0[0m
+[0;32mI (822468) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=168 tx_ng=0[0m
+[0;32mI (824473) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=168 tx_ng=0[0m
+[0;32mI (826478) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=169 tx_ng=0[0m
+[0;32mI (828483) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=169 tx_ng=0[0m
+[0;32mI (830488) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=169 tx_ng=0[0m
+[0;32mI (832493) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=170 tx_ng=0[0m
+[0;32mI (834498) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=170 tx_ng=0[0m
+[0;32mI (836503) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=171 tx_ng=0[0m
+[0;32mI (838508) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=171 tx_ng=0[0m
+[0;32mI (840513) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=171 tx_ng=0[0m
+[0;32mI (842518) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=172 tx_ng=0[0m
+[0;32mI (844523) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=172 tx_ng=0[0m
+[0;32mI (846528) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=173 tx_ng=0[0m
+[0;32mI (848533) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=173 tx_ng=0[0m
+[0;32mI (850538) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=173 tx_ng=0[0m
+[0;32mI (852543) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=174 tx_ng=0[0m
+[0;32mI (854548) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=174 tx_ng=0[0m
+[0;32mI (856553) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=175 tx_ng=0[0m
+[0;32mI (858558) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=175 tx_ng=0[0m
+[0;32mI (860563) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=175 tx_ng=0[0m
+[0;32mI (862568) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=176 tx_ng=0[0m
+[0;32mI (864573) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=176 tx_ng=0[0m
+[0;32mI (866578) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=177 tx_ng=0[0m
+[0;32mI (868583) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=177 tx_ng=0[0m
+[0;32mI (870588) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=177 tx_ng=0[0m
+[0;32mI (872593) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=178 tx_ng=0[0m
+[0;32mI (874598) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=178 tx_ng=0[0m
+[0;32mI (876603) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=179 tx_ng=0[0m
+[0;32mI (878608) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=179 tx_ng=0[0m
+[0;32mI (880613) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=179 tx_ng=0[0m
+[0;32mI (882618) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=180 tx_ng=0[0m
+[0;32mI (884623) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=180 tx_ng=0[0m
+[0;32mI (886628) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=181 tx_ng=0[0m
+[0;32mI (888633) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=181 tx_ng=0[0m
+[0;32mI (890638) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=181 tx_ng=0[0m
+[0;32mI (892643) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=182 tx_ng=0[0m
+[0;32mI (894648) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=182 tx_ng=0[0m
+[0;32mI (896653) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=183 tx_ng=0[0m
+[0;32mI (898658) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=183 tx_ng=0[0m
+[0;32mI (900663) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=183 tx_ng=0[0m
+[0;32mI (902668) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=184 tx_ng=0[0m
+[0;32mI (904673) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=184 tx_ng=0[0m
+[0;32mI (906678) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=185 tx_ng=0[0m
+[0;32mI (908683) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=185 tx_ng=0[0m
+[0;32mI (910688) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=185 tx_ng=0[0m
+[0;32mI (912693) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=186 tx_ng=0[0m
+[0;32mI (914698) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=186 tx_ng=0[0m
+[0;32mI (916703) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=187 tx_ng=0[0m
+[0;32mI (918708) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=187 tx_ng=0[0m
+[0;32mI (920713) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=187 tx_ng=0[0m
+[0;32mI (922718) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=188 tx_ng=0[0m
+[0;32mI (924723) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=188 tx_ng=0[0m
+[0;32mI (926728) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=189 tx_ng=0[0m
+[0;32mI (928733) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=189 tx_ng=0[0m
+[0;32mI (930738) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=189 tx_ng=0[0m
+[0;32mI (932743) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=190 tx_ng=0[0m
+[0;32mI (934748) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=190 tx_ng=0[0m
+[0;32mI (936753) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=191 tx_ng=0[0m
+[0;32mI (938758) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=191 tx_ng=0[0m
+[0;32mI (940763) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=191 tx_ng=0[0m
+[0;32mI (942768) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=192 tx_ng=0[0m
+[0;32mI (944773) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=192 tx_ng=0[0m
+[0;32mI (946778) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=193 tx_ng=0[0m
+[0;32mI (948783) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=193 tx_ng=0[0m
+[0;32mI (950788) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=193 tx_ng=0[0m
+[0;32mI (952793) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=194 tx_ng=0[0m
+[0;32mI (954798) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=194 tx_ng=0[0m
+[0;32mI (956803) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=195 tx_ng=0[0m
+[0;32mI (958808) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=195 tx_ng=0[0m
+[0;32mI (960813) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=195 tx_ng=0[0m
+[0;32mI (962818) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=196 tx_ng=0[0m
+[0;32mI (964823) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=196 tx_ng=0[0m
+[0;32mI (966828) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=197 tx_ng=0[0m
+[0;32mI (968833) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=197 tx_ng=0[0m
+[0;32mI (970838) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=197 tx_ng=0[0m
+[0;32mI (972843) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=198 tx_ng=0[0m
+[0;32mI (974848) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=198 tx_ng=0[0m
+[0;32mI (976853) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=199 tx_ng=0[0m
+[0;32mI (978858) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=199 tx_ng=0[0m
+[0;32mI (980863) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=199 tx_ng=0[0m
+[0;32mI (982868) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=200 tx_ng=0[0m
+[0;32mI (984873) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=200 tx_ng=0[0m
+[0;32mI (986878) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=201 tx_ng=0[0m
+[0;32mI (988883) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=201 tx_ng=0[0m
+[0;32mI (990888) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=202 tx_ng=0[0m
+[0;32mI (992893) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=202 tx_ng=0[0m
+[0;32mI (994898) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=202 tx_ng=0[0m
+[0;32mI (996903) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=203 tx_ng=0[0m
+[0;32mI (998908) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=203 tx_ng=0[0m
+[0;32mI (1000913) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=204 tx_ng=0[0m
+[0;32mI (1002918) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=204 tx_ng=0[0m
+[0;32mI (1004923) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=204 tx_ng=0[0m
+[0;32mI (1006928) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=205 tx_ng=0[0m
+[0;32mI (1008933) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=205 tx_ng=0[0m
+[0;32mI (1010938) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=206 tx_ng=0[0m
+[0;32mI (1012943) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=206 tx_ng=0[0m
+[0;32mI (1014948) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=206 tx_ng=0[0m
+[0;32mI (1016953) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=207 tx_ng=0[0m
+[0;32mI (1018958) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=207 tx_ng=0[0m
+[0;32mI (1020963) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=208 tx_ng=0[0m
+[0;32mI (1022968) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=208 tx_ng=0[0m
+[0;32mI (1024973) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=208 tx_ng=0[0m
+[0;32mI (1026978) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=209 tx_ng=0[0m
+[0;32mI (1028983) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=209 tx_ng=0[0m
+[0;32mI (1030988) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=210 tx_ng=0[0m
+[0;32mI (1032993) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=210 tx_ng=0[0m
+[0;32mI (1034998) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=210 tx_ng=0[0m
+[0;32mI (1037003) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=211 tx_ng=0[0m
+[0;32mI (1039008) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=211 tx_ng=0[0m
+[0;32mI (1041013) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=212 tx_ng=0[0m
+[0;32mI (1043018) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=212 tx_ng=0[0m
+[0;32mI (1045023) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=212 tx_ng=0[0m
+[0;32mI (1047028) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=213 tx_ng=0[0m
+[0;32mI (1049033) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=213 tx_ng=0[0m
+[0;32mI (1051038) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=214 tx_ng=0[0m
+[0;32mI (1053043) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=214 tx_ng=0[0m
+[0;32mI (1055048) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=214 tx_ng=0[0m
+[0;32mI (1057053) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=215 tx_ng=0[0m
+[0;32mI (1059058) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=215 tx_ng=0[0m
+[0;32mI (1061063) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=216 tx_ng=0[0m
+[0;32mI (1063068) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=216 tx_ng=0[0m
+[0;32mI (1065073) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=216 tx_ng=0[0m
+[0;32mI (1067078) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=217 tx_ng=0[0m
+[0;32mI (1069083) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=217 tx_ng=0[0m
+[0;32mI (1071088) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=218 tx_ng=0[0m
+[0;32mI (1073093) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=218 tx_ng=0[0m
+[0;32mI (1075098) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=218 tx_ng=0[0m
+[0;32mI (1077103) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=219 tx_ng=0[0m
+[0;32mI (1079108) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=219 tx_ng=0[0m
+[0;32mI (1081113) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=220 tx_ng=0[0m
+[0;32mI (1083118) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=220 tx_ng=0[0m
+[0;32mI (1085123) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=220 tx_ng=0[0m
+[0;32mI (1087128) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=221 tx_ng=0[0m
+[0;32mI (1089133) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=221 tx_ng=0[0m
+[0;32mI (1091138) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=222 tx_ng=0[0m
+[0;32mI (1093143) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=222 tx_ng=0[0m
+[0;32mI (1095148) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=222 tx_ng=0[0m
+[0;32mI (1097153) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=223 tx_ng=0[0m
+[0;32mI (1099158) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=223 tx_ng=0[0m
+[0;32mI (1101163) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=224 tx_ng=0[0m
+[0;32mI (1103168) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=224 tx_ng=0[0m
+[0;32mI (1105173) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=224 tx_ng=0[0m
+[0;32mI (1107178) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=225 tx_ng=0[0m
+[0;32mI (1109183) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=225 tx_ng=0[0m
+[0;32mI (1111188) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=226 tx_ng=0[0m
+[0;32mI (1113193) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=226 tx_ng=0[0m
+[0;32mI (1115198) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=226 tx_ng=0[0m
+[0;32mI (1117203) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=227 tx_ng=0[0m
+[0;32mI (1119208) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=227 tx_ng=0[0m
+[0;32mI (1119453) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1119453) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1119909) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1119909) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1121215) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=230 tx_ng=0[0m
+[0;32mI (1123220) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=230 tx_ng=0[0m
+[0;32mI (1125225) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=230 tx_ng=0[0m
+[0;32mI (1127230) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=231 tx_ng=0[0m
+[0;32mI (1129235) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=231 tx_ng=0[0m
+[0;32mI (1131240) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=232 tx_ng=0[0m
+[0;32mI (1133245) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=232 tx_ng=0[0m
+[0;32mI (1135250) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=232 tx_ng=0[0m
+[0;32mI (1137255) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=233 tx_ng=0[0m
+[0;32mI (1139260) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=233 tx_ng=0[0m
+[0;32mI (1141265) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=234 tx_ng=0[0m
+[0;32mI (1143270) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=234 tx_ng=0[0m
+[0;32mI (1145275) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=234 tx_ng=0[0m
+[0;32mI (1145450) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (1145450) NODE_C: 응급 수동 해제 (정상 버튼)[0m
+[0;32mI (1147276) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=236 tx_ng=0[0m
+[0;32mI (1149281) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=236 tx_ng=0[0m
+[0;32mI (1151286) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=237 tx_ng=0[0m
+[0;32mI (1153291) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=237 tx_ng=0[0m
+[0;32mI (1155296) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=237 tx_ng=0[0m
+[0;32mI (1157301) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=238 tx_ng=0[0m
+[0;32mI (1159306) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=238 tx_ng=0[0m
+[0;32mI (1161311) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=239 tx_ng=0[0m
+[0;32mI (1163316) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=239 tx_ng=0[0m
+[0;32mI (1165321) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=239 tx_ng=0[0m
+[0;32mI (1167326) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=240 tx_ng=0[0m
+[0;32mI (1169331) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=240 tx_ng=0[0m
+[0;32mI (1171336) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=241 tx_ng=0[0m
+[0;32mI (1173341) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=241 tx_ng=0[0m
+[0;32mI (1175346) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=241 tx_ng=0[0m
+[0;32mI (1177351) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=242 tx_ng=0[0m
+[0;32mI (1179356) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=242 tx_ng=0[0m
+[0;32mI (1181361) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=243 tx_ng=0[0m
+[0;32mI (1183366) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=243 tx_ng=0[0m
+[0;32mI (1185371) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=243 tx_ng=0[0m
+[0;32mI (1186206) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1186206) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1187372) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=245 tx_ng=0[0m
+[0;32mI (1189377) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=245 tx_ng=0[0m
+[0;32mI (1191382) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=246 tx_ng=0[0m
+[0;32mI (1193387) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=246 tx_ng=0[0m
+[0;32mI (1195392) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=246 tx_ng=0[0m
+[0;32mI (1197397) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=247 tx_ng=0[0m
+[0;32mI (1199402) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=247 tx_ng=0[0m
+[0;32mI (1201407) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=248 tx_ng=0[0m
+[0;32mI (1203412) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=248 tx_ng=0[0m
+[0;32mI (1205417) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=248 tx_ng=0[0m
+[0;32mI (1207422) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=249 tx_ng=0[0m
+[0;32mI (1209427) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=249 tx_ng=0[0m
+[0;32mI (1211432) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=250 tx_ng=0[0m
+[0;32mI (1213437) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=250 tx_ng=0[0m
+[0;32mI (1215442) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=250 tx_ng=0[0m
+[0;32mI (1216207) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (1216207) NODE_C: 응급 자동 해제 (쿨다운 30초 경과)[0m
+[0;32mI (1217443) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=252 tx_ng=0[0m
+[0;32mI (1219448) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=252 tx_ng=0[0m
+[0;32mI (1221453) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=253 tx_ng=0[0m
+[0;32mI (1223458) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=253 tx_ng=0[0m
+[0;32mI (1225463) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=253 tx_ng=0[0m
+[0;32mI (1227468) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=254 tx_ng=0[0m
+[0;32mI (1229473) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=254 tx_ng=0[0m
+[0;32mI (1231478) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=255 tx_ng=0[0m
+[0;32mI (1233483) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=255 tx_ng=0[0m
+[0;32mI (1235488) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=255 tx_ng=0[0m
+[0;32mI (1237493) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=256 tx_ng=0[0m
+[0;32mI (1239498) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=256 tx_ng=0[0m
+[0;32mI (1241503) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=257 tx_ng=0[0m
+[0;32mI (1243508) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=257 tx_ng=0[0m
+[0;32mI (1245513) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=257 tx_ng=0[0m
+[0;32mI (1247518) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=258 tx_ng=0[0m
+[0;32mI (1249523) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=258 tx_ng=0[0m
+[0;32mI (1251528) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=259 tx_ng=0[0m
+[0;32mI (1253533) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=259 tx_ng=0[0m
+[0;32mI (1255538) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=259 tx_ng=0[0m
+[0;32mI (1257543) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=260 tx_ng=0[0m
+[0;32mI (1259548) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=260 tx_ng=0[0m
+[0;32mI (1261553) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=261 tx_ng=0[0m
+[0;32mI (1263558) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=261 tx_ng=0[0m
+[0;32mI (1265563) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=261 tx_ng=0[0m
+[0;32mI (1267568) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=262 tx_ng=0[0m
+[0;32mI (1269573) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=262 tx_ng=0[0m
+[0;32mI (1271578) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=263 tx_ng=0[0m
+[0;32mI (1273583) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=263 tx_ng=0[0m
+[0;32mI (1275588) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=263 tx_ng=0[0m
+[0;32mI (1277593) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=264 tx_ng=0[0m
+[0;32mI (1279598) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=264 tx_ng=0[0m
+[0;32mI (1281603) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=265 tx_ng=0[0m
+[0;32mI (1283608) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=265 tx_ng=0[0m
+[0;32mI (1285613) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=265 tx_ng=0[0m
+[0;32mI (1287618) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=266 tx_ng=0[0m
+[0;32mI (1289623) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=266 tx_ng=0[0m
+[0;32mI (1291628) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=267 tx_ng=0[0m
+[0;32mI (1293633) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=267 tx_ng=0[0m
+[0;32mI (1295638) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=267 tx_ng=0[0m
+[0;32mI (1297643) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=268 tx_ng=0[0m
+[0;32mI (1299648) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=268 tx_ng=0[0m
+[0;32mI (1301653) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=269 tx_ng=0[0m
+[0;32mI (1303658) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=269 tx_ng=0[0m
+[0;32mI (1305663) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=269 tx_ng=0[0m
+[0;32mI (1307668) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=270 tx_ng=0[0m
+[0;32mI (1309673) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=270 tx_ng=0[0m
+[0;32mI (1311678) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=271 tx_ng=0[0m
+[0;32mI (1313683) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=271 tx_ng=0[0m
+[0;32mI (1315688) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=271 tx_ng=0[0m
+[0;32mI (1317693) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=272 tx_ng=0[0m
+[0;32mI (1319698) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=272 tx_ng=0[0m
+[0;32mI (1321703) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=273 tx_ng=0[0m
+[0;32mI (1323708) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=273 tx_ng=0[0m
+[0;32mI (1325713) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=273 tx_ng=0[0m
+[0;32mI (1327718) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=274 tx_ng=0[0m
+[0;32mI (1329723) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=274 tx_ng=0[0m
+[0;32mI (1331728) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=275 tx_ng=0[0m
+[0;32mI (1333733) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=275 tx_ng=0[0m
+[0;32mI (1335738) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=275 tx_ng=0[0m
+[0;32mI (1337743) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=276 tx_ng=0[0m
+[0;32mI (1339748) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=276 tx_ng=0[0m
+[0;32mI (1341753) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=277 tx_ng=0[0m
+[0;32mI (1343758) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=277 tx_ng=0[0m
+[0;32mI (1345763) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=277 tx_ng=0[0m
+[0;32mI (1347768) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=278 tx_ng=0[0m
+[0;32mI (1349773) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=278 tx_ng=0[0m
+[0;32mI (1351778) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=279 tx_ng=0[0m
+[0;32mI (1353783) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=279 tx_ng=0[0m
+[0;32mI (1355788) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=279 tx_ng=0[0m
+[0;32mI (1357793) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=280 tx_ng=0[0m
+[0;32mI (1359798) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=280 tx_ng=0[0m
+[0;32mI (1361803) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=281 tx_ng=0[0m
+[0;32mI (1363808) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=281 tx_ng=0[0m
+[0;32mI (1365813) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=281 tx_ng=0[0m
+[0;32mI (1367818) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=282 tx_ng=0[0m
+[0;32mI (1369823) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=282 tx_ng=0[0m
+[0;32mI (1371828) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=283 tx_ng=0[0m
+[0;32mI (1373833) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=283 tx_ng=0[0m
+[0;32mI (1375838) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=283 tx_ng=0[0m
+[0;32mI (1377843) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=284 tx_ng=0[0m
+[0;32mI (1379848) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=284 tx_ng=0[0m
+[0;32mI (1381853) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=285 tx_ng=0[0m
+[0;32mI (1383858) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=285 tx_ng=0[0m
+[0;32mI (1385863) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=285 tx_ng=0[0m
+[0;32mI (1387868) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=286 tx_ng=0[0m
+[0;32mI (1389873) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=286 tx_ng=0[0m
+[0;32mI (1391878) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=287 tx_ng=0[0m
+[0;32mI (1393883) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=287 tx_ng=0[0m
+[0;32mI (1395888) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=288 tx_ng=0[0m
+[0;32mI (1397894) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=288 tx_ng=0[0m
+[0;32mI (1399899) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=288 tx_ng=0[0m
+[0;32mI (1401904) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=289 tx_ng=0[0m
+[0;32mI (1403909) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=289 tx_ng=0[0m
+[0;32mI (1405914) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=290 tx_ng=0[0m
+[0;32mI (1407919) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=290 tx_ng=0[0m
+[0;32mI (1409924) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=290 tx_ng=0[0m
+[0;32mI (1411929) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=291 tx_ng=0[0m
+[0;32mI (1413934) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=291 tx_ng=0[0m
+[0;32mI (1415939) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=292 tx_ng=0[0m
+[0;32mI (1417944) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=292 tx_ng=0[0m
+[0;32mI (1419949) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=292 tx_ng=0[0m
+[0;32mI (1421954) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=293 tx_ng=0[0m
+[0;32mI (1423959) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=293 tx_ng=0[0m
+[0;32mI (1425964) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=294 tx_ng=0[0m
+[0;32mI (1427969) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=294 tx_ng=0[0m
+[0;32mI (1429974) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=294 tx_ng=0[0m
+[0;32mI (1431979) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=295 tx_ng=0[0m
+[0;32mI (1433984) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=295 tx_ng=0[0m
+[0;32mI (1435989) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=296 tx_ng=0[0m
+[0;32mI (1437994) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=296 tx_ng=0[0m
+[0;32mI (1439999) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=296 tx_ng=0[0m
+[0;32mI (1442004) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=297 tx_ng=0[0m
+[0;32mI (1444009) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=297 tx_ng=0[0m
+[0;32mI (1446014) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=298 tx_ng=0[0m
+[0;32mI (1448019) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=298 tx_ng=0[0m
+[0;32mI (1450024) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=298 tx_ng=0[0m
+[0;32mI (1452029) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=299 tx_ng=0[0m
+[0;32mI (1454034) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=299 tx_ng=0[0m
+[0;32mI (1456039) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=300 tx_ng=0[0m
+[0;32mI (1458044) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=300 tx_ng=0[0m
+[0;32mI (1460049) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=300 tx_ng=0[0m
+[0;32mI (1462054) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=301 tx_ng=0[0m
+[0;32mI (1464059) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=301 tx_ng=0[0m
+[0;32mI (1466064) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=302 tx_ng=0[0m
+[0;32mI (1468069) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=302 tx_ng=0[0m
+[0;32mI (1470074) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=302 tx_ng=0[0m
+[0;32mI (1472079) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=303 tx_ng=0[0m
+[0;32mI (1474084) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=303 tx_ng=0[0m
+[0;32mI (1476089) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=304 tx_ng=0[0m
+[0;32mI (1478094) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=304 tx_ng=0[0m
+[0;32mI (1480099) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=304 tx_ng=0[0m
+[0;32mI (1482104) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=305 tx_ng=0[0m
+[0;32mI (1484109) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=305 tx_ng=0[0m
+[0;32mI (1486114) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=306 tx_ng=0[0m
+[0;32mI (1488119) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=306 tx_ng=0[0m
+[0;32mI (1490124) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=306 tx_ng=0[0m
+[0;32mI (1492129) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=307 tx_ng=0[0m
+[0;32mI (1494134) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=307 tx_ng=0[0m
+[0;32mI (1495049) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1495049) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1496135) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=309 tx_ng=0[0m
+[0;32mI (1498140) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=309 tx_ng=0[0m
+[0;32mI (1500145) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=309 tx_ng=0[0m
+[0;32mI (1502020) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (1502020) NODE_C: 응급 수동 해제 (정상 버튼)[0m
+[0;32mI (1502146) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=311 tx_ng=0[0m
+[0;32mI (1504151) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=311 tx_ng=0[0m
+[0;32mI (1506156) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=312 tx_ng=0[0m
+[0;32mI (1507731) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1507731) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1508157) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=313 tx_ng=0[0m
+[0;32mI (1510162) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=313 tx_ng=0[0m
+[0;32mI (1512167) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=314 tx_ng=0[0m
+[0;32mI (1514172) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=314 tx_ng=0[0m
+[0;32mI (1516177) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=315 tx_ng=0[0m
+[0;32mI (1518182) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=315 tx_ng=0[0m
+[0;32mI (1520187) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=315 tx_ng=0[0m
+[0;32mI (1522192) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=316 tx_ng=0[0m
+[0;32mI (1524147) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1524147) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1524193) NODE_C: IO [BTN_N|BTN_E] = [1|0]  emg=ACTIVE  last=EMERGENCY  tx_ok=317 tx_ng=0[0m
+[0;32mI (1525468) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1525468) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1525674) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1525674) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1526200) NODE_C: IO [BTN_N|BTN_E] = [1|0]  emg=ACTIVE  last=EMERGENCY  tx_ok=320 tx_ng=0[0m
+[0;32mI (1528205) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=320 tx_ng=0[0m
+[0;32mI (1529740) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (1529740) NODE_C: 응급 수동 해제 (정상 버튼)[0m
+[0;32mI (1530206) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=321 tx_ng=0[0m
+[0;32mI (1532211) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=322 tx_ng=0[0m
+[0;32mI (1534216) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=322 tx_ng=0[0m
+[0;32mI (1534861) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1534861) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1535117) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1535117) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1536223) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=325 tx_ng=0[0m
+[0;32mI (1538228) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=325 tx_ng=0[0m
+[0;32mI (1538903) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (1538903) NODE_C: 응급 수동 해제 (정상 버튼)[0m
+[0;32mI (1540229) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=326 tx_ng=0[0m
+[0;32mI (1542234) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=327 tx_ng=0[0m
+[0;32mI (1544239) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=327 tx_ng=0[0m
+[0;32mI (1546244) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=328 tx_ng=0[0m
+[0;32mI (1548249) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=328 tx_ng=0[0m
+[0;32mI (1550254) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=328 tx_ng=0[0m
+[0;32mI (1552259) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=329 tx_ng=0[0m
+[0;32mI (1554264) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=329 tx_ng=0[0m
+[0;32mI (1556269) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=330 tx_ng=0[0m
+[0;32mI (1558274) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=330 tx_ng=0[0m
+[0;32mI (1560279) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=330 tx_ng=0[0m
+[0;32mI (1562284) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=331 tx_ng=0[0m
+[0;32mI (1564289) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=331 tx_ng=0[0m
+[0;32mI (1566294) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=332 tx_ng=0[0m
+[0;32mI (1568299) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=332 tx_ng=0[0m
+[0;32mI (1570304) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=332 tx_ng=0[0m
+[0;32mI (1572309) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=333 tx_ng=0[0m
+[0;32mI (1574314) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=333 tx_ng=0[0m
+[0;32mI (1576319) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=334 tx_ng=0[0m
+[0;32mI (1578324) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=334 tx_ng=0[0m
+[0;32mI (1580329) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=334 tx_ng=0[0m
+[0;32mI (1582334) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=335 tx_ng=0[0m
+[0;32mI (1584339) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=335 tx_ng=0[0m
+[0;32mI (1586344) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=336 tx_ng=0[0m
+[0;32mI (1588349) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=336 tx_ng=0[0m
+[0;32mI (1590354) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=336 tx_ng=0[0m
+[0;32mI (1592359) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=337 tx_ng=0[0m
+[0;32mI (1594364) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=337 tx_ng=0[0m
+[0;32mI (1596369) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=338 tx_ng=0[0m
+[0;32mI (1598374) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=338 tx_ng=0[0m
+[0;32mI (1600379) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=338 tx_ng=0[0m
+[0;32mI (1602384) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=339 tx_ng=0[0m
+[0;32mI (1604389) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=339 tx_ng=0[0m
+[0;32mI (1606394) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=340 tx_ng=0[0m
+[0;32mI (1608399) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=340 tx_ng=0[0m
+[0;32mI (1610404) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=340 tx_ng=0[0m
+[0;32mI (1612409) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=341 tx_ng=0[0m
+[0;32mI (1614414) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=341 tx_ng=0[0m
+[0;32mI (1616419) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=342 tx_ng=0[0m
+[0;32mI (1618424) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=342 tx_ng=0[0m
+[0;32mI (1620429) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=342 tx_ng=0[0m
+[0;32mI (1622434) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=343 tx_ng=0[0m
+[0;32mI (1624439) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=343 tx_ng=0[0m
+[0;32mI (1626444) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=344 tx_ng=0[0m
+[0;32mI (1628449) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=344 tx_ng=0[0m
+[0;32mI (1630454) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=344 tx_ng=0[0m
+[0;32mI (1632459) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=345 tx_ng=0[0m
+[0;32mI (1634464) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=345 tx_ng=0[0m
+[0;32mI (1636469) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=346 tx_ng=0[0m
+[0;32mI (1638474) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=346 tx_ng=0[0m
+[0;32mI (1640479) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=346 tx_ng=0[0m
+[0;32mI (1642484) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=346 tx_ng=1[0m
+[0;32mI (1644489) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=346 tx_ng=1[0m
+[0;32mI (1646494) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=346 tx_ng=2[0m
+[0;32mI (1648499) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=346 tx_ng=2[0m
+[0;32mI (1650504) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=346 tx_ng=2[0m
+[0;32mI (1652509) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=346 tx_ng=3[0m
+[0;32mI (1653824) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1653824) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1654511) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=346 tx_ng=4[0m
+[0;32mI (1654766) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1654766) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1655303) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1655303) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1656520) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=346 tx_ng=7[0m
+[0;32mI (1658455) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1658455) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1658522) NODE_C: IO [BTN_N|BTN_E] = [1|0]  emg=ACTIVE  last=EMERGENCY  tx_ok=346 tx_ng=8[0m
+[0;32mI (1660507) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (1660507) NODE_C: 응급 수동 해제 (정상 버튼)[0m
+[0;32mI (1660543) NODE_C: IO [BTN_N|BTN_E] = [0|1]  emg=idle  last=NORMAL  tx_ok=347 tx_ng=8[0m
+[0;32mI (1662549) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=348 tx_ng=8[0m
+[0;32mI (1664554) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=348 tx_ng=8[0m
+[0;32mI (1666559) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=349 tx_ng=8[0m
+[0;32mI (1668564) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=349 tx_ng=8[0m
+[0;32mI (13) boot: ESP-IDF v5.4.3 2nd stage bootloader[0m
+[0;32mI (13) boot: compile time Mar  8 2026 09:20:29[0m
+[0;32mI (13) boot: Multicore bootloader[0m
+[0;32mI (13) boot: chip revision: v1.0[0m
+[0;32mI (16) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (20) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (23) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (27) boot: Enabling RNG early entropy source...[0m
+[0;32mI (31) boot: Partition Table:[0m
+[0;32mI (34) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (40) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (47) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (53) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (60) boot: End of partition table[0m
+[0;32mI (63) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=19b68h (105320) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=00029b90 vaddr=3ffb0000 size=0402ch ( 16428) load[0m
+[0;32mI (113) esp_image: segment 2: paddr=0002dbc4 vaddr=40080000 size=02454h (  9300) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=80b6ch (527212) map[0m
+[0;32mI (298) esp_image: segment 4: paddr=000b0b94 vaddr=40082454 size=16a60h ( 92768) load[0m
+[0;32mI (334) esp_image: segment 5: paddr=000c75fc vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (347) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (347) boot: Disabling RNG early entropy source...[0m
+[0;32mI (357) cpu_start: Multicore app[0m
+[0;32mI (366) cpu_start: Pro cpu start user code[0m
+[0;32mI (366) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (366) app_init: Application information:[0m
+[0;32mI (366) app_init: Project name:     node_c_sensor_mock[0m
+[0;32mI (371) app_init: App version:      b8e6c78-dirty[0m
+[0;32mI (375) app_init: Compile time:     Mar 23 2026 20:55:25[0m
+[0;32mI (380) app_init: ELF file SHA256:  c66e18bca...[0m
+[0;32mI (385) app_init: ESP-IDF:          v5.4.3[0m
+[0;32mI (388) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (392) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (396) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (400) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (406) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (411) heap_init: At 3FFB8538 len 00027AC8 (158 KiB): DRAM[0m
+[0;32mI (417) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (422) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (428) heap_init: At 40098EB4 len 0000714C (28 KiB): IRAM[0m
+[0;32mI (434) spi_flash: detected chip: winbond[0m
+[0;32mI (437) spi_flash: flash io: dio[0m
+[0;33mW (439) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (452) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (462) main_task: Started on CPU0[0m
+[0;32mI (465) main_task: Calling app_main()[0m
+[0;32mI (467) NODE_C: Node C 부팅[0m
+[0;32mI (502) gpio: GPIO[32]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (503) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (509) NODE_C: 버튼 GPIO 초기화 완료 (정상:32, 응급:33)[0m
+[0;32mI (516) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (640) OLED: SSD1306 init done (addr=0x3C, SDA=4, SCL=15)[0m
+[0;32mI (678) wifi:wifi driver task: 3ffc062c, prio:23, stack:6656, core=0[0m
+[0;32mI (698) wifi:wifi firmware version: e8ce6e2[0m
+[0;32mI (698) wifi:wifi certification version: v7.0[0m
+[0;32mI (698) wifi:config NVS flash: enabled[0m
+[0;32mI (698) wifi:config nano formatting: disabled[0m
+[0;32mI (703) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (708) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (712) wifi:Init management short buffer num: 32[0m
+[0;32mI (716) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (720) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (724) wifi:Init static rx buffer num: 10[0m
+[0;32mI (728) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (733) wifi_init: rx ba win: 6[0m
+[0;32mI (735) wifi_init: accept mbox: 6[0m
+[0;32mI (738) wifi_init: tcpip mbox: 32[0m
+[0;32mI (741) wifi_init: udp mbox: 6[0m
+[0;32mI (743) wifi_init: tcp mbox: 6[0m
+[0;32mI (746) wifi_init: tcp tx win: 5760[0m
+[0;32mI (749) wifi_init: tcp rx win: 5760[0m
+[0;32mI (753) wifi_init: tcp mss: 1440[0m
+[0;32mI (756) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (759) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (764) phy_init: phy_version 4861,b71b5ad,Aug  5 2025,11:16:06[0m
+[0;32mI (841) wifi:mode : sta (24:6f:28:22:39:68)[0m
+[0;32mI (842) wifi:enable tsf[0m
+[0;32mI (845) NODE_C: MAC: 24:6f:28:22:39:68[0m
+[0;32mI (846) ESPNOW: espnow [version: 2.0] init[0m
+[0;32mI (847) NODE_C: ESP-NOW 초기화 완료[0m
+[0;32mI (883) NODE_C: 초기화 완료 — 버튼 입력 대기 중[0m
+[0;32mI (2395) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (2395) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (2441) NODE_C: IO [BTN_N|BTN_E] = [1|0]  emg=ACTIVE  last=EMERGENCY  tx_ok=1 tx_ng=0[0m
+[0;32mI (2846) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (2846) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (4442) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=2 tx_ng=0[0m
+[0;32mI (6447) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=3 tx_ng=0[0m
+[0;32mI (8452) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=3 tx_ng=0[0m
+[0;32mI (10457) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=3 tx_ng=0[0m
+[0;32mI (12462) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=4 tx_ng=0[0m
+[0;32mI (14467) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=4 tx_ng=0[0m
+[0;32mI (16472) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=5 tx_ng=0[0m
+[0;32mI (18477) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=5 tx_ng=0[0m
+[0;32mI (20482) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=5 tx_ng=0[0m
+[0;32mI (22487) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=6 tx_ng=0[0m
+[0;32mI (24492) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=6 tx_ng=0[0m
+[0;32mI (26497) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=7 tx_ng=0[0m
+[0;32mI (28502) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=7 tx_ng=0[0m
+[0;32mI (30507) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=7 tx_ng=0[0m
+[0;32mI (31852) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (31852) NODE_C: 응급 수동 해제 (정상 버튼)[0m
+[0;32mI (32508) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=9 tx_ng=0[0m
+[0;32mI (34513) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=9 tx_ng=0[0m
+[0;32mI (36518) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=10 tx_ng=0[0m
+[0;32mI (38523) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=10 tx_ng=0[0m
+[0;32mI (40488) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (40488) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (40524) NODE_C: IO [BTN_N|BTN_E] = [1|0]  emg=ACTIVE  last=EMERGENCY  tx_ok=11 tx_ng=0[0m
+[0;32mI (41379) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (41379) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (42525) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=13 tx_ng=0[0m
+[0;32mI (44530) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=13 tx_ng=0[0m
+[0;32mI (46535) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=14 tx_ng=0[0m
+[0;32mI (48540) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=14 tx_ng=0[0m
+[0;32mI (50545) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=14 tx_ng=0[0m
+[0;32mI (52550) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=15 tx_ng=0[0m
+[0;32mI (54555) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=15 tx_ng=0[0m
+[0;32mI (56560) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=16 tx_ng=0[0m
+[0;32mI (58565) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=16 tx_ng=0[0m
+[0;32mI (60570) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=16 tx_ng=0[0m
+[0;32mI (62575) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=17 tx_ng=0[0m
+[0;32mI (64580) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=17 tx_ng=0[0m
+[0;32mI (66585) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=18 tx_ng=0[0m
+[0;32mI (68590) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=18 tx_ng=0[0m
+[0;32mI (70595) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=ACTIVE  last=EMERGENCY  tx_ok=18 tx_ng=0[0m
+[0;32mI (71380) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (71380) NODE_C: 응급 자동 해제 (쿨다운 30초 경과)[0m
+[0;32mI (72596) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=20 tx_ng=0[0m
+[0;32mI (74601) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=20 tx_ng=0[0m
+[0;32mI (76606) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=21 tx_ng=0[0m
+[0;32mI (78611) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=21 tx_ng=0[0m
+[0;32mI (80616) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=21 tx_ng=0[0m
+[0;32mI (82621) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=22 tx_ng=0[0m
+[0;32mI (84626) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=22 tx_ng=0[0m
+[0;32mI (86631) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=23 tx_ng=0[0m
+[0;32mI (88636) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=23 tx_ng=0[0m
+[0;32mI (90641) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=23 tx_ng=0[0m
+[0;32mI (92646) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=24 tx_ng=0[0m
+[0;32mI (94651) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=24 tx_ng=0[0m
+[0;32mI (96656) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=25 tx_ng=0[0m
+[0;32mI (98661) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=25 tx_ng=0[0m
+[0;32mI (100666) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=25 tx_ng=0[0m
+[0;32mI (102671) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=26 tx_ng=0[0m
+[0;32mI (104676) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=26 tx_ng=0[0m
+[0;32mI (106681) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=27 tx_ng=0[0m
+[0;32mI (108686) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=27 tx_ng=0[0m
+[0;32mI (110691) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=27 tx_ng=0[0m
+[0;32mI (112696) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=28 tx_ng=0[0m
+[0;32mI (114701) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=28 tx_ng=0[0m
+[0;32mI (116706) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=29 tx_ng=0[0m
+[0;32mI (118711) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=29 tx_ng=0[0m
+[0;32mI (120716) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=29 tx_ng=0[0m
+[0;32mI (122721) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=30 tx_ng=0[0m
+[0;32mI (124726) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=30 tx_ng=0[0m
+[0;32mI (126731) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=31 tx_ng=0[0m
+[0;32mI (128736) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=31 tx_ng=0[0m
+[0;32mI (130741) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=31 tx_ng=0[0m
+[0;32mI (132746) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=32 tx_ng=0[0m
+[0;32mI (134751) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=32 tx_ng=0[0m
+[0;32mI (136756) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=33 tx_ng=0[0m
+[0;32mI (138761) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=33 tx_ng=0[0m
+[0;32mI (140766) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=33 tx_ng=0[0m
+[0;32mI (142771) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=34 tx_ng=0[0m
+[0;32mI (144776) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=34 tx_ng=0[0m
+[0;32mI (146781) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=35 tx_ng=0[0m
+[0;32mI (148786) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=35 tx_ng=0[0m
+[0;32mI (150791) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=35 tx_ng=0[0m
+[0;32mI (152796) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=36 tx_ng=0[0m
+[0;32mI (154801) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=36 tx_ng=0[0m
+[0;32mI (156806) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=37 tx_ng=0[0m
+[0;32mI (158811) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=37 tx_ng=0[0m
+[0;32mI (160816) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=37 tx_ng=0[0m
+[0;32mI (162821) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=38 tx_ng=0[0m
+[0;32mI (164826) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=38 tx_ng=0[0m
+[0;32mI (166831) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=39 tx_ng=0[0m
+[0;32mI (168836) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=39 tx_ng=0[0m
+[0;32mI (170841) NODE_C: IO [BTN_N|BTN_E] = [1|1]  emg=idle  last=NORMAL  tx_ok=39 tx_ng=0[0m
+ot: ESP-IDF v5.4.3 2nd stage bootloader
+[0;32mI (13) boot: compile time Mar  8 2026 09:20:29[0m
+[0;32mI (13) �partition table[0m
+[0;32mI (63) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=19b68h (105320) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=00029b90 vaddr=3ffb0000 size=0402ch ( 16428) load[0m
+[0;32mI (113) esp_image: segment 2: paddr=0002dbc4 vaddr=40080000 size=02454h (  9300) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=80b6ch (527212) map[0m
+[0;32mI (298) esp_image: segment 4: paddr=000b0b94 vaddr=40082454 size=16a60h ( 92768) load[0m
+[0;32mI (334) esp_image: segment 5: paddr=000c75fc vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (347) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (347) boot: Disabling RNG early entropy source...[0m
+[0;32mI (357) cpu_start: Multicore app[0m
+[0;32mI (366) cpu_start: Pro cpu start user code[0m
+[0;32mI (366) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (366) app_init: Application information:[0m
+[0;32mI (366) app_init: Project name:     node_c_sensor_mock[0m
+[0;32mI (371) app_init: App version:      b8e6c78-dirty[0m
+[0;32mI (375) app_init: Compile time:     Mar 23 2026 20:55:25[0m
+[0;32mI (380) app_init: ELF file SHA256:  c66e18bca...[0m
+[0;32mI (385) app_init: ESP-IDF:          v5.4.3[0m
+[0;32mI (388) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (392) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (396) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (400) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (406) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (411) heap_init: At 3FFB8538 len 00027AC8 (158 KiB): DRAM[0m
+[0;32mI (417) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (422) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (428) heap_init: At 40

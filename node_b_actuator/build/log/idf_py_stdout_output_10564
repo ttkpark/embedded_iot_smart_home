@@ -1,0 +1,261 @@
+�
+[0;32mI (32) boot:�I (13) boot: ESP-IDF GIT-NOTFOUND 2nd stage bootloader[0m
+[0;32mI (13) boot: compile time Mar 28 2026 20:56:52[0m
+[0;32mI (13) boot: Multicore bootloader[0m
+[0;32mI (14) boot: chip revision: v1.0[0m
+[0;32mI (17) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (20) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (24) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (27) boot: Enabling RNG early entropy source...[0m
+[0;32mI (32) boot: Partition Table:[0m
+[0;32mI (35) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (41) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (47) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (54) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (60) boot: End of partition table[0m
+[0;32mI (64) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1aad8h (109272) map[0m
+[0;32mI (109) esp_image: segment 1: paddr=0002ab00 vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (109) esp_image: segment 2: paddr=0002ab24 vaddr=3ffb0000 size=04070h ( 16496) load[0m
+[0;32mI (119) esp_image: segment 3: paddr=0002eb9c vaddr=40080000 size=0147ch (  5244) load[0m
+[0;32mI (122) esp_image: segment 4: paddr=00030020 vaddr=400d0020 size=86acch (551628) map[0m
+[0;32mI (316) esp_image: segment 5: paddr=000b6af4 vaddr=4008147c size=17988h ( 96648) load[0m
+[0;32mI (365) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (366) boot: Disabling RNG early entropy source...[0m
+[0;32mI (376) cpu_start: Multicore app[0m
+[0;32mI (384) cpu_start: Pro cpu start user code[0m
+[0;32mI (384) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (385) app_init: Application information:[0m
+[0;32mI (385) app_init: Project name:     node_b_actuator[0m
+[0;32mI (389) app_init: App version:      1[0m
+[0;32mI (393) app_init: Compile time:     Mar 28 2026 20:56:24[0m
+[0;32mI (398) app_init: ELF file SHA256:  88fb76137...[0m
+[0;32mI (402) app_init: ESP-IDF:          GIT-NOTFOUND[0m
+[0;32mI (406) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (410) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (414) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (418) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (424) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (429) heap_init: At 3FFB85E8 len 00027A18 (158 KiB): DRAM[0m
+[0;32mI (435) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (440) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (445) heap_init: At 40098E04 len 000071FC (28 KiB): IRAM[0m
+[0;32mI (452) spi_flash: detected chip: winbond[0m
+[0;32mI (454) spi_flash: flash io: dio[0m
+[0;33mW (457) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (470) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (480) main_task: Started on CPU0[0m
+[0;32mI (483) main_task: Calling app_main()[0m
+[0;32mI (485) NODE_B: Node B 부팅[0m
+[0;32mI (517) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (518) gpio: GPIO[25]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (524) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (532) NODE_B: GPIO 초기화 완료 (릴레이:25 LED:2 리밋SW:17 홀L:36(ADC) 홀R:39(ADC))[0m
+[0;32mI (541) NODE_B: MOTOR L(GPIO23)=STOP  R(GPIO27)=STOP[0m
+[0;32mI (545) NODE_B: 듀얼 SG90 Continuous 초기화 완료 (L:23 R:27)[0m
+[0;32mI (552) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (676) OLED: SSD1306 init done (addr=0x3C, SDA=4, SCL=15)[0m
+[0;33mW (1210) NODE_B: === 모터 테스트 시작 ===[0m
+[0;33mW (1210) NODE_B: [TEST] L(GPIO23) CW  → 1700us[0m
+[0;33mW (3210) NODE_B: [TEST] R(GPIO27) CCW → 1300us[0m
+[0;33mW (5210) NODE_B: [TEST] L(GPIO23) CCW → 1300us[0m
+[0;33mW (7210) NODE_B: [TEST] R(GPIO27) CW  → 1700us[0m
+[0;32mI (8710) NODE_B: MOTOR L(GPIO23)=STOP  R(GPIO27)=STOP[0m
+[0;33mW (8710) NODE_B: === 모터 테스트 완료 ===[0m
+[0;32mI (8713) wifi:wifi driver task: 3ffc1918, prio:23, stack:6656, core=0[0m
+[0;32mI (8731) wifi:wifi firmware version: bea31f3[0m
+[0;32mI (8731) wifi:wifi certification version: v7.0[0m
+[0;32mI (8732) wifi:config NVS flash: enabled[0m
+[0;32mI (8732) wifi:config nano formatting: disabled[0m
+[0;32mI (8736) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (8741) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (8745) wifi:Init management short buffer num: 32[0m
+[0;32mI (8750) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (8754) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (8758) wifi:Init static rx buffer num: 10[0m
+[0;32mI (8762) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (8767) wifi_init: rx ba win: 6[0m
+[0;32mI (8769) wifi_init: accept mbox: 6[0m
+[0;32mI (8772) wifi_init: tcpip mbox: 32[0m
+[0;32mI (8775) wifi_init: udp mbox: 6[0m
+[0;32mI (8778) wifi_init: tcp mbox: 6[0m
+[0;32mI (8781) wifi_init: tcp tx win: 5760[0m
+[0;32mI (8784) wifi_init: tcp rx win: 5760[0m
+[0;32mI (8787) wifi_init: tcp mss: 1440[0m
+[0;32mI (8790) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (8794) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (8799) phy_init: phy_version 4860,6b7a6e5,Feb  6 2025,14:47:07[0m
+[0;32mI (8874) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (8932) wifi:mode : sta (24:6f:28:22:37:d8)[0m
+[0;32mI (8933) wifi:enable tsf[0m
+[0;32mI (8936) NODE_B: MAC: 24:6f:28:22:37:d8[0m
+[0;32mI (8937) ESPNOW: espnow [version: 2.0] init[0m
+[0;32mI (8938) NODE_B: ESP-NOW 초기화 완료[0m
+[0;32mI (8974) NODE_B: 초기화 완료 — 명령 대기 중[0m
+[0;32mI (8974) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:354 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (10975) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:176 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (12975) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:153 R:1672] pos=0/20 curtain=STOP[0m
+[0;32mI (14975) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:137 R:1674] pos=0/20 curtain=STOP[0m
+[0;32mI (16975) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:119 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (18977) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:26 R:1673] pos=0/20 curtain=STOP[0m
+[0;32mI (20978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1677] pos=0/20 curtain=STOP[0m
+[0;32mI (22978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1666] pos=0/20 curtain=STOP[0m
+[0;32mI (24978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1669] pos=0/20 curtain=STOP[0m
+[0;32mI (26978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1664] pos=0/20 curtain=STOP[0m
+[0;32mI (28978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1664] pos=0/20 curtain=STOP[0m
+[0;32mI (30978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1666] pos=0/20 curtain=STOP[0m
+[0;32mI (32978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1675] pos=0/20 curtain=STOP[0m
+[0;32mI (34978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (36978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1670] pos=0/20 curtain=STOP[0m
+[0;32mI (38978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (40978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:4 R:1674] pos=0/20 curtain=STOP[0m
+[0;32mI (42978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:62 R:1670] pos=0/20 curtain=STOP[0m
+[0;32mI (44978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:98 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (46978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:134 R:1670] pos=0/20 curtain=STOP[0m
+[0;32mI (48978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:181 R:1679] pos=0/20 curtain=STOP[0m
+[0;32mI (50978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:183 R:1666] pos=0/20 curtain=STOP[0m
+[0;32mI (52978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:183 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (54978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:112 R:1670] pos=0/20 curtain=STOP[0m
+[0;32mI (56978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:111 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (58978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:101 R:1664] pos=0/20 curtain=STOP[0m
+[0;32mI (60978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:134 R:1675] pos=0/20 curtain=STOP[0m
+[0;32mI (62978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:124 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (64978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:95 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (66978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:112 R:1664] pos=0/20 curtain=STOP[0m
+[0;32mI (68978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:64 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (70978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:89 R:1677] pos=0/20 curtain=STOP[0m
+[0;32mI (72978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:93 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (74978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:65 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (76978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:110 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (78978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:54 R:1666] pos=0/20 curtain=STOP[0m
+[0;32mI (80978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:106 R:1675] pos=0/20 curtain=STOP[0m
+[0;32mI (82978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:99 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (84978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:53 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (86978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:44 R:1117] pos=0/20 curtain=STOP[0m
+[0;32mI (88978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:9 R:990] pos=0/20 curtain=STOP[0m
+[0;32mI (90978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:16 R:992] pos=0/20 curtain=STOP[0m
+[0;32mI (92978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:1 R:994] pos=0/20 curtain=STOP[0m
+[0;32mI (94978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:983] pos=0/20 curtain=STOP[0m
+[0;32mI (96978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1664] pos=0/20 curtain=STOP[0m
+[0;32mI (98978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (100978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1673] pos=0/20 curtain=STOP[0m
+[0;32mI (102978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (104978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (106978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (108978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1660] pos=0/20 curtain=STOP[0m
+[0;32mI (110978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (112978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:17 R:1657] pos=0/20 curtain=STOP[0m
+[0;32mI (114978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:195 R:1665] pos=0/20 curtain=STOP[0m
+[0;32mI (116978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:416 R:1666] pos=0/20 curtain=STOP[0m
+[0;32mI (118978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:149 R:1675] pos=0/20 curtain=STOP[0m
+[0;32mI (120978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:147 R:1660] pos=0/20 curtain=STOP[0m
+[0;32mI (122978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1658] pos=0/20 curtain=STOP[0m
+[0;32mI (124978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (126978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:135 R:1663] pos=0/20 curtain=STOP[0m
+[0;32mI (128978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:48 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (130978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:76 R:1669] pos=0/20 curtain=STOP[0m
+[0;32mI (132978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:31 R:1664] pos=0/20 curtain=STOP[0m
+[0;32mI (134978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1662] pos=0/20 curtain=STOP[0m
+[0;32mI (136978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1666] pos=0/20 curtain=STOP[0m
+[0;32mI (138978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1664] pos=0/20 curtain=STOP[0m
+[0;32mI (140978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1669] pos=0/20 curtain=STOP[0m
+[0;32mI (142978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (144978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1664] pos=0/20 curtain=STOP[0m
+[0;32mI (146978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:1665] pos=0/20 curtain=STOP[0m
+[0;32mI (148978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:17 R:1669] pos=0/20 curtain=STOP[0m
+[0;32mI (150978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:16 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (152978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:64 R:1660] pos=0/20 curtain=STOP[0m
+[0;32mI (154978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:112 R:1655] pos=0/20 curtain=STOP[0m
+[0;32mI (156978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:129 R:1662] pos=0/20 curtain=STOP[0m
+[0;32mI (158978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:145 R:1663] pos=0/20 curtain=STOP[0m
+[0;32mI (160978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:55 R:1669] pos=0/20 curtain=STOP[0m
+[0;32mI (162978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:60 R:1671] pos=0/20 curtain=STOP[0m
+[0;32mI (164978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:48 R:1669] pos=0/20 curtain=STOP[0m
+[0;32mI (166978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:81 R:1739] pos=0/20 curtain=STOP[0m
+[0;32mI (168978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:68 R:1658] pos=0/20 curtain=STOP[0m
+[0;32mI (170978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:76 R:1664] pos=0/20 curtain=STOP[0m
+[0;32mI (172978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:66 R:1663] pos=0/20 curtain=STOP[0m
+[0;32mI (174978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:62 R:1659] pos=0/20 curtain=STOP[0m
+[0;32mI (176978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:139 R:1673] pos=0/20 curtain=STOP[0m
+[0;32mI (178978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:375 R:1662] pos=0/20 curtain=STOP[0m
+[0;32mI (180978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:167 R:1667] pos=0/20 curtain=STOP[0m
+[0;32mI (182978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:177 R:1680] pos=0/20 curtain=STOP[0m
+[0;32mI (184978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:144 R:1673] pos=0/20 curtain=STOP[0m
+[0;32mI (186978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:132 R:1328] pos=0/20 curtain=STOP[0m
+[0;32mI (188978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:37 R:880] pos=0/20 curtain=STOP[0m
+[0;32mI (190978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:65 R:925] pos=0/20 curtain=STOP[0m
+[0;32mI (192978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:18 R:919] pos=0/20 curtain=STOP[0m
+[0;32mI (194978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:928] pos=0/20 curtain=STOP[0m
+[0;32mI (196978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (198978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (200978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:933] pos=0/20 curtain=STOP[0m
+[0;32mI (202978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:923] pos=0/20 curtain=STOP[0m
+[0;32mI (204978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:928] pos=0/20 curtain=STOP[0m
+[0;32mI (206978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:925] pos=0/20 curtain=STOP[0m
+[0;32mI (208978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:12 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (210978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:29 R:923] pos=0/20 curtain=STOP[0m
+[0;32mI (212978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:103 R:923] pos=0/20 curtain=STOP[0m
+[0;32mI (214978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:90 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (216978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:114 R:923] pos=0/20 curtain=STOP[0m
+[0;32mI (218978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:83 R:932] pos=0/20 curtain=STOP[0m
+[0;32mI (220978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:132 R:929] pos=0/20 curtain=STOP[0m
+[0;32mI (222978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:2972 R:925] pos=0/20 curtain=STOP[0m
+[0;32mI (224978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:2722 R:931] pos=0/20 curtain=STOP[0m
+[0;32mI (226978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:2730 R:923] pos=0/20 curtain=STOP[0m
+[0;32mI (228978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:2209 R:929] pos=0/20 curtain=STOP[0m
+[0;32mI (230978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:1842 R:934] pos=0/20 curtain=STOP[0m
+[0;32mI (232978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:1573 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (234978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:1165 R:928] pos=0/20 curtain=STOP[0m
+[0;32mI (236978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:921 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (238978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:567 R:933] pos=0/20 curtain=STOP[0m
+[0;32mI (240978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:379 R:942] pos=0/20 curtain=STOP[0m
+[0;32mI (242978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:224 R:934] pos=0/20 curtain=STOP[0m
+[0;32mI (244978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:16 R:929] pos=0/20 curtain=STOP[0m
+[0;32mI (246978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:934] pos=0/20 curtain=STOP[0m
+[0;32mI (248978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:939] pos=0/20 curtain=STOP[0m
+[0;32mI (250978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:933] pos=0/20 curtain=STOP[0m
+[0;32mI (252978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:935] pos=0/20 curtain=STOP[0m
+[0;32mI (254978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:933] pos=0/20 curtain=STOP[0m
+[0;32mI (256978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:930] pos=0/20 curtain=STOP[0m
+[0;32mI (258978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:929] pos=0/20 curtain=STOP[0m
+[0;32mI (260978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:923] pos=0/20 curtain=STOP[0m
+[0;32mI (262978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:923] pos=0/20 curtain=STOP[0m
+[0;32mI (264978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:923] pos=0/20 curtain=STOP[0m
+[0;32mI (266978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (268978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:66 R:926] pos=0/20 curtain=STOP[0m
+[0;32mI (270978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:115 R:913] pos=0/20 curtain=STOP[0m
+[0;32mI (272978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:144 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (274978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:229 R:926] pos=0/20 curtain=STOP[0m
+[0;32mI (276978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:322 R:925] pos=0/20 curtain=STOP[0m
+[0;32mI (278978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:402 R:931] pos=0/20 curtain=STOP[0m
+[0;32mI (280978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:461 R:931] pos=0/20 curtain=STOP[0m
+[0;32mI (282978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:336 R:926] pos=0/20 curtain=STOP[0m
+[0;32mI (284978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:945 R:923] pos=0/20 curtain=STOP[0m
+[0;32mI (286978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:655 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (288978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:509 R:929] pos=0/20 curtain=STOP[0m
+[0;32mI (290978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:48 R:922] pos=0/20 curtain=STOP[0m
+[0;32mI (292978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:33 R:939] pos=0/20 curtain=STOP[0m
+[0;32mI (294978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:215 R:932] pos=0/20 curtain=STOP[0m
+[0;32mI (296978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:1286 R:929] pos=0/20 curtain=STOP[0m
+[0;32mI (298978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:735 R:932] pos=0/20 curtain=STOP[0m
+[0;32mI (300978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:928] pos=0/20 curtain=STOP[0m
+[0;32mI (302978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:925] pos=0/20 curtain=STOP[0m
+[0;32mI (304978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:929] pos=0/20 curtain=STOP[0m
+[0;32mI (306978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:922] pos=0/20 curtain=STOP[0m
+[0;32mI (308978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:931] pos=0/20 curtain=STOP[0m
+[0;32mI (310978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:933] pos=0/20 curtain=STOP[0m
+[0;32mI (312978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:66 R:929] pos=0/20 curtain=STOP[0m
+[0;32mI (314978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:139 R:927] pos=0/20 curtain=STOP[0m
+[0;32mI (316978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:210 R:919] pos=0/20 curtain=STOP[0m
+[0;32mI (318978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:268 R:933] pos=0/20 curtain=STOP[0m
+[0;32mI (320978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:304 R:931] pos=0/20 curtain=STOP[0m
+[0;32mI (322978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:309 R:930] pos=0/20 curtain=STOP[0m
+[0;32mI (324978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:242 R:926] pos=0/20 curtain=STOP[0m
+[0;32mI (326978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:208 R:928] pos=0/20 curtain=STOP[0m
+[0;32mI (328978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:115 R:926] pos=0/20 curtain=STOP[0m
+[0;32mI (330978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:127 R:917] pos=0/20 curtain=STOP[0m
+[0;32mI (332978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:77 R:929] pos=0/20 curtain=STOP[0m
+[0;32mI (334978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:16 R:933] pos=0/20 curtain=STOP[0m
+[0;32mI (336978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:919] pos=0/20 curtain=STOP[0m
+[0;32mI (338978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:926] pos=0/20 curtain=STOP[0m
+[0;32mI (340978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:925] pos=0/20 curtain=STOP[0m
+[0;32mI (342978) NODE_B: IO [FAN|LED|LIM]=[0|0|1] HALL[L:0 R:929] pos=0/20 curtain=STOP[0m

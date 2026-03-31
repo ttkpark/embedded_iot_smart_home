@@ -1,0 +1,134 @@
+eׁJ���01���Ғ�:57C�HH�t:0� (��UI�N_RQ�U�I���:0x�&B�AI_F�*�e1�SHߨ�Q�
+c�˥��ip:�, S�]A�0xeeC�,k�E���0x00�\E��i0x0�d_�.����0,�.���v:0x�,h�E���0x00�}���:0x�
+m���DR��ock V��2C!�+�:0x�����&bb�n:62�SH��+��0x40����ble���j
+l�X����008��bb�n:4�!녑�0x40�040����3860C����y 0���3c�I (28) boot: ESP-IDF v5.4.2 2nd stage bootloader
+[0;32mI (28) boot: compile time Mar 30 2026 00:57:00[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (30) boot: chip revision: v1.0[0m
+[0;32mI (32) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (36) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (40) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (43) boot: Enabling RNG early entropy source...[0m
+[0;32mI (48) boot: Partition Table:[0m
+[0;32mI (50) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (57) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (63) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (70) boot:  2 app0             OTA app          00 10 00010000 001f0000[0m
+[0;32mI (76) boot:  3 spiffs           Unknown data     01 82 00200000 00200000[0m
+[0;32mI (83) boot: End of partition table[0m
+[0;32mI (86) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1d764h (120676) map[0m
+[0;32mI (135) esp_image: segment 1: paddr=0002d78c vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (135) esp_image: segment 2: paddr=0002d7b0 vaddr=3ffb0000 size=02868h ( 10344) load[0m
+[0;32mI (143) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=99a34h (629300) map[0m
+[0;32mI (361) esp_image: segment 4: paddr=000c9a5c vaddr=3ffb2868 size=01780h (  6016) load[0m
+[0;32mI (364) esp_image: segment 5: paddr=000cb1e4 vaddr=40080000 size=17a58h ( 96856) load[0m
+[0;32mI (414) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (414) boot: Disabling RNG early entropy source...[0m
+[0;32mI (425) cpu_start: Multicore app[0m
+[0;32mI (433) cpu_start: Pro cpu start user code[0m
+[0;32mI (433) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (433) app_init: Application information:[0m
+[0;32mI (433) app_init: Project name:     node_a_central[0m
+[0;32mI (438) app_init: App version:      1[0m
+[0;32mI (441) app_init: Compile time:     Mar 30 2026 00:56:06[0m
+[0;32mI (446) app_init: ELF file SHA256:  232d6e2e0...[0m
+[0;32mI (450) app_init: ESP-IDF:          v5.4.2[0m
+[0;32mI (454) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (458) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (462) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (466) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (472) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (477) heap_init: At 3FFB9AA8 len 00026558 (153 KiB): DRAM[0m
+[0;32mI (482) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (488) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (493) heap_init: At 40097A58 len 000085A8 (33 KiB): IRAM[0m
+[0;32mI (500) spi_flash: detected chip: gd[0m
+[0;32mI (502) spi_flash: flash io: dio[0m
+[0;32mI (506) main_task: Started on CPU0[0m
+[0;32mI (509) main_task: Calling app_main()[0m
+[0;32mI (511) NODE_A: Node A 부팅[0m
+[0;32mI (546) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (552) wifi:wifi driver task: 3ffc2d60, prio:23, stack:6656, core=0[0m
+[0;32mI (571) wifi:wifi firmware version: bea31f3[0m
+[0;32mI (571) wifi:wifi certification version: v7.0[0m
+[0;32mI (572) wifi:config NVS flash: enabled[0m
+[0;32mI (572) wifi:config nano formatting: disabled[0m
+[0;32mI (576) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (581) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (585) wifi:Init management short buffer num: 32[0m
+[0;32mI (589) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (593) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (597) wifi:Init static rx buffer num: 10[0m
+[0;32mI (601) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (606) wifi_init: rx ba win: 6[0m
+[0;32mI (608) wifi_init: accept mbox: 6[0m
+[0;32mI (611) wifi_init: tcpip mbox: 32[0m
+[0;32mI (614) wifi_init: udp mbox: 6[0m
+[0;32mI (617) wifi_init: tcp mbox: 6[0m
+[0;32mI (619) wifi_init: tcp tx win: 5760[0m
+[0;32mI (623) wifi_init: tcp rx win: 5760[0m
+[0;32mI (626) wifi_init: tcp mss: 1440[0m
+[0;32mI (629) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (632) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (636) NODE_A: 등록된 Wi-Fi AP 목록 (2개):[0m
+[0;32mI (641) NODE_A:   [0] Smart Meeting[0m
+[0;32mI (644) NODE_A:   [1] junespark-zone2[0m
+[0;32mI (648) phy_init: phy_version 4860,6b7a6e5,Feb  6 2025,14:47:07[0m
+[0;32mI (724) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (745) wifi:mode : sta (30:ae:a4:84:0d:0c) + softAP (30:ae:a4:84:0d:0d)[0m
+[0;32mI (746) wifi:enable tsf[0m
+[0;32mI (751) wifi:Total power save buffer number: 16[0m
+[0;32mI (751) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (753) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (3660) NODE_A: ═══ Wi-Fi 스캔 결과 (3개) ═══[0m
+[0;32mI (3661) NODE_A:   [0] junespark-zone2                   ch:1  rssi:-54[0m
+[0;32mI (3662) NODE_A:   [1] KT_GiGA_2G_Wave2_65E0             ch:10  rssi:-76[0m
+[0;32mI (3668) NODE_A:   [2] KT_GiGA_2G_Wave2_D423             ch:1  rssi:-77[0m
+[0;32mI (3674) NODE_A:   → 매칭: "junespark-zone2" (rssi:-54)[0m
+[0;32mI (3680) NODE_A: ═══ 선택: "junespark-zone2" (ch:1, rssi:-54) ═══[0m
+[0;33mW (3687) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (3703) wifi:new:<1,1>, old:<1,1>, ap:<1,1>, sta:<1,1>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3704) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (3710) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (3716) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (3726) wifi:connected with junespark-zone2, aid = 3, channel 1, 40U, bssid = 58:86:94:eb:f5:42[0m
+[0;32mI (3726) wifi:security: WPA2-PSK, phy: bgn, rssi: -54[0m
+[0;32mI (3732) wifi:pm start, type: 1[0m
+
+[0;32mI (3732) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (3741) wifi:AP's beacon interval = 102400 us, DTIM period = 3[0m
+[0;32mI (5156) esp_netif_handlers: sta ip: 192.168.0.197, mask: 255.255.255.0, gw: 192.168.0.1[0m
+[0;32mI (5157) NODE_A: IP 획득: 192.168.0.197[0m
+[0;32mI (5168) wifi:Total power save buffer number: 16[0m
+[0;32mI (5171) NODE_A: SoftAP 시작: SSID="SmartHome-ESP32" 채널=1 (192.168.4.1)[0m
+[0;32mI (5172) NODE_A: Wi-Fi 연결 성공: junespark-zone2 (채널 1)[0m
+[0;32mI (5172) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (5183) NODE_A: MAC: 30:ae:a4:84:0d:0c[0m
+[0;32mI (5186) ESPNOW: espnow [version: 2.0] init[0m
+[0;32mI (5190) NODE_A: ESP-NOW initialized[0m
+[0;32mI (5344) NODE_A: SPIFFS: 28112 / 1920401 bytes 사용[0m
+[0;32mI (5349) NODE_A: HTTP 서버 시작[0m
+[0;32mI (5349) NODE_A: 웹 대시보드 활성화 (SoftAP: 192.168.4.1 + STA)[0m
+[0;32mI (5350) NODE_A: [LOG] 시스템 부팅 완료 — ESP-NOW 네트워크 준비[0m
+[0;32mI (5355) NODE_A: 초기화 완료 — 대기 중[0m
+[0;32mI (22275) wifi:<ba-add>idx:0 (ifx:0, 58:86:94:eb:f5:42), tid:0, ssn:0, winSize:64[0m
+[0;32mI (22599) NODE_A: WebSocket 클라이언트 연결[0m
+[0;33mW (22615) httpd_uri: httpd_uri: URI '/favicon.ico' not found[0m
+[0;33mW (22616) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (28212) wifi:<ba-add>idx:1 (ifx:0, 58:86:94:eb:f5:42), tid:6, ssn:0, winSize:64[0m
+[0;32mI (32722) NODE_A: [LOG] 수동 — 창문 열기[0m
+[0;32mI (34765) NODE_A: [LOG] 수동 — 창문 정지[0m
+[0;32mI (36917) NODE_A: [LOG] 수동 — 창문 닫기[0m
+[0;32mI (40197) NODE_A: [LOG] 수동 — 창문 정지[0m
+[0;32mI (41933) NODE_A: [LOG] 수동 — 창문 열기[0m
+[0;32mI (45620) NODE_A: [LOG] 수동 — 창문 정지[0m
+[0;32mI (48387) NODE_A: [LOG] 수동 — 창문 열기[0m
+[0;32mI (51968) NODE_A: [LOG] 수동 — 창문 정지[0m
+[0;32mI (53508) NODE_A: [LOG] 수동 — 창문 닫기[0m
+[0;32mI (58116) NODE_A: [LOG] 수동 — 창문 정지[0m
+[0;32mI (59650) NODE_A: [LOG] 수동 — 창문 열기[0m
+[0;32mI (63442) NODE_A: [LOG] 수동 — 창문 열기[0m
+[0;32mI (64360) NODE_A: [LOG] 수동 — 창문 열기[0m
+[0;32mI (65602) NODE_A: [LOG] 수동 — 창문 정지[0m
+[0;32mI (67333) NODE_A: [LOG] 수동 — 창문 열기[0m
+[0;32mI (69178) NODE_A: [LOG] 수동 — 창문 정지[0m

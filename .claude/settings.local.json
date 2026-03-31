@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /e/바탕화면/archived project/embedded_iot_smart_home -not -path */.* -not -path */build/* -not -path */flutter_app/* -type f -name *.c -o -name *.h)"
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/GH/Desktop/embedded_iot_smart_home/node_b_actuator/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from E:/바탕화면/archived project/embedded_iot_smart_home/node_b_actuator/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

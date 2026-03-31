@@ -40,7 +40,7 @@ class StatusCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                ?trailing,
+                if (trailing != null) trailing!,
               ],
             ),
             const SizedBox(height: 12),

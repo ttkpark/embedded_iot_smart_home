@@ -3,6 +3,36 @@
         "children": [],
         "depends_on": null,
         "help": null,
+        "id": "SOC_BROWNOUT_RESET_SUPPORTED",
+        "name": "SOC_BROWNOUT_RESET_SUPPORTED",
+        "range": null,
+        "title": null,
+        "type": "string"
+    },
+    {
+        "children": [],
+        "depends_on": null,
+        "help": null,
+        "id": "SOC_TWAI_BRP_DIV_SUPPORTED",
+        "name": "SOC_TWAI_BRP_DIV_SUPPORTED",
+        "range": null,
+        "title": null,
+        "type": "string"
+    },
+    {
+        "children": [],
+        "depends_on": null,
+        "help": null,
+        "id": "SOC_DPORT_WORKAROUND",
+        "name": "SOC_DPORT_WORKAROUND",
+        "range": null,
+        "title": null,
+        "type": "string"
+    },
+    {
+        "children": [],
+        "depends_on": null,
+        "help": null,
         "id": "SOC_CAPS_ECO_VER_MAX",
         "name": "SOC_CAPS_ECO_VER_MAX",
         "range": null,
@@ -663,16 +693,6 @@
         "children": [],
         "depends_on": null,
         "help": null,
-        "id": "SOC_BROWNOUT_RESET_SUPPORTED",
-        "name": "SOC_BROWNOUT_RESET_SUPPORTED",
-        "range": null,
-        "title": null,
-        "type": "bool"
-    },
-    {
-        "children": [],
-        "depends_on": null,
-        "help": null,
         "id": "SOC_SHARED_IDCACHE_SUPPORTED",
         "name": "SOC_SHARED_IDCACHE_SUPPORTED",
         "range": null,
@@ -757,7 +777,7 @@
         "name": "SOC_CPU_WATCHPOINT_MAX_REGION_SIZE",
         "range": null,
         "title": null,
-        "type": "hex"
+        "type": "int"
     },
     {
         "children": [],
@@ -1997,7 +2017,7 @@
         "name": "SOC_MPI_OPERATIONS_NUM",
         "range": null,
         "title": null,
-        "type": "int"
+        "type": "bool"
     },
     {
         "children": [],
@@ -2057,7 +2077,7 @@
         "name": "SOC_EFUSE_SECURE_BOOT_KEY_DIGESTS",
         "range": null,
         "title": null,
-        "type": "int"
+        "type": "bool"
     },
     {
         "children": [],
@@ -2375,16 +2395,6 @@
         "help": null,
         "id": "SOC_BT_H2C_ENC_KEY_CTRL_ENH_VSC_SUPPORTED",
         "name": "SOC_BT_H2C_ENC_KEY_CTRL_ENH_VSC_SUPPORTED",
-        "range": null,
-        "title": null,
-        "type": "bool"
-    },
-    {
-        "children": [],
-        "depends_on": null,
-        "help": null,
-        "id": "SOC_BLE_MULTI_CONN_OPTIMIZATION",
-        "name": "SOC_BLE_MULTI_CONN_OPTIMIZATION",
         "range": null,
         "title": null,
         "type": "bool"
@@ -4039,7 +4049,7 @@
                 "id": "SECURE_FLASH_ENCRYPT_ONLY_IMAGE_LEN_IN_APP_PART",
                 "name": "SECURE_FLASH_ENCRYPT_ONLY_IMAGE_LEN_IN_APP_PART",
                 "range": null,
-                "title": "Encrypt contents upto app image length in app partition",
+                "title": "Encrypt only the app image that is present in the partition of type app",
                 "type": "bool"
             },
             {
@@ -4095,7 +4105,7 @@
                         "type": "choice"
                     }
                 ],
-                "depends_on": "SECURE_FLASH_ENC_ENABLED && SOC_FLASH_ENCRYPTION_XTS_AES_SUPPORT_PSEUDO_ROUND",
+                "depends_on": "SECURE_FLASH_ENCRYPTION_MODE_RELEASE && SOC_FLASH_ENCRYPTION_XTS_AES_SUPPORT_PSEUDO_ROUND",
                 "help": "If set (default), the bootloader will permanently enable the XTS-AES peripheral's pseudo rounds function.\nNote: Enabling this config would burn an efuse.",
                 "id": "SECURE_FLASH_PSEUDO_ROUND_FUNC",
                 "name": "SECURE_FLASH_PSEUDO_ROUND_FUNC",
@@ -4138,7 +4148,7 @@
                     {
                         "children": [],
                         "depends_on": "SOC_SUPPORTS_SECURE_DL_MODE && <choice SECURE_UART_ROM_DL_MODE>",
-                        "help": "If set, during startup the app will burn an eFuse bit to permanently switch the UART ROM\nDownload Mode into a separate Secure Download mode. This option can only work if\nDownload Mode is not already disabled by eFuse.\n\nSecure Download mode limits the use of Download Mode functions to update SPI config,\nchanging baud rate, basic flash write and a command to return a summary of currently\nenabled security features (`get_security_info`).\n\nSecure Download mode is not compatible with the esptool.py flasher stub feature,\nespefuse.py, read/writing memory or registers, encrypted download, or any other\nfeatures that interact with unsupported Download Mode commands.\n\nSecure Download mode should be enabled in any application where Flash Encryption\nand/or Secure Boot is enabled. Disabling this option does not immediately cancel\nthe benefits of the security features, but it increases the potential \"attack\nsurface\" for an attacker to try and bypass them with a successful physical attack.\n\nIt is also possible to enable secure download mode at runtime by calling\nesp_efuse_enable_rom_secure_download_mode()\n\nNote: Secure Download mode is not available for ESP32.",
+                        "help": "If set, during startup the app will burn an eFuse bit to permanently switch the UART ROM\nDownload Mode into a separate Secure Download mode. This option can only work if\nDownload Mode is not already disabled by eFuse.\n\nSecure Download mode limits the use of Download Mode functions to update SPI config,\nchanging baud rate, basic flash write and a command to return a summary of currently\nenabled security features (`get_security_info`).\n\nSecure Download mode is not compatible with the esptool.py flasher stub feature,\nespefuse.py, read/writing memory or registers, encrypted download, or any other\nfeatures that interact with unsupported Download Mode commands.\n\nSecure Download mode should be enabled in any application where Flash Encryption\nand/or Secure Boot is enabled. Disabling this option does not immediately cancel\nthe benefits of the security features, but it increases the potential \"attack\nsurface\" for an attacker to try and bypass them with a successful physical attack.\n\nIt is also possible to enable secure download mode at runtime by calling\nesp_efuse_enable_rom_secure_download_mode()\n\nNote: Secure Download mode is not available for ESP32 (includes revisions till ECO3).",
                         "id": "SECURE_ENABLE_SECURE_ROM_DL_MODE",
                         "name": "SECURE_ENABLE_SECURE_ROM_DL_MODE",
                         "range": null,
@@ -6413,16 +6423,6 @@
                         "range": null,
                         "title": null,
                         "type": "bool"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": "SOC_PMU_PVT_SUPPORTED",
-                        "help": "If enabled, hp & lp voltage can be auto adjust by PVT characteristic.\nOtherwise, internal voltage will be set to fix dbias.\nThis is a must for stable mass production. Disable for debugging only.",
-                        "id": "ESP_ENABLE_PVT",
-                        "name": "ESP_ENABLE_PVT",
-                        "range": null,
-                        "title": "Auto adjust hp & lp voltage using pvt function (MUST ENABLE FOR MP)",
-                        "type": "bool"
                     }
                 ],
                 "depends_on": null,
@@ -6509,16 +6509,6 @@
                         "name": "ESP_CRYPTO_FORCE_ECC_CONSTANT_TIME_POINT_MUL",
                         "range": null,
                         "title": "Forcefully enable ECC constant time point multiplication operations",
-                        "type": "bool"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": "SOC_ECDSA_P192_CURVE_DEFAULT_DISABLED",
-                        "help": "By default, only the 256-bit curve operations are allowed. If this configuration is enabled,\nit will set the eFuse to allow ECDSA operations using both the 192-bit and 256-bit curves.",
-                        "id": "ESP_ECDSA_ENABLE_P192_CURVE",
-                        "name": "ESP_ECDSA_ENABLE_P192_CURVE",
-                        "range": null,
-                        "title": "Enable ECDSA 192-curve operations",
                         "type": "bool"
                     }
                 ],

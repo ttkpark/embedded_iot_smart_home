@@ -362,6 +362,58 @@ input[type="range"]#ac-slider.ac-off::-webkit-slider-thumb {
 }
 .btn-small:hover { background: #444; }
 
+/* ── 모터 개별 Jog 제어 ───────────────────────────────────────────────────*/
+.motor-jog-section {
+  margin-top: 8px;
+  padding: 12px 8px 4px;
+  border-top: 1px solid var(--border);
+}
+.motor-jog-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.motor-jog-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.motor-jog-row.both { margin-top: 4px; padding-top: 8px; border-top: 1px dashed var(--border); }
+.motor-label {
+  width: 52px;
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.btn-jog {
+  padding: 6px 14px;
+  background: var(--bg3);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.15s, border-color 0.15s;
+  min-width: 70px;
+  text-align: center;
+}
+.btn-jog:hover { background: #444; }
+.btn-jog:active { background: #555; }
+.btn-jog.jog-open:hover  { border-color: var(--orange); color: var(--orange); }
+.btn-jog.jog-close:hover { border-color: var(--blue);   color: var(--blue); }
+.btn-jog.both-btn { flex: 1; }
+.btn-jog.both-btn.jog-open:hover  { background: rgba(255,167,38,0.15); }
+.btn-jog.both-btn.jog-close:hover { background: rgba(41,182,246,0.15); }
+.motor-type { font-size: 10px; color: var(--text-dim); font-weight: 400; }
+.motor-jog-divider { border-top: 1px dashed var(--border); margin: 4px 0 8px; }
+
 /* ── 이벤트 로그 콘솔 ─────────────────────────────────────────────────────*/
 .log-section {
   margin: 0 16px 16px;
