@@ -157,6 +157,8 @@ static void send_trigger(uint8_t patient_stat)
         .msg_type    = MSG_TRIGGER,
         .node_id     = NODE_C,
         .patient_stat = patient_stat,
+        .temperature  = s_dht_valid ? s_dht_temperature : 0,
+        .humidity     = s_dht_valid ? s_dht_humidity     : 0,
     };
 
     esp_err_t ret = esp_now_send(mac_node_a, (uint8_t *)&msg, sizeof(msg));
@@ -169,6 +171,21 @@ static void send_trigger(uint8_t patient_stat)
     } else {
         ESP_LOGE(TAG, "esp_now_send 실패: %s", esp_err_to_name(ret));
     }
+}
+
+static void send_sensor_data(void)
+{
+    uint8_t mac_node_a[] = MAC_NODE_A;
+
+    struct_message_t msg = {
+        .msg_type    = MSG_SENSOR_DATA,
+        .node_id     = NODE_C,
+        .patient_stat = s_emergency_active ? PATIENT_EMERGENCY : PATIENT_NORMAL,
+        .temperature  = s_dht_temperature,
+        .humidity     = s_dht_humidity,
+    };
+
+    esp_now_send(mac_node_a, (uint8_t *)&msg, sizeof(msg));
 }
 
 /* ── GPIO ISR (IRAM_ATTR — Flash 캐시 안전) ────────────────────────────────
@@ -361,6 +378,7 @@ void app_main(void)
                 s_dht_temperature = dht.temperature;
                 s_dht_valid       = true;
                 oled_render();
+                send_sensor_data();
 
                 /* 습도 임계값 초과 → 응급 트리거 (이미 응급 상태가 아닐 때만) */
                 if (dht.humidity >= HUMIDITY_EMERGENCY_THRESH

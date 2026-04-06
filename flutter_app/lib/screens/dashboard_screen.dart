@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/device_state.dart';
 import '../services/websocket_service.dart';
 import '../services/ble_service.dart';
 import '../widgets/status_card.dart';
@@ -123,7 +124,30 @@ class DashboardScreen extends StatelessWidget {
                             ? Colors.deepPurple
                             : Colors.grey,
                   ),
+                  StatusCard(
+                    title: '온도',
+                    value: '${state.temperature}°C',
+                    icon: Icons.thermostat,
+                    color: state.temperature > 35 ? Colors.red : Colors.blue,
+                  ),
+                  StatusCard(
+                    title: '습도',
+                    value: '${state.humidity}%',
+                    icon: Icons.water_drop,
+                    color: state.humidity >= 80
+                        ? Colors.red
+                        : state.humidity >= 60
+                            ? Colors.orange
+                            : Colors.teal,
+                  ),
                 ],
+              ),
+
+              // 온습도 Offset 슬라이더
+              const SizedBox(height: 16),
+              _OffsetControls(
+                state: state,
+                sendCmd: sendCmd,
               ),
 
               const SizedBox(height: 16),
@@ -326,6 +350,115 @@ class _EmergencyButtonState extends State<_EmergencyButton>
           ),
         );
       },
+    );
+  }
+}
+
+class _OffsetControls extends StatelessWidget {
+  final DeviceState state;
+  final void Function(String cmd, int val) sendCmd;
+  const _OffsetControls({required this.state, required this.sendCmd});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('센서 Offset (테스트)', style: TextStyle(
+              fontSize: 14, fontWeight: FontWeight.w600, color: Colors.grey[700],
+            )),
+            const SizedBox(height: 12),
+            _OffsetSlider(
+              label: '온도 Offset',
+              value: state.tempOffset,
+              min: -20, max: 30, unit: '°C',
+              onChanged: (v) => sendCmd('temp_offset', v),
+            ),
+            const SizedBox(height: 8),
+            _OffsetSlider(
+              label: '습도 Offset',
+              value: state.humiOffset,
+              min: -20, max: 40, unit: '%',
+              color: Colors.teal,
+              onChanged: (v) => sendCmd('humi_offset', v),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _OffsetSlider extends StatefulWidget {
+  final String label;
+  final int value;
+  final int min;
+  final int max;
+  final String unit;
+  final Color color;
+  final ValueChanged<int> onChanged;
+
+  const _OffsetSlider({
+    required this.label,
+    required this.value,
+    required this.min,
+    required this.max,
+    required this.unit,
+    this.color = Colors.blue,
+    required this.onChanged,
+  });
+
+  @override
+  State<_OffsetSlider> createState() => _OffsetSliderState();
+}
+
+class _OffsetSliderState extends State<_OffsetSlider> {
+  late double _current;
+
+  @override
+  void initState() {
+    super.initState();
+    _current = widget.value.toDouble();
+  }
+
+  @override
+  void didUpdateWidget(_OffsetSlider old) {
+    super.didUpdateWidget(old);
+    if (old.value != widget.value) {
+      _current = widget.value.toDouble();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(width: 80, child: Text(widget.label, style: const TextStyle(fontSize: 13))),
+        Expanded(
+          child: Slider(
+            value: _current,
+            min: widget.min.toDouble(),
+            max: widget.max.toDouble(),
+            divisions: widget.max - widget.min,
+            activeColor: widget.color,
+            label: '${_current.round()}${widget.unit}',
+            onChanged: (v) => setState(() => _current = v),
+            onChangeEnd: (v) => widget.onChanged(v.round()),
+          ),
+        ),
+        SizedBox(
+          width: 50,
+          child: Text(
+            '${_current.round()}${widget.unit}',
+            style: TextStyle(fontWeight: FontWeight.bold, color: widget.color),
+          ),
+        ),
+      ],
     );
   }
 }

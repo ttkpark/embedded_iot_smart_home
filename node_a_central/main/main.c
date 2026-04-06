@@ -68,7 +68,13 @@ static struct {
     uint8_t fan_state;
     uint8_t ac_temp;
     uint8_t window_act;
-} g_state = {0, 0, 0, 0};
+    uint8_t temperature;     /* Node C raw 온도 (°C) */
+    uint8_t humidity;        /* Node C raw 습도 (%)  */
+    int8_t  temp_offset;     /* 테스트용 온도 offset  */
+    int8_t  humi_offset;     /* 테스트용 습도 offset  */
+} g_state = {0, 0, 0, 0, 0, 0, 0, 0};
+
+#define HUMIDITY_EMERGENCY_THRESH 80
 
 /* ── HTTP 서버 핸들 & MAC ──────────────────────────────────────────────────*/
 static httpd_handle_t g_server     = NULL;
@@ -150,6 +156,16 @@ static void ws_broadcast(const char *json_str)
     httpd_queue_work(g_server, ws_broadcast_task, arg);
 }
 
+/* offset 적용 후 클램프된 온습도 */
+static int get_effective_temp(void) {
+    int v = (int)g_state.temperature + g_state.temp_offset;
+    return v < 0 ? 0 : (v > 99 ? 99 : v);
+}
+static int get_effective_humi(void) {
+    int v = (int)g_state.humidity + g_state.humi_offset;
+    return v < 0 ? 0 : (v > 99 ? 99 : v);
+}
+
 /* 상태 전체를 JSON으로 브로드캐스트 */
 static void broadcast_status(void)
 {
@@ -157,9 +173,13 @@ static void broadcast_status(void)
     snprintf(buf, sizeof(buf),
              "{\"type\":\"status\","
              "\"patient_stat\":%d,\"fan_state\":%d,"
-             "\"ac_temp\":%d,\"window_act\":%d}",
+             "\"ac_temp\":%d,\"window_act\":%d,"
+             "\"temperature\":%d,\"humidity\":%d,"
+             "\"temp_offset\":%d,\"humi_offset\":%d}",
              g_state.patient_stat, g_state.fan_state,
-             g_state.ac_temp,      g_state.window_act);
+             g_state.ac_temp,      g_state.window_act,
+             get_effective_temp(),  get_effective_humi(),
+             g_state.temp_offset,   g_state.humi_offset);
     ws_broadcast(buf);
     ble_notify_json(buf);
 }
@@ -211,6 +231,47 @@ void handle_ble_command(const char *json, int len)
             g_state.fan_state    = FAN_OFF;
             g_state.ac_temp      = AC_OFF;
             g_state.window_act   = WINDOW_CLOSE;
+        } else if (strcmp(cmd, "temp_offset") == 0) {
+            g_state.temp_offset = (int8_t)val;
+            broadcast_status();
+            cJSON_Delete(root);
+            return;
+        } else if (strcmp(cmd, "humi_offset") == 0) {
+            g_state.humi_offset = (int8_t)val;
+            /* offset 변경 시 threshold 재평가 */
+            int eff_humi = get_effective_humi();
+            if (eff_humi >= HUMIDITY_EMERGENCY_THRESH
+                && g_state.patient_stat == PATIENT_NORMAL) {
+                g_state.patient_stat = PATIENT_EMERGENCY;
+                g_state.fan_state    = AUTO_FAN_STATE;
+                g_state.ac_temp      = AUTO_AC_TEMP;
+                g_state.window_act   = AUTO_WINDOW_ACT;
+                char ab[128];
+                snprintf(ab, sizeof(ab),
+                         "{\"type\":\"alert\",\"alert\":\"EMERGENCY\",\"patient_stat\":1}");
+                ws_broadcast(ab);
+                ble_notify_json(ab);
+                log_event("습도 offset 조정 → 임계값 초과", 2);
+                broadcast_log("습도 offset 조정 → 임계값 초과", 2);
+                send_command_to_b(AUTO_FAN_STATE, AUTO_AC_TEMP, AUTO_WINDOW_ACT);
+            } else if (eff_humi < HUMIDITY_EMERGENCY_THRESH
+                       && g_state.patient_stat == PATIENT_EMERGENCY) {
+                g_state.patient_stat = PATIENT_NORMAL;
+                g_state.fan_state    = FAN_OFF;
+                g_state.ac_temp      = AC_OFF;
+                g_state.window_act   = WINDOW_CLOSE;
+                send_command_to_b(FAN_OFF, AC_OFF, WINDOW_CLOSE);
+                char db[128];
+                snprintf(db, sizeof(db),
+                         "{\"type\":\"alert\",\"alert\":\"DISMISS\",\"patient_stat\":0}");
+                ws_broadcast(db);
+                ble_notify_json(db);
+                log_event("습도 offset 조정 → 정상 복귀", 0);
+                broadcast_log("습도 offset 조정 → 정상 복귀", 0);
+            }
+            broadcast_status();
+            cJSON_Delete(root);
+            return;
         } else {
             cJSON_Delete(root);
             return;
@@ -303,6 +364,57 @@ static void espnow_recv_cb(const esp_now_recv_info_t *recv_info,
             broadcast_log("환자 정상 복귀 — 환경 원상복구 명령 전송", 0);
         }
         break;
+
+    case MSG_SENSOR_DATA: {
+        g_state.temperature = msg.temperature;
+        g_state.humidity    = msg.humidity;
+
+        int eff_humi = get_effective_humi();
+
+        /* offset 적용된 습도로 threshold 체크 → 실제 알람 파이프라인 */
+        if (eff_humi >= HUMIDITY_EMERGENCY_THRESH
+            && g_state.patient_stat == PATIENT_NORMAL) {
+            /* 응급 트리거 — MSG_TRIGGER emergency와 동일한 흐름 */
+            g_state.patient_stat = PATIENT_EMERGENCY;
+            g_state.fan_state    = AUTO_FAN_STATE;
+            g_state.ac_temp      = AUTO_AC_TEMP;
+            g_state.window_act   = AUTO_WINDOW_ACT;
+
+            char alert_buf[128];
+            snprintf(alert_buf, sizeof(alert_buf),
+                     "{\"type\":\"alert\",\"alert\":\"EMERGENCY\","
+                     "\"patient_stat\":1}");
+            ws_broadcast(alert_buf);
+            ble_notify_json(alert_buf);
+
+            log_event("습도 임계값 초과 — 자동 환경 제어 실행", 2);
+            broadcast_log("습도 임계값 초과 — 자동 환경 제어 실행", 2);
+
+            send_command_to_b(AUTO_FAN_STATE, AUTO_AC_TEMP, AUTO_WINDOW_ACT);
+        } else if (eff_humi < HUMIDITY_EMERGENCY_THRESH
+                   && g_state.patient_stat == PATIENT_EMERGENCY) {
+            /* 습도 정상 복귀 */
+            g_state.patient_stat = PATIENT_NORMAL;
+            g_state.fan_state    = FAN_OFF;
+            g_state.ac_temp      = AC_OFF;
+            g_state.window_act   = WINDOW_CLOSE;
+
+            send_command_to_b(FAN_OFF, AC_OFF, WINDOW_CLOSE);
+
+            char dismiss_buf[128];
+            snprintf(dismiss_buf, sizeof(dismiss_buf),
+                     "{\"type\":\"alert\",\"alert\":\"DISMISS\","
+                     "\"patient_stat\":0}");
+            ws_broadcast(dismiss_buf);
+            ble_notify_json(dismiss_buf);
+
+            log_event("습도 정상 복귀 — 환경 원상복구", 0);
+            broadcast_log("습도 정상 복귀 — 환경 원상복구", 0);
+        }
+
+        broadcast_status();
+        break;
+    }
 
     case MSG_KEEPALIVE:
         ESP_LOGD(TAG, "Keep-alive from node %d", msg.node_id);
@@ -683,6 +795,49 @@ static esp_err_t ws_handler(httpd_req_t *req)
                     ctrl.window_act   = WINDOW_CLOSE;
                     log_event("응급 해제 — 환경 원상복구", 1);
                     broadcast_log("응급 해제 — 환경 원상복구", 1);
+                } else if (strcmp(cmd, "temp_offset") == 0) {
+                    g_state.temp_offset = (int8_t)val;
+                    broadcast_status();
+                    cJSON_Delete(root);
+                    free(buf);
+                    return ret;
+                } else if (strcmp(cmd, "humi_offset") == 0) {
+                    g_state.humi_offset = (int8_t)val;
+                    /* offset 변경 시 threshold 재평가 */
+                    int eff_humi = get_effective_humi();
+                    if (eff_humi >= HUMIDITY_EMERGENCY_THRESH
+                        && g_state.patient_stat == PATIENT_NORMAL) {
+                        g_state.patient_stat = PATIENT_EMERGENCY;
+                        g_state.fan_state    = AUTO_FAN_STATE;
+                        g_state.ac_temp      = AUTO_AC_TEMP;
+                        g_state.window_act   = AUTO_WINDOW_ACT;
+                        char ab[128];
+                        snprintf(ab, sizeof(ab),
+                                 "{\"type\":\"alert\",\"alert\":\"EMERGENCY\",\"patient_stat\":1}");
+                        ws_broadcast(ab);
+                        ble_notify_json(ab);
+                        log_event("습도 offset → 임계값 초과", 2);
+                        broadcast_log("습도 offset → 임계값 초과", 2);
+                        send_command_to_b(AUTO_FAN_STATE, AUTO_AC_TEMP, AUTO_WINDOW_ACT);
+                    } else if (eff_humi < HUMIDITY_EMERGENCY_THRESH
+                               && g_state.patient_stat == PATIENT_EMERGENCY) {
+                        g_state.patient_stat = PATIENT_NORMAL;
+                        g_state.fan_state    = FAN_OFF;
+                        g_state.ac_temp      = AC_OFF;
+                        g_state.window_act   = WINDOW_CLOSE;
+                        send_command_to_b(FAN_OFF, AC_OFF, WINDOW_CLOSE);
+                        char db[128];
+                        snprintf(db, sizeof(db),
+                                 "{\"type\":\"alert\",\"alert\":\"DISMISS\",\"patient_stat\":0}");
+                        ws_broadcast(db);
+                        ble_notify_json(db);
+                        log_event("습도 offset → 정상 복귀", 0);
+                        broadcast_log("습도 offset → 정상 복귀", 0);
+                    }
+                    broadcast_status();
+                    cJSON_Delete(root);
+                    free(buf);
+                    return ret;
                 } else if (strcmp(cmd, "get_status") == 0) {
                     /* 상태 조회만 — Node B 전송 불필요 */
                     broadcast_status();

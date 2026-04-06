@@ -160,6 +160,29 @@
       var btnAct = [0, 1, 2][idx];
       btn.classList.toggle('active', btnAct === act && act !== 0);
     });
+
+    /* ── 온습도 ───────────────────────────────────────────────────────*/
+    var tempEl = document.getElementById('stat-temp');
+    var humiEl = document.getElementById('stat-humi');
+    if (s.temperature !== undefined) {
+      tempEl.textContent = s.temperature + ' °C';
+      tempEl.className = 'sensor-val blue';
+    }
+    if (s.humidity !== undefined) {
+      var hc = s.humidity >= 80 ? 'red' : (s.humidity >= 60 ? 'orange' : 'green');
+      humiEl.textContent = s.humidity + ' %';
+      humiEl.className = 'sensor-val ' + hc;
+    }
+
+    /* offset 슬라이더 동기화 */
+    if (s.temp_offset !== undefined) {
+      document.getElementById('temp-offset').value = s.temp_offset;
+      document.getElementById('temp-off-val').textContent = s.temp_offset + '°C';
+    }
+    if (s.humi_offset !== undefined) {
+      document.getElementById('humi-offset').value = s.humi_offset;
+      document.getElementById('humi-off-val').textContent = s.humi_offset + '%';
+    }
   }
 
   /* ── 응급 경고 표시/해제 ──────────────────────────────────────────────*/

@@ -57,6 +57,14 @@
         <span class="sensor-key">창문</span>
         <span id="stat-window" class="sensor-val dim">⏸ 정지</span>
       </div>
+      <div class="sensor-row">
+        <span class="sensor-key">온도</span>
+        <span id="stat-temp" class="sensor-val dim">-- °C</span>
+      </div>
+      <div class="sensor-row">
+        <span class="sensor-key">습도</span>
+        <span id="stat-humi" class="sensor-val dim">-- %</span>
+      </div>
     </div>
   </section>
 
@@ -99,6 +107,34 @@
         <button id="win-open" class="btn-act" onclick="sendCmd('window',1)">🔓 열기 ↑</button>
         <button id="win-close" class="btn-act" onclick="sendCmd('window',2)">🔒 닫기 ↓</button>
         <button id="win-stop" class="btn-act" onclick="sendCmd('window',0)">⏸ 정지</button>
+      </div>
+    </div>
+
+    <!-- 온습도 Offset (테스트용) -->
+    <div class="control-group">
+      <label class="ctrl-label">온도 Offset</label>
+      <div class="ac-control">
+        <div class="ac-slider-wrap">
+          <span class="ac-range-label">-20</span>
+          <input type="range" id="temp-offset" min="-20" max="30" value="0"
+                 oninput="document.getElementById('temp-off-val').textContent=this.value+'°C'"
+                 onchange="sendCmd('temp_offset', parseInt(this.value))">
+          <span class="ac-range-label">+30</span>
+        </div>
+        <span id="temp-off-val" class="state-label">0°C</span>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="ctrl-label">습도 Offset</label>
+      <div class="ac-control">
+        <div class="ac-slider-wrap">
+          <span class="ac-range-label">-20</span>
+          <input type="range" id="humi-offset" min="-20" max="40" value="0"
+                 oninput="document.getElementById('humi-off-val').textContent=this.value+'%'"
+                 onchange="sendCmd('humi_offset', parseInt(this.value))">
+          <span class="ac-range-label">+40</span>
+        </div>
+        <span id="humi-off-val" class="state-label">0%</span>
       </div>
     </div>
 
