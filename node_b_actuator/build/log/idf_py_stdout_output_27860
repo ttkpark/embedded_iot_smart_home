@@ -1,0 +1,9 @@
+[0/1] Re-running CMake...
+-- Found Git: C:/Program Files/Git/cmd/git.exe (found version "2.49.0.windows.1")
+-- ccache will be used for faster recompilation
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32
+-- Project sdkconfig file E:/바탕화면/archived project/embedded_iot_smart_home/node_b_actuator/sdkconfig
+-- Configuring incomplete, errors occurred!
+FAILED: build.ninja 
+C:\Espressif\tools\cmake\3.30.2\bin\cmake.exe --regenerate-during-build -S"E:\바탕화면\archived project\embedded_iot_smart_home\node_b_actuator" -B"E:\바탕화면\archived project\embedded_iot_smart_home\node_b_actuator\build"

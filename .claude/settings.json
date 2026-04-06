@@ -77,7 +77,13 @@
       "Bash(where.exe adb.exe)",
       "Bash(\"C:/Users/parkg/AppData/Local/Android/Sdk/platform-tools/adb.exe\" devices:*)",
       "Bash(\"C:/Users/parkg/AppData/Local/Android/Sdk/platform-tools/adb.exe\" install:*)",
-      "Bash(grep -v \"^$\")"
+      "Bash(grep -v \"^$\")",
+      "Bash(\"C:/Espressif/python_env/idf5.4_py3.13_env/Scripts/pip.exe\" install:*)",
+      "Bash(C:/Espressif/python_env/idf5.4_py3.13_env/Scripts/python.exe -c ':*)",
+      "Read(//e//**)",
+      "Read(//e/baatgmhwa/common/**)",
+      "Read(//e/baatgmhwa/node_b_actuator/main/**)",
+      "Read(//e/baatgmhwa/node_c_sensor_mock/main/**)"
     ],
     "additionalDirectories": [
       "C:\\tmp_flutter_build\\build\\app\\outputs\\flutter-apk",

@@ -1,0 +1,609 @@
+��revision: v1.�I (13) boot: ESP-IDF GIT-NOTFOUND 2nd stage bootloader
+[0;32mI (13) boot: compile time Mar 30 2026 21:24:04[0m
+[0;32mI (13) boot: Multicore bootloader[0m
+[0;32mI (14) boot: chip revision: v1.0[0m
+[0;32mI (17) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (20) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (24) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (27) boot: Enabling RNG early entropy source...[0m
+[0;32mI (32) boot: Partition Table:[0m
+[0;32mI (35) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (41) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (47) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (54) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (60) boot: End of partition table[0m
+[0;32mI (64) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=19e28h (106024) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=00029e50 vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=00029e74 vaddr=3ffb0000 size=04038h ( 16440) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=0002deb4 vaddr=40080000 size=02164h (  8548) load[0m
+[0;32mI (122) esp_image: segment 4: paddr=00030020 vaddr=400d0020 size=8484ch (542796) map[0m
+[0;32mI (312) esp_image: segment 5: paddr=000b4874 vaddr=40082164 size=16cfch ( 93436) load[0m
+[0;32mI (360) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (360) boot: Disabling RNG early entropy source...[0m
+[0;32mI (371) cpu_start: Multicore app[0m
+[0;32mI (379) cpu_start: Pro cpu start user code[0m
+[0;32mI (379) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (379) app_init: Application information:[0m
+[0;32mI (379) app_init: Project name:     node_c_sensor_mock[0m
+[0;32mI (384) app_init: App version:      1[0m
+[0;32mI (388) app_init: Compile time:     Mar 30 2026 21:23:38[0m
+[0;32mI (393) app_init: ELF file SHA256:  857a30e3d...[0m
+[0;32mI (397) app_init: ESP-IDF:          GIT-NOTFOUND[0m
+[0;32mI (401) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (405) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (409) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (413) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (420) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (424) heap_init: At 3FFB8530 len 00027AD0 (158 KiB): DRAM[0m
+[0;32mI (430) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (435) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (441) heap_init: At 40098E60 len 000071A0 (28 KiB): IRAM[0m
+[0;32mI (447) spi_flash: detected chip: winbond[0m
+[0;32mI (450) spi_flash: flash io: dio[0m
+[0;33mW (453) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (465) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) main_task: Started on CPU0[0m
+[0;32mI (478) main_task: Calling app_main()[0m
+[0;32mI (480) NODE_C: Node C 부팅[0m
+[0;32mI (514) gpio: GPIO[32]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (515) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (521) NODE_C: 버튼 GPIO 초기화 완료 (정상:32, 응급:33)[0m
+[0;32mI (528) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (652) OLED: SSD1306 init done (addr=0x3C, SDA=4, SCL=15)[0m
+[0;32mI (690) wifi:wifi driver task: 3ffc06a8, prio:23, stack:6656, core=0[0m
+[0;32mI (709) wifi:wifi firmware version: bea31f3[0m
+[0;32mI (710) wifi:wifi certification version: v7.0[0m
+[0;32mI (710) wifi:config NVS flash: enabled[0m
+[0;32mI (710) wifi:config nano formatting: disabled[0m
+[0;32mI (715) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (719) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (723) wifi:Init management short buffer num: 32[0m
+[0;32mI (728) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (732) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (736) wifi:Init static rx buffer num: 10[0m
+[0;32mI (739) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (745) wifi_init: rx ba win: 6[0m
+[0;32mI (746) wifi_init: accept mbox: 6[0m
+[0;32mI (749) wifi_init: tcpip mbox: 32[0m
+[0;32mI (752) wifi_init: udp mbox: 6[0m
+[0;32mI (755) wifi_init: tcp mbox: 6[0m
+[0;32mI (758) wifi_init: tcp tx win: 5760[0m
+[0;32mI (761) wifi_init: tcp rx win: 5760[0m
+[0;32mI (764) wifi_init: tcp mss: 1440[0m
+[0;32mI (767) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (771) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (776) phy_init: phy_version 4860,6b7a6e5,Feb  6 2025,14:47:07[0m
+[0;32mI (853) wifi:mode : sta (24:6f:28:22:39:68)[0m
+[0;32mI (854) wifi:enable tsf[0m
+[0;32mI (857) NODE_C: MAC: 24:6f:28:22:39:68[0m
+[0;32mI (859) ESPNOW: espnow [version: 2.0] init[0m
+[0;32mI (859) NODE_C: ESP-NOW 초기화 완료[0m
+[0;32mI (895) NODE_C: 초기화 완료 — 버튼 입력 대기 중[0m
+[0;33mW (3467) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (3467) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (6468) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (6468) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (9469) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (9469) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (10449) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=1[0m
+[0;33mW (10449) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (12475) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (12475) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (15476) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (15476) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (18477) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (18477) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (20457) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=3[0m
+[0;33mW (20457) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (21483) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (21483) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (24484) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (24484) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (27485) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (27485) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (30486) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (30486) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (30486) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=5[0m
+[0;33mW (30490) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (33490) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (33490) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (36491) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (36491) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (39492) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (39492) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (40492) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=7[0m
+[0;33mW (40492) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (42498) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (42498) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (45499) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (45499) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (48500) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (48500) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (50500) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=9[0m
+[0;33mW (50500) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (51506) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (51506) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (54507) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (54507) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (57508) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (57508) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (60509) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (60509) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (60509) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=11[0m
+[0;33mW (60513) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (63513) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (63513) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (66514) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (66514) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (69515) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (69515) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (70515) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=13[0m
+[0;33mW (70515) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (72521) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (72521) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (75522) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (75522) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (78523) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (78523) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (80523) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=15[0m
+[0;33mW (80523) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (81529) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (81529) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (84530) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (84530) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (87531) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (87531) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (90532) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (90532) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (90532) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=17[0m
+[0;33mW (90536) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (93536) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (93536) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (96537) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (96537) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (99538) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (99538) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (100538) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=19[0m
+[0;33mW (100538) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (102544) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (102544) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (105545) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (105545) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (108546) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (108546) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (110546) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=21[0m
+[0;33mW (110546) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (111552) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (111552) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (114553) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (114553) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (117554) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (117554) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (120555) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (120555) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (120555) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=23[0m
+[0;33mW (120559) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (123559) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (123559) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (126560) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (126560) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (129561) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (129561) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (130561) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=25[0m
+[0;33mW (130561) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (132567) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (132567) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (135568) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (135568) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (138569) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (138569) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (140569) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=27[0m
+[0;33mW (140569) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (141575) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (141575) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (144576) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (144576) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (147577) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (147577) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (150578) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (150578) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (150578) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=29[0m
+[0;33mW (150582) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (153582) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (153582) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (156583) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (156583) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (159584) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (159584) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (160584) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=31[0m
+[0;33mW (160584) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (162590) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (162590) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (165591) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (165591) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (168592) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (168592) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (170592) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=33[0m
+[0;33mW (170592) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (171598) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (171598) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (174599) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (174599) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (177600) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (177600) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (180601) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (180601) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (180601) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=35[0m
+[0;33mW (180605) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (183605) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (183605) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (186606) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (186606) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (189607) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (189607) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (190607) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=37[0m
+[0;33mW (190607) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (192613) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (192613) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (195614) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (195614) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (198615) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (198615) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (200615) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=39[0m
+[0;33mW (200615) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (201621) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (201621) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (204622) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (204622) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (207623) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (207623) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (210624) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (210624) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (210624) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=41[0m
+[0;33mW (210628) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (213628) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (213628) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (216629) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (216629) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (219630) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (219630) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (220630) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=43[0m
+[0;33mW (220630) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (222636) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (222636) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (225637) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (225637) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (228638) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (228638) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (230638) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=45[0m
+[0;33mW (230638) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (231644) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (231644) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (234645) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (234645) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (237646) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (237646) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (240647) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (240647) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (240647) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=47[0m
+[0;33mW (240651) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (243651) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (243651) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (246652) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (246652) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (249653) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (249653) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (250653) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=49[0m
+[0;33mW (250653) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (252659) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (252659) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (255660) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (255660) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (258661) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (258661) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (260661) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=51[0m
+[0;33mW (260661) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (261667) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (261667) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (264668) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (264668) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (267669) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (267669) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (270670) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (270670) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (270670) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=53[0m
+[0;33mW (270674) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (273674) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (273674) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (276675) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (276675) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (279676) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (279676) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (280676) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=55[0m
+[0;33mW (280676) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (282682) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (282682) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (285683) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (285683) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (288684) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (288684) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (290684) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=57[0m
+[0;33mW (290684) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (291690) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (291690) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (294691) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (294691) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (297692) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (297692) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (300693) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (300693) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (300693) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=59[0m
+[0;33mW (300697) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (303697) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (303697) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (306698) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (306698) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (309699) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (309699) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (310699) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=61[0m
+[0;33mW (310699) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (312705) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (312705) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (315706) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (315706) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (318707) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (318707) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (320707) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=63[0m
+[0;33mW (320707) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (321713) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (321713) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (324714) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (324714) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (327715) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (327715) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (330716) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (330716) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (330716) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=65[0m
+[0;33mW (330720) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (333720) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (333720) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (336721) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (336721) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (339722) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (339722) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (340722) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=67[0m
+[0;33mW (340722) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (342728) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (342728) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (345729) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (345729) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (348730) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (348730) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (350730) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=69[0m
+[0;33mW (350730) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (351736) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (351736) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (354737) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (354737) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (357738) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (357738) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (360739) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (360739) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (360739) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=71[0m
+[0;33mW (360743) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (363743) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (363743) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (366744) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (366744) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (369745) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (369745) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (370745) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=73[0m
+[0;33mW (370745) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (372751) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (372751) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (375752) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (375752) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (378753) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (378753) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (380753) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=75[0m
+[0;33mW (380753) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (381759) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (381759) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (384760) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (384760) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (387761) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (387761) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (390762) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (390762) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (390762) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=77[0m
+[0;33mW (390766) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (393766) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (393766) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (396767) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (396767) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (399768) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (399768) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (400768) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=79[0m
+[0;33mW (400768) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (402774) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (402774) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (405775) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (405775) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (408776) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (408776) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (410776) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=81[0m
+[0;33mW (410776) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (411782) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (411782) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (414783) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (414783) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (417784) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (417784) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (420785) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (420785) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (420785) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=83[0m
+[0;33mW (420789) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (423789) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (423789) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (426790) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (426790) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (429791) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (429791) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (430791) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=85[0m
+[0;33mW (430791) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (432797) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (432797) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (435798) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (435798) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (438799) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (438799) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (440799) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=87[0m
+[0;33mW (440799) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (441805) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (441805) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (444806) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (444806) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (447807) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (447807) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (450808) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (450808) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (450808) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=89[0m
+[0;33mW (450812) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (453812) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (453812) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (456813) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (456813) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (459814) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (459814) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (460814) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=91[0m
+[0;33mW (460814) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (462820) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (462820) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (465821) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (465821) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (468822) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (468822) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (470822) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=93[0m
+[0;33mW (470822) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (471828) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (471828) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (474829) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (474829) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (477830) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (477830) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (480831) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (480831) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (480831) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=95[0m
+[0;33mW (480835) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (483835) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (483835) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (486836) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (486836) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (489837) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (489837) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (490837) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=97[0m
+[0;33mW (490837) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (492843) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (492843) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (495844) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (495844) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (498845) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (498845) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (500845) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=99[0m
+[0;33mW (500845) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (501851) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (501851) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (504852) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (504852) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (507853) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (507853) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (510854) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (510854) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (510854) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=101[0m
+[0;33mW (510858) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (513859) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (513859) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (516860) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (516860) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (519861) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (519861) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (520861) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=103[0m
+[0;33mW (520861) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (522868) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (522868) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (525869) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (525869) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (528870) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (528870) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (530870) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=105[0m
+[0;33mW (530870) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (531877) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (531877) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (534878) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (534878) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (537879) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (537879) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (540880) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (540880) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (540880) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=107[0m
+[0;33mW (540884) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (543886) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (543886) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (546887) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (546887) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (549888) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (549888) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (550888) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=109[0m
+[0;33mW (550888) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (552896) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (552896) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (555897) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (555897) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (558899) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (558899) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (560889) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=111[0m
+[0;33mW (560889) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (561907) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (561907) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (564908) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (564908) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (567909) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (567909) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (570910) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (570910) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (570910) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=113[0m
+[0;33mW (570914) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (573915) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (573915) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (576916) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (576916) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (579917) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (579917) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (580917) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=115[0m
+[0;33mW (580917) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (582924) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (582924) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (585925) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (585925) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (588926) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (588926) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (590926) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=118[0m
+[0;33mW (590926) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (591932) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (591932) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (594933) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (594933) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (597934) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (597934) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (600935) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (600935) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (600935) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=120[0m
+[0;33mW (600939) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (603939) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (603939) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (606940) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (606940) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (609941) DHT11: 응답 HIGH 타임아웃[0m
+[0;33mW (609941) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (610941) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=122[0m
+[0;33mW (610941) NODE_C: DHT11: 데이터 없음[0m

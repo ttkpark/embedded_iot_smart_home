@@ -1,0 +1,10 @@
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM10 instead...[0m
+[0;33m--- esp-idf-monitor 1.7.0 on \\.\COM10 115200[0m
+[0;33m--- Warning: ELF file 'E:\바탕화면\archived project\embedded_iot_smart_home\node_b_actuator\build\node_b_actuator.elf' does not exist[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- Connection to \\.\COM10 failed. Available ports:
+--- COM4
+--- COM12
+--- COM11[0m
+[0m

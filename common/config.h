@@ -33,16 +33,14 @@ typedef struct {
 #define PIN_OLED_SCL     22
 
 /* ── Node B GPIO ───────────────────────────────────────────────────────────
- * 커튼 제어: SG90-HV Continuous 서보 2개 (좌/우 끈) + 리밋 스위치
+ * 커튼 제어: DF9GMS 360° 서보 1개 + 홀센서 2개 + 가변저항
  * GPIO 25: SSR 릴레이 (환풍기)
- * GPIO 23: 왼쪽 커튼 모터 (GPIO26=LoRa DIO, GPIO13=CCW 불가)
- * GPIO 27: 오른쪽 커튼 모터
+ * GPIO 27: 커튼 모터 (DF9GMS 360° continuous servo)
  * GPIO 17: 커튼 리밋 스위치 (Active LOW, 내부 풀업 사용)
  * GPIO  2: 내장 LED — 상태 표시
  * ────────────────────────────────────────────────────────────────────────── */
 #define PIN_FAN_RELAY        25  /* SSR 릴레이 — 환풍기 Active High */
-#define PIN_CURTAIN_MOTOR_L  23  /* 왼쪽 커튼 SG90-HV Continuous PWM */
-#define PIN_CURTAIN_MOTOR_R  27  /* 오른쪽 커튼 SG90 Continuous PWM */
+#define PIN_CURTAIN_MOTOR    27  /* 커튼 서보 DF9GMS 360° PWM */
 #define PIN_CURTAIN_LIMIT    17  /* 커튼 리밋 스위치 (Active LOW) — 홀센서 폴백 */
 #define PIN_BUILTIN_LED       2  /* 내장 LED — 상태 표시 */
 #define MOTOR_RUN_MS       3000  /* 커튼 완전 개폐 시간(ms) — 홀센서 실패 시 폴백 타임아웃 */
@@ -53,21 +51,16 @@ typedef struct {
  * GPIO 36(VP)=ADC1_CH0: 왼쪽 모터 (GPIO23 서보와 페어)
  * GPIO 39(VN)=ADC1_CH3: 오른쪽 모터 (GPIO27 서보와 페어)
  * ────────────────────────────────────────────────────────────────────────── */
-#define PIN_HALL_L           36  /* 왼쪽 홀센서 — ADC1_CH0 (VP) */
-#define PIN_HALL_R           39  /* 오른쪽 홀센서 — ADC1_CH3 (VN) */
-#define HALL_ADC_CH_L        ADC_CHANNEL_0  /* GPIO36 = ADC1 채널 0 */
-#define HALL_ADC_CH_R        ADC_CHANNEL_3  /* GPIO39 = ADC1 채널 3 */
-/* 히스테리시스 기반 엣지 감지 (노이즈 면역)
- * idle ~1650 → 자석 감지 ~800. 단일 threshold 대신 enter/exit 분리.
- * ENTER: ADC < threshold_lo → 자석 진입
- * EXIT:  ADC > threshold_hi → 자석 이탈   */
-#define HALL_THRESH_LO_L    1400  /* L: 이보다 낮으면 자석 진입 확정 */
-#define HALL_THRESH_HI_L    1600  /* L: 이보다 높으면 자석 이탈 확정 */
-#define HALL_THRESH_LO_R    1250  /* R: 자석 진입 */
-#define HALL_THRESH_HI_R    1500  /* R: 자석 이탈 */
-#define HALL_DEB_ENTER         4  /* 연속 N회 lo 이하 → 진입 확정 */
-#define HALL_DEB_EXIT          4  /* 연속 N회 hi 이상 → 이탈 확정 */
-#define HALL_EDGE_LOCKOUT_MS  80  /* 같은 센서에서 연속 엣지 최소 간격 (ms) */
+#define PIN_HALL_CLOSE       34  /* 닫힘 홀센서 — ADC1_CH6, 자석=커튼 완전 닫힘 */
+#define PIN_HALL_OPEN        36  /* 열림 홀센서 — ADC1_CH0(VP), 자석=커튼 완전 열림 */
+#define HALL_ADC_CH_CLOSE    ADC_CHANNEL_6  /* GPIO34 = ADC1 채널 6 */
+#define HALL_ADC_CH_OPEN     ADC_CHANNEL_0  /* GPIO36 = ADC1 채널 0 */
+/* 홀센서 threshold — 자석 감지 시 ADC > THRESH → 리밋 도달 판정
+ * CLOSE(GPIO34): idle~0, 자석~85+  → 85 이상이면 닫힘
+ * OPEN (GPIO36): idle~1700, 자석~1880+ → 1880 이상이면 열림 */
+#define HALL_THRESH_CLOSE     95  /* 닫힘 홀센서: 이 이상이면 자석 감지 */
+#define HALL_THRESH_OPEN    1880  /* 열림 홀센서: 이 이상이면 자석 감지 */
+#define HALL_DEB_COUNT         5  /* 연속 N회 threshold 이하 → 확정 */
 
 #define HALL_SYNC_CHECK_MS    5   /* ADC 폴링 주기 (ms) */
 #define HALL_REVS_FULL_DEFAULT 34 /* 기본 커튼 길이 = 3.4바퀴 (x10) */
@@ -79,17 +72,16 @@ typedef struct {
 #define SERVO_PWM_HZ          50   /* SG90 계열 표준 제어 주파수 */
 #define SERVO_PULSE_STOP_US   1500 /* 정지(중립) */
 
-/* 왼쪽 모터 (GPIO23) — 열림=CW, 닫힘=CCW */
-#define SERVO_L_OPEN_US       1700
-#define SERVO_L_CLOSE_US      1300
-
-/* 오른쪽 모터 (GPIO27) — 감는 방향 반전 */
-#define SERVO_R_OPEN_US       1300
-#define SERVO_R_CLOSE_US      1700
+/* 커튼 모터 (GPIO27, SG90-HV Continuous) */
+#define SERVO_CLOSE_US        1800 /* 닫힘 방향 (강화) */
+#define SERVO_OPEN_US         1200 /* 열림 방향 (강화) */
 
 /* ── Node C GPIO ───────────────────────────────────────────────────────────*/
 #define PIN_BTN_NORMAL    32  /* 정상 버튼 — INPUT_PULLUP, FALLING 인터럽트 */
 #define PIN_BTN_EMERGENCY 33  /* 응급 버튼 — INPUT_PULLUP, FALLING 인터럽트 */
+#define PIN_DHT11         25  /* DHT11 온습도센서 DATA 핀 */
+#define DHT11_READ_INTERVAL_MS 2000  /* DHT11 읽기 주기(ms) */
+#define HUMIDITY_EMERGENCY_THRESH 80 /* 습도 이 값(%) 이상이면 응급 트리거 */
 #define DEBOUNCE_MS       200 /* 디바운스 간격(ms) */
 #define EMERGENCY_COOLDOWN_MS 30000 /* 응급 자동 해제 쿨다운(ms) — 30초 */
 

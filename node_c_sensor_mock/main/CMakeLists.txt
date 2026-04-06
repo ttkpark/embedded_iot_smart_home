@@ -1,6 +1,7 @@
 idf_component_register(
     SRCS
         "main.c"
+        "dht11.c"
         "../../common/oled_ssd1306.c"
     INCLUDE_DIRS "." "../../common"
     PRIV_REQUIRES

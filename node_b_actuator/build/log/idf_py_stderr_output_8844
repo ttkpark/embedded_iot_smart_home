@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "C:\Users\parkg\esp\v5.4.2\esp-idf\tools\kconfig_new\prepare_kconfig_files.py", line 102, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\parkg\esp\v5.4.2\esp-idf\tools\kconfig_new\prepare_kconfig_files.py", line 94, in main
+    env.update(json.load(args.env_file))
+               ~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\parkg\AppData\Local\Programs\Python\Python313\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+                 ~~~~~~~^^
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xed in position 7550: illegal multibyte sequence
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Espressif\python_env\idf5.4_py3.13_env\Lib\site-packages\kconfgen\__main__.py", line 18, in <module>
+    main()
+    ~~~~^^
+  File "C:\Espressif\python_env\idf5.4_py3.13_env\Lib\site-packages\kconfgen\core.py", line 714, in main
+    env = json.load(args.env_file)
+  File "C:\Users\parkg\AppData\Local\Programs\Python\Python313\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+                 ~~~~~~~^^
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xed in position 7550: illegal multibyte sequence
+CMake Error at C:/Users/parkg/esp/v5.4.2/esp-idf/tools/cmake/kconfig.cmake:209 (message):
+  Failed to run kconfgen
+  (C:/Espressif/python_env/idf5.4_py3.13_env/Scripts/python.exe;-m;kconfgen;--list-separator=semicolon;--kconfig;C:/Users/parkg/esp/v5.4.2/esp-idf/Kconfig;--sdkconfig-rename;C:/Users/parkg/esp/v5.4.2/esp-idf/sdkconfig.rename;--config;E:/바탕화면/archived
+  project/embedded_iot_smart_home/node_b_actuator/sdkconfig;--defaults;E:/바탕화면/archived
+  project/embedded_iot_smart_home/node_b_actuator/sdkconfig.defaults;--env-file;E:/바탕화면/archived
+  project/embedded_iot_smart_home/node_b_actuator/build/config.env).  Error 1
+Call Stack (most recent call first):
+  C:/Users/parkg/esp/v5.4.2/esp-idf/tools/cmake/build.cmake:691 (__kconfig_generate_config)
+  C:/Users/parkg/esp/v5.4.2/esp-idf/tools/cmake/project.cmake:718 (idf_build_process)
+  CMakeLists.txt:3 (project)
+
+
+ninja: error: rebuilding 'build.ninja': subcommand failed

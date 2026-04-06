@@ -1,0 +1,1 @@
+could not open port '\\\\.\\COM10': FileNotFoundError(2, '지정된 파일을 찾을 수 없습니다.', None, 2)

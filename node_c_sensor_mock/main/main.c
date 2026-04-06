@@ -1,11 +1,12 @@
 /**
- * Node C — Sensor Mock Node (가상 카메라/센서)
+ * Node C — Sensor Node
  * ESP32-LoRa | ESP-IDF v5.x
  *
  * 역할:
- *   - GPIO 32: 정상(Normal) 버튼 — INPUT_PULLUP, FALLING 인터럽트
- *   - GPIO 33: 응급(Emergency) 버튼 — INPUT_PULLUP, FALLING 인터럽트
- *   - 버튼 누름 → 디바운싱 → ESP-NOW 트리거 전송 → Node A
+ *   - GPIO 32: 정상(Normal) 버튼
+ *   - GPIO 33: 응급(Emergency) 버튼
+ *   - GPIO 25: DHT11 온습도센서 — 습도 80% 이상 시 자동 응급 트리거
+ *   - 버튼/센서 → 디바운싱 → ESP-NOW 트리거 전송 → Node A
  */
 
 #include <string.h>
@@ -31,6 +32,7 @@
 #include "struct_message.h"
 #include "config.h"
 #include "oled_ssd1306.h"
+#include "dht11.h"
 
 static const char *TAG = "NODE_C";
 static bool s_oled_ready = false;
@@ -42,6 +44,12 @@ static volatile uint32_t s_btn_normal_count = 0;
 static volatile uint32_t s_btn_emergency_count = 0;
 static volatile uint8_t  s_last_sent_stat = 0xFF;
 static volatile esp_now_send_status_t s_last_send_status = ESP_NOW_SEND_FAIL;
+
+/* ── DHT11 센서 상태 ──────────────────────────────────────────────────────*/
+static volatile uint8_t  s_dht_humidity    = 0;   /* 마지막 읽은 습도 (%) */
+static volatile uint8_t  s_dht_temperature = 0;   /* 마지막 읽은 온도 (°C) */
+static volatile bool     s_dht_valid       = false; /* 최소 1회 읽기 성공 */
+static volatile bool     s_humidity_emergency = false; /* 습도 기반 응급 활성 */
 
 static const char *stat_to_str(uint8_t stat)
 {
@@ -91,11 +99,18 @@ static void oled_render(void)
              (unsigned long)tx_fail, ESPNOW_CHANNEL_DEFAULT);
     oled_ssd1306_draw_text(0, 5, line);
 
+    if (s_dht_valid) {
+        snprintf(line, sizeof(line), "H:%u%% T:%uC %s",
+                 s_dht_humidity, s_dht_temperature,
+                 s_humidity_emergency ? "!EMG" : "");
+        oled_ssd1306_draw_text(0, 6, line);
+    } else {
 #if TEST_AUTO_TRIGGER
-    oled_ssd1306_draw_text(0, 6, "MODE: AUTO TEST");
+        oled_ssd1306_draw_text(0, 6, "MODE: AUTO TEST");
 #else
-    oled_ssd1306_draw_text(0, 6, "MODE: BUTTON");
+        oled_ssd1306_draw_text(0, 6, "MODE: BUTTON");
 #endif
+    }
 
     oled_ssd1306_draw_hbar(0, 56, 128, 8, ok_ratio);
     oled_ssd1306_refresh();
@@ -111,7 +126,7 @@ static void oled_init_if_enabled(void)
         .rst_io_num = OLED_RST_PIN,
         .i2c_addr = OLED_I2C_ADDR,
         .i2c_clk_hz = OLED_I2C_CLK_HZ,
-        .flip_vertical = false,
+        .flip_vertical = true,
     };
     esp_err_t ret = oled_ssd1306_init(&cfg);
     if (ret == ESP_OK) {
@@ -331,9 +346,40 @@ void app_main(void)
     ESP_LOGI(TAG, "초기화 완료 — 버튼 입력 대기 중");
 #endif
 
-    /* 메인 루프: ISR 플래그 처리 + 응급 쿨다운 자동 해제 */
+    /* 메인 루프: ISR 플래그 처리 + DHT11 습도 감시 + 응급 쿨다운 자동 해제 */
     static int64_t s_last_gpio_log_us = 0;
+    static int64_t s_last_dht_read_us = 0;
     while (1) {
+        /* ── DHT11 주기적 읽기 ─────────────────────────────────────────── */
+        int64_t now_dht = esp_timer_get_time();
+        if (now_dht - s_last_dht_read_us >= (int64_t)DHT11_READ_INTERVAL_MS * 1000) {
+            s_last_dht_read_us = now_dht;
+            dht11_data_t dht;
+            esp_err_t dht_ret = dht11_read(PIN_DHT11, &dht);
+            if (dht_ret == ESP_OK) {
+                s_dht_humidity    = dht.humidity;
+                s_dht_temperature = dht.temperature;
+                s_dht_valid       = true;
+                oled_render();
+
+                /* 습도 임계값 초과 → 응급 트리거 (이미 응급 상태가 아닐 때만) */
+                if (dht.humidity >= HUMIDITY_EMERGENCY_THRESH
+                    && !s_emergency_active && !s_humidity_emergency) {
+                    s_humidity_emergency = true;
+                    s_pending_status     = PATIENT_EMERGENCY;
+                    ESP_LOGW(TAG, "습도 %u%% >= %d%% — 응급 트리거!",
+                             dht.humidity, HUMIDITY_EMERGENCY_THRESH);
+                }
+                /* 습도 정상 복귀 → 자동 해제 */
+                if (dht.humidity < HUMIDITY_EMERGENCY_THRESH && s_humidity_emergency) {
+                    s_humidity_emergency = false;
+                    ESP_LOGI(TAG, "습도 %u%% 정상 복귀", dht.humidity);
+                }
+            } else {
+                ESP_LOGW(TAG, "DHT11 읽기 실패: %s", esp_err_to_name(dht_ret));
+            }
+        }
+
         if (s_pending_status != 0xFF) {
             uint8_t stat     = s_pending_status;
             s_pending_status = 0xFF;
@@ -367,16 +413,23 @@ void app_main(void)
 
         int64_t now = esp_timer_get_time();
 
-        /* 2초마다 버튼 GPIO 상태 출력 */
-        if (now - s_last_gpio_log_us >= 2000000) {
+        /* 10초마다 상태 로그 출력 */
+        if (now - s_last_gpio_log_us >= 10000000) {
             s_last_gpio_log_us = now;
             int btn_n = gpio_get_level(PIN_BTN_NORMAL);
             int btn_e = gpio_get_level(PIN_BTN_EMERGENCY);
-            ESP_LOGI(TAG, "IO [BTN_N|BTN_E] = [%d|%d]  emg=%s  last=%s  tx_ok=%lu tx_ng=%lu",
+            ESP_LOGI(TAG, "IO [BTN_N|BTN_E]=[%d|%d] emg=%s last=%s tx_ok=%lu tx_ng=%lu",
                      btn_n, btn_e,
                      s_emergency_active ? "ACTIVE" : "idle",
                      stat_to_str(s_last_sent_stat),
                      (unsigned long)s_tx_ok, (unsigned long)s_tx_fail);
+            if (s_dht_valid) {
+                ESP_LOGI(TAG, "DHT11: H=%u%% T=%u°C  hum_emg=%s",
+                         s_dht_humidity, s_dht_temperature,
+                         s_humidity_emergency ? "YES" : "no");
+            } else {
+                ESP_LOGW(TAG, "DHT11: 데이터 없음");
+            }
             oled_render();
         }
         vTaskDelay(pdMS_TO_TICKS(10));

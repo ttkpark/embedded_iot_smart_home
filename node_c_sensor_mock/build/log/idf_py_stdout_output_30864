@@ -1,0 +1,484 @@
+���revision: v1.�I (13) boot: ESP-IDF GIT-NOTFOUND 2nd stage bootloader
+[0;32mI (13) boot: compile time Mar 30 2026 21:24:04[0m
+[0;32mI (13) boot: Multicore bootloader[0m
+[0;32mI (14) boot: chip revision: v1.0[0m
+[0;32mI (17) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (20) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (24) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (27) boot: Enabling RNG early entropy source...[0m
+[0;32mI (32) boot: Partition Table:[0m
+[0;32mI (35) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (41) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (47) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (54) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (60) boot: End of partition table[0m
+[0;32mI (64) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=19e18h (106008) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=00029e40 vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=00029e64 vaddr=3ffb0000 size=04038h ( 16440) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=0002dea4 vaddr=40080000 size=02174h (  8564) load[0m
+[0;32mI (122) esp_image: segment 4: paddr=00030020 vaddr=400d0020 size=848c4h (542916) map[0m
+[0;32mI (312) esp_image: segment 5: paddr=000b48ec vaddr=40082174 size=16cech ( 93420) load[0m
+[0;32mI (360) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (360) boot: Disabling RNG early entropy source...[0m
+[0;32mI (371) cpu_start: Multicore app[0m
+[0;32mI (379) cpu_start: Pro cpu start user code[0m
+[0;32mI (379) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (379) app_init: Application information:[0m
+[0;32mI (380) app_init: Project name:     node_c_sensor_mock[0m
+[0;32mI (384) app_init: App version:      1[0m
+[0;32mI (388) app_init: Compile time:     Mar 30 2026 21:23:38[0m
+[0;32mI (393) app_init: ELF file SHA256:  87be0ff06...[0m
+[0;32mI (397) app_init: ESP-IDF:          GIT-NOTFOUND[0m
+[0;32mI (401) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (405) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (409) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (413) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (420) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (424) heap_init: At 3FFB8530 len 00027AD0 (158 KiB): DRAM[0m
+[0;32mI (430) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (435) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (441) heap_init: At 40098E60 len 000071A0 (28 KiB): IRAM[0m
+[0;32mI (447) spi_flash: detected chip: winbond[0m
+[0;32mI (450) spi_flash: flash io: dio[0m
+[0;33mW (453) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (465) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) main_task: Started on CPU0[0m
+[0;32mI (478) main_task: Calling app_main()[0m
+[0;32mI (480) NODE_C: Node C 부팅[0m
+[0;32mI (516) gpio: GPIO[14]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (517) NODE_C: LoRa 비활성화 (RST=GPIO14 LOW 고정)[0m
+[0;32mI (519) gpio: GPIO[32]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (527) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (536) NODE_C: 버튼 GPIO 초기화 완료 (정상:32, 응급:33)[0m
+[0;32mI (542) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (667) OLED: SSD1306 init done (addr=0x3C, SDA=4, SCL=15)[0m
+[0;32mI (705) wifi:wifi driver task: 3ffc06a8, prio:23, stack:6656, core=0[0m
+[0;32mI (724) wifi:wifi firmware version: bea31f3[0m
+[0;32mI (725) wifi:wifi certification version: v7.0[0m
+[0;32mI (725) wifi:config NVS flash: enabled[0m
+[0;32mI (725) wifi:config nano formatting: disabled[0m
+[0;32mI (730) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (734) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (738) wifi:Init management short buffer num: 32[0m
+[0;32mI (743) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (747) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (751) wifi:Init static rx buffer num: 10[0m
+[0;32mI (755) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (760) wifi_init: rx ba win: 6[0m
+[0;32mI (761) wifi_init: accept mbox: 6[0m
+[0;32mI (764) wifi_init: tcpip mbox: 32[0m
+[0;32mI (767) wifi_init: udp mbox: 6[0m
+[0;32mI (770) wifi_init: tcp mbox: 6[0m
+[0;32mI (773) wifi_init: tcp tx win: 5760[0m
+[0;32mI (776) wifi_init: tcp rx win: 5760[0m
+[0;32mI (779) wifi_init: tcp mss: 1440[0m
+[0;32mI (782) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (786) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (791) phy_init: phy_version 4860,6b7a6e5,Feb  6 2025,14:47:07[0m
+[0;32mI (866) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (922) wifi:mode : sta (24:6f:28:22:39:68)[0m
+[0;32mI (923) wifi:enable tsf[0m
+[0;32mI (926) NODE_C: MAC: 24:6f:28:22:39:68[0m
+[0;32mI (927) ESPNOW: espnow [version: 2.0] init[0m
+[0;32mI (928) NODE_C: ESP-NOW 초기화 완료[0m
+[0;32mI (964) NODE_C: 초기화 완료 — 버튼 입력 대기 중[0m
+[0;33mW (3475) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (3597) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (3719) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (3719) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (6480) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (6602) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (6724) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (6724) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (9485) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (9607) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (9729) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (9729) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (10449) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=1[0m
+[0;33mW (10449) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (12485) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (12607) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (12729) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (12729) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (15490) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (15612) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (15734) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (15734) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (18495) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (18617) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (18739) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (18739) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (20449) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=3[0m
+[0;33mW (20449) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (21495) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (21617) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (21739) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (21739) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (24500) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (24622) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (24744) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (24744) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (27505) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (27627) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (27749) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (27749) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (30449) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=5[0m
+[0;33mW (30449) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (30515) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (30637) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (30759) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (30759) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (33520) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (33642) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (33764) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (33764) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (36525) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (36647) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (36769) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (36769) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (39530) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (39652) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (39774) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (39774) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (40454) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=7[0m
+[0;33mW (40454) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (42530) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (42652) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (42774) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (42774) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (45535) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (45657) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (45779) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (45779) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (48540) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (48662) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (48784) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (48784) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (50454) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=9[0m
+[0;33mW (50454) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (51540) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (51662) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (51784) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (51784) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (54545) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (54667) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (54789) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (54789) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (57550) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (57672) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (57794) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (57794) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (60454) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=11[0m
+[0;33mW (60454) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (60550) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (60672) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (60794) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (60794) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (63555) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (63677) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (63799) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (63799) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (66560) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (66682) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (66804) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (66804) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (69565) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (69687) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (69809) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (69809) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (70459) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=13[0m
+[0;33mW (70459) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (72565) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (72687) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (72809) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (72809) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (75570) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (75692) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (75814) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (75814) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (78575) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (78697) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (78819) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (78819) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (80459) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=15[0m
+[0;33mW (80459) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (81575) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (81697) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (81819) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (81819) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (84580) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (84702) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (84824) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (84824) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (87585) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (87707) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (87829) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (87829) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (90459) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=17[0m
+[0;33mW (90459) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (90585) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (90707) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (90829) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (90829) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (93590) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (93712) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (93834) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (93834) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (96595) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (96717) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (96839) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (96839) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (99600) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (99722) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (99844) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (99844) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (100464) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=19[0m
+[0;33mW (100464) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (102600) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (102722) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (102844) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (102844) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (105605) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (105727) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (105849) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (105849) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (108610) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (108732) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (108854) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (108854) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (110464) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=21[0m
+[0;33mW (110464) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (111610) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (111732) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (111854) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (111854) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (114615) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (114737) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (114859) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (114859) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (117620) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (117742) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (117864) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (117864) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (120464) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=23[0m
+[0;33mW (120464) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (120620) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (120742) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (120864) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (120864) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (123625) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (123747) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (123869) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (123869) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (126630) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (126752) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (126874) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (126874) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (129635) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (129757) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (129879) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (129879) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (130469) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=25[0m
+[0;33mW (130469) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (132635) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (132757) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (132879) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (132879) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (135640) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (135762) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (135884) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (135884) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (138645) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (138767) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (138889) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (138889) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (140469) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=27[0m
+[0;33mW (140469) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (141645) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (141767) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (141889) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (141889) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (144650) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (144772) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (144894) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (144894) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (147655) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (147777) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (147899) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (147899) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (150469) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=27[0m
+[0;33mW (150469) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (150655) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (150777) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (150899) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (150899) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (153660) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (153782) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (153904) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (153904) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (156665) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (156787) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (156909) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (156909) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (159670) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (159792) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (159914) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (159914) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (160474) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=29[0m
+[0;33mW (160474) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (162670) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (162792) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (162914) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (162914) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (165675) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (165797) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (165919) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (165919) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (168680) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (168802) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (168924) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (168924) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (170474) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=31[0m
+[0;33mW (170474) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (171680) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (171802) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (171924) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (171924) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (174685) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (174807) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (174929) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (174929) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (177690) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (177812) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (177934) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (177934) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (180474) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=33[0m
+[0;33mW (180474) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (180690) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (180812) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (180934) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (180934) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (183695) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (183817) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (183939) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (183939) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (186700) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (186822) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (186944) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (186944) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (189705) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (189827) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (189949) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (189949) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (190479) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=35[0m
+[0;33mW (190479) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (192705) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (192827) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (192949) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (192949) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (195710) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (195832) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (195954) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (195954) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (198715) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (198837) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (198959) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (198959) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (200479) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=37[0m
+[0;33mW (200479) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (201715) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (201837) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (201959) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (201959) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (204720) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (204842) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (204964) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (204964) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (207725) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (207847) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (207969) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (207969) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (210479) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=39[0m
+[0;33mW (210479) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (210725) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (210847) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (210969) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (210969) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (213730) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (213852) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (213974) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (213974) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (216735) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (216857) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (216979) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (216979) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (219740) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (219862) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (219984) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (219984) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (220484) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=41[0m
+[0;33mW (220484) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (222740) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (222862) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (222984) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (222984) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (225745) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (225867) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (225989) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (225989) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (228750) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (228872) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (228994) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (228994) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (230484) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=43[0m
+[0;33mW (230484) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (231750) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (231872) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (231994) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (231994) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (234755) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (234877) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (234999) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (234999) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (237760) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (237882) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (238004) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (238004) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (240484) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=45[0m
+[0;33mW (240484) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (240760) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (240882) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (241004) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (241004) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (243765) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (243887) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (244009) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (244009) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (246770) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (246892) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (247014) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (247014) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (249775) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (249897) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (250019) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (250019) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (250489) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=47[0m
+[0;33mW (250489) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (252775) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (252897) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (253019) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (253019) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (255780) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (255902) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (256024) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (256024) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (258785) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (258907) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (259029) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (259029) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (260489) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=2 tx_ng=49[0m
+[0;33mW (260489) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (261785) DHT11: 읽기 실패 (시도 1/3)[0m
+[0;33mW (261907) DHT11: 읽기 실패 (시도 2/3)[0m
+[0;33mW (262029) DHT11: 읽기 실패 (시도 3/3)[0m
+[0;33mW (262029) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m

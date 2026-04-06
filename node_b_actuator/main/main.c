@@ -95,11 +95,15 @@ static void oled_render(const node_b_ui_state_t *st)
     snprintf(line, sizeof(line), "CURTAIN: %s", curtain_to_str(st->curtain_act));
     oled_ssd1306_draw_text(0, 2, line);
 
-    snprintf(line, sizeof(line), "x:%.1f/%.1f", g_cal.x_pos, g_cal.travel);
+    {
+        const char *sstr[] = {"???", "CLOSED", "OPEN", "MOVING"};
+        int si = (g_curtain_state <= 3) ? g_curtain_state : 0;
+        snprintf(line, sizeof(line), "POS: %s", sstr[si]);
+    }
     oled_ssd1306_draw_text(0, 3, line);
 
-    snprintf(line, sizeof(line), "cal:%.0f/%.0f ms",
-             g_cal.ms_per_rev_l, g_cal.ms_per_rev_r);
+    snprintf(line, sizeof(line), "C:%d O:%d",
+             hall_read_close(), hall_read_open());
     oled_ssd1306_draw_text(0, 4, line);
 
     snprintf(line, sizeof(line), "LINK:%s CMD:%lu",
@@ -211,21 +215,11 @@ static void actuator_task(void *arg)
             if (g_cal_mode) {
                 ESP_LOGW(TAG, "캘리브레이션 모드 — 커튼 명령 무시");
             } else if (cmd.curtain_act >= MOTOR_JOG_L_CW) {
-                /* 개별/양쪽 모터 1바퀴 jog */
-                switch (cmd.curtain_act) {
-                case MOTOR_JOG_L_CW:
-                    motor_jog_single_revs(true, true, 1);  break;
-                case MOTOR_JOG_L_CCW:
-                    motor_jog_single_revs(true, false, 1); break;
-                case MOTOR_JOG_R_CW:
-                    motor_jog_single_revs(false, true, 1);  break;
-                case MOTOR_JOG_R_CCW:
-                    motor_jog_single_revs(false, false, 1); break;
-                case MOTOR_JOG_BOTH_CW:
-                    motor_jog_both_revs(true, 1);  break;
-                case MOTOR_JOG_BOTH_CCW:
-                    motor_jog_both_revs(false, 1); break;
-                }
+                /* 단일 모터 jog — CW/CCW */
+                bool fwd = (cmd.curtain_act == MOTOR_JOG_L_CW ||
+                            cmd.curtain_act == MOTOR_JOG_R_CW ||
+                            cmd.curtain_act == MOTOR_JOG_BOTH_CW);
+                motor_jog_timed(fwd, 1000);
             } else {
                 control_curtain(cmd.curtain_act);
             }
@@ -340,15 +334,13 @@ void app_main(void)
 
 #if BOOT_MOTOR_TEST
     ESP_LOGW(TAG, "=== 모터 테스트 시작 ===");
-    servo_set_pulse(SERVO_LEDC_CH_L, SERVO_L_OPEN_US);
-    servo_set_pulse(SERVO_LEDC_CH_R, SERVO_PULSE_STOP_US);
+    servo_set_pulse(SERVO_OPEN_US);
     vTaskDelay(pdMS_TO_TICKS(1500));
-    servo_set_pulse(SERVO_LEDC_CH_L, SERVO_PULSE_STOP_US);
+    servo_stop();
     vTaskDelay(pdMS_TO_TICKS(500));
-
-    servo_set_pulse(SERVO_LEDC_CH_R, SERVO_R_OPEN_US);
+    servo_set_pulse(SERVO_CLOSE_US);
     vTaskDelay(pdMS_TO_TICKS(1500));
-    servo_both_stop();
+    servo_stop();
     ESP_LOGW(TAG, "=== 모터 테스트 완료 ===");
 #endif
 
@@ -373,17 +365,57 @@ void app_main(void)
     oled_render_from_state();
     ESP_LOGI(TAG, "초기화 완료 — 명령 대기 중 (콘솔: cal/jog/pos)");
 
-    /* 메인 루프: 홀센서 폴링 + 상태 출력 */
+    /* 메인 루프: 홀센서 ADC + 상태 출력 */
     while (1) {
-        hall_poll();
+        int hc = hall_read_close();
+        int ho = hall_read_open();
+        const char *ss[] = {"???","CLOSED","OPEN","MOVING"};
+        int si = (g_curtain_state <= 3) ? g_curtain_state : 0;
 
-        int raw_l = 0, raw_r = 0;
-        adc_oneshot_read(g_adc_handle, HALL_ADC_CH_L, &raw_l);
-        adc_oneshot_read(g_adc_handle, HALL_ADC_CH_R, &raw_r);
+        /* 감지 이벤트 로그: 연속 감지 시 10초마다, 새 감지 시 즉시 */
+        static bool prev_close_det = false, prev_open_det = false;
+        static int close_det_sec = 0, open_det_sec = 0;
+        static int det_log_cnt = 0;
 
-        ESP_LOGI(TAG, "HALL[L:%d R:%d] x=%.2f/%.1f cal[L:%.0f R:%.0f]",
-                 raw_l, raw_r, g_cal.x_pos, g_cal.travel,
-                 g_cal.ms_per_rev_l, g_cal.ms_per_rev_r);
-        vTaskDelay(pdMS_TO_TICKS(2000));
+        bool close_det = (hc >= HALL_THRESH_CLOSE);
+        bool open_det  = (ho >= HALL_THRESH_OPEN);
+
+        if (close_det) {
+            close_det_sec++;
+            if (!prev_close_det) {
+                ESP_LOGW(TAG, "*** CLOSE DETECTED *** C:%d", hc);
+                close_det_sec = 0;
+            } else if (close_det_sec >= 200) {  /* 50ms × 200 = 10초 */
+                ESP_LOGW(TAG, "CLOSE held for %ds C:%d", close_det_sec / 20, hc);
+                close_det_sec = 0;
+            }
+        } else {
+            close_det_sec = 0;
+        }
+
+        if (open_det) {
+            open_det_sec++;
+            if (!prev_open_det) {
+                ESP_LOGW(TAG, "*** OPEN DETECTED *** O:%d", ho);
+                open_det_sec = 0;
+            } else if (open_det_sec >= 200) {
+                ESP_LOGW(TAG, "OPEN held for %ds O:%d", open_det_sec / 20, ho);
+                open_det_sec = 0;
+            }
+        } else {
+            open_det_sec = 0;
+        }
+
+        prev_close_det = close_det;
+        prev_open_det  = open_det;
+
+        /* 1초 주기 상태 로그 */
+        static int log_cnt = 0;
+        if (++log_cnt >= 20) {
+            log_cnt = 0;
+            ESP_LOGI(TAG, "C:%d O:%d [%s]",
+                     hc, ho, ss[si]);
+        }
+        vTaskDelay(pdMS_TO_TICKS(50));
     }
 }

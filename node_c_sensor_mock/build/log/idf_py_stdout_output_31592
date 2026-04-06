@@ -1,0 +1,476 @@
+-�revision: v1�I (13) boot: ESP-IDF GIT-NOTFOUND 2nd stage bootloader
+[0;32mI (13) boot: compile time Mar 30 2026 21:24:04[0m
+[0;32mI (13) boot: Multicore bootloader[0m
+[0;32mI (14) boot: chip revision: v1.0[0m
+[0;32mI (17) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (20) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (24) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (27) boot: Enabling RNG early entropy source...[0m
+[0;32mI (32) boot: Partition Table:[0m
+[0;32mI (35) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (41) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (47) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (54) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (60) boot: End of partition table[0m
+[0;32mI (64) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=19e58h (106072) map[0m
+[0;32mI (107) esp_image: segment 1: paddr=00029e80 vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (108) esp_image: segment 2: paddr=00029ea4 vaddr=3ffb0000 size=04038h ( 16440) load[0m
+[0;32mI (117) esp_image: segment 3: paddr=0002dee4 vaddr=40080000 size=02134h (  8500) load[0m
+[0;32mI (122) esp_image: segment 4: paddr=00030020 vaddr=400d0020 size=84934h (543028) map[0m
+[0;32mI (312) esp_image: segment 5: paddr=000b495c vaddr=40082134 size=16d2ch ( 93484) load[0m
+[0;32mI (360) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (360) boot: Disabling RNG early entropy source...[0m
+[0;32mI (371) cpu_start: Multicore app[0m
+[0;32mI (379) cpu_start: Pro cpu start user code[0m
+[0;32mI (379) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (380) app_init: Application information:[0m
+[0;32mI (380) app_init: Project name:     node_c_sensor_mock[0m
+[0;32mI (384) app_init: App version:      1[0m
+[0;32mI (388) app_init: Compile time:     Mar 30 2026 21:23:38[0m
+[0;32mI (393) app_init: ELF file SHA256:  95312dfd3...[0m
+[0;32mI (397) app_init: ESP-IDF:          GIT-NOTFOUND[0m
+[0;32mI (402) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (405) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (409) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (413) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (420) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (425) heap_init: At 3FFB8530 len 00027AD0 (158 KiB): DRAM[0m
+[0;32mI (430) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (435) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (441) heap_init: At 40098E60 len 000071A0 (28 KiB): IRAM[0m
+[0;32mI (448) spi_flash: detected chip: winbond[0m
+[0;32mI (450) spi_flash: flash io: dio[0m
+[0;33mW (453) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (465) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (475) main_task: Started on CPU0[0m
+[0;32mI (478) main_task: Calling app_main()[0m
+[0;32mI (480) NODE_C: Node C 부팅[0m
+[0;32mI (514) gpio: GPIO[14]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (515) NODE_C: LoRa 비활성화 (RST=GPIO14 LOW 고정)[0m
+[0;32mI (518) gpio: GPIO[32]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (526) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (535) NODE_C: 버튼 GPIO 초기화 완료 (정상:32, 응급:33)[0m
+[0;32mI (541) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (665) OLED: SSD1306 init done (addr=0x3C, SDA=4, SCL=15)[0m
+[0;32mI (703) wifi:wifi driver task: 3ffc06a8, prio:23, stack:6656, core=0[0m
+[0;32mI (722) wifi:wifi firmware version: bea31f3[0m
+[0;32mI (723) wifi:wifi certification version: v7.0[0m
+[0;32mI (723) wifi:config NVS flash: enabled[0m
+[0;32mI (723) wifi:config nano formatting: disabled[0m
+[0;32mI (728) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (732) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (736) wifi:Init management short buffer num: 32[0m
+[0;32mI (741) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (745) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (749) wifi:Init static rx buffer num: 10[0m
+[0;32mI (753) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (758) wifi_init: rx ba win: 6[0m
+[0;32mI (759) wifi_init: accept mbox: 6[0m
+[0;32mI (762) wifi_init: tcpip mbox: 32[0m
+[0;32mI (765) wifi_init: udp mbox: 6[0m
+[0;32mI (768) wifi_init: tcp mbox: 6[0m
+[0;32mI (771) wifi_init: tcp tx win: 5760[0m
+[0;32mI (774) wifi_init: tcp rx win: 5760[0m
+[0;32mI (777) wifi_init: tcp mss: 1440[0m
+[0;32mI (780) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (784) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (789) phy_init: phy_version 4860,6b7a6e5,Feb  6 2025,14:47:07[0m
+[0;32mI (866) wifi:mode : sta (24:6f:28:22:39:68)[0m
+[0;32mI (867) wifi:enable tsf[0m
+[0;32mI (870) NODE_C: MAC: 24:6f:28:22:39:68[0m
+[0;32mI (872) ESPNOW: espnow [version: 2.0] init[0m
+[0;32mI (872) NODE_C: ESP-NOW 초기화 완료[0m
+[0;32mI (908) NODE_C: 초기화 완료 — 버튼 입력 대기 중[0m
+[0;32mI (2449) gpio: GPIO[25]| InputEn: 1| OutputEn: 1| OpenDrain: 1| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (2450) DHT11: GPIO25 오픈드레인 설정 완료[0m
+[0;33mW (2474) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (2697) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (2920) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (2920) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (4473) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (4696) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (4919) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (4919) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (6473) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (6696) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (6919) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (6919) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (8482) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (8705) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (8928) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (8928) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (10448) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=1[0m
+[0;33mW (10448) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (10516) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (10739) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (10962) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (10962) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (12525) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (12748) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (12971) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (12971) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (14534) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (14757) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (14980) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (14980) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (16543) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (16766) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (16989) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (16989) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (18552) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (18775) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (18998) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (18998) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (20448) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=3[0m
+[0;33mW (20448) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (20556) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (20779) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (21002) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (21002) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (22565) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (22788) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (23011) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (23011) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (24574) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (24797) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (25020) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (25020) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (26583) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (26806) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (27029) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (27029) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (28592) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (28815) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (29038) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (29038) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (30448) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=5[0m
+[0;33mW (30448) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (30596) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (30819) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (31042) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (31042) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (32605) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (32828) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (33051) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (33051) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (34614) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (34837) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (35060) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (35060) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (36623) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (36846) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (37069) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (37069) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (38632) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (38855) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (39078) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (39078) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (40448) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=7[0m
+[0;33mW (40448) NODE_C: DHT11: 데이터 없음[0m
+[0;33mW (40636) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (40859) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (41082) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (41082) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (42645) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (42868) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (43091) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (43091) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;33mW (44654) DHT11: 타임아웃 (시도 1/3) — GPIO25 레벨=1[0m
+[0;33mW (44877) DHT11: 타임아웃 (시도 2/3) — GPIO25 레벨=1[0m
+[0;33mW (45100) DHT11: 타임아웃 (시도 3/3) — GPIO25 레벨=1[0m
+[0;33mW (45100) NODE_C: DHT11 읽기 실패: ESP_ERR_TIMEOUT[0m
+[0;32mI (50451) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=9[0m
+[0;32mI (50451) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (60458) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=11[0m
+[0;32mI (60458) NODE_C: DHT11: H=45% T=27°C  hum_emg=no[0m
+[0;32mI (70458) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=13[0m
+[0;32mI (70458) NODE_C: DHT11: H=45% T=27°C  hum_emg=no[0m
+[0;32mI (80465) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=15[0m
+[0;32mI (80465) NODE_C: DHT11: H=45% T=27°C  hum_emg=no[0m
+[0;32mI (90472) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=17[0m
+[0;32mI (90472) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (100480) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=19[0m
+[0;32mI (100480) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (110487) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=21[0m
+[0;32mI (110487) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (120494) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=23[0m
+[0;32mI (120494) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (130501) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=25[0m
+[0;32mI (130501) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (140508) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=27[0m
+[0;32mI (140508) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (150515) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=-- tx_ok=0 tx_ng=29[0m
+[0;32mI (150515) NODE_C: DHT11: H=71% T=27°C  hum_emg=no[0m
+[0;33mW (154781) NODE_C: 습도 82% >= 80% — 응급 트리거![0m
+[0;32mI (154783) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (154783) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (160523) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=ACTIVE last=EMERGENCY tx_ok=0 tx_ng=32[0m
+[0;32mI (160523) NODE_C: DHT11: H=80% T=27°C  hum_emg=YES[0m
+[0;32mI (160790) NODE_C: 습도 77% 정상 복귀[0m
+[0;32mI (170523) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=ACTIVE last=EMERGENCY tx_ok=0 tx_ng=34[0m
+[0;32mI (170523) NODE_C: DHT11: H=61% T=27°C  hum_emg=no[0m
+[0;32mI (180523) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=ACTIVE last=EMERGENCY tx_ok=0 tx_ng=36[0m
+[0;32mI (180523) NODE_C: DHT11: H=54% T=27°C  hum_emg=no[0m
+[0;32mI (184812) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (184812) NODE_C: 응급 자동 해제 (쿨다운 30초 경과)[0m
+[0;32mI (190530) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=39[0m
+[0;32mI (190530) NODE_C: DHT11: H=50% T=27°C  hum_emg=no[0m
+[0;32mI (200537) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=41[0m
+[0;32mI (200537) NODE_C: DHT11: H=48% T=27°C  hum_emg=no[0m
+[0;32mI (210544) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=43[0m
+[0;32mI (210544) NODE_C: DHT11: H=47% T=27°C  hum_emg=no[0m
+[0;32mI (220551) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=45[0m
+[0;32mI (220551) NODE_C: DHT11: H=46% T=27°C  hum_emg=no[0m
+[0;32mI (230559) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=47[0m
+[0;32mI (230559) NODE_C: DHT11: H=46% T=27°C  hum_emg=no[0m
+[0;32mI (240567) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=49[0m
+[0;32mI (240567) NODE_C: DHT11: H=45% T=27°C  hum_emg=no[0m
+[0;32mI (250574) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=51[0m
+[0;32mI (250574) NODE_C: DHT11: H=45% T=27°C  hum_emg=no[0m
+[0;32mI (260581) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=53[0m
+[0;32mI (260581) NODE_C: DHT11: H=45% T=27°C  hum_emg=no[0m
+[0;32mI (270589) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=55[0m
+[0;32mI (270589) NODE_C: DHT11: H=45% T=27°C  hum_emg=no[0m
+[0;32mI (280596) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=57[0m
+[0;32mI (280596) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (290603) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=59[0m
+[0;32mI (290603) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (298100) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (298100) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (298468) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (298468) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (300606) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=ACTIVE last=EMERGENCY tx_ok=0 tx_ng=63[0m
+[0;32mI (300606) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (310606) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=ACTIVE last=EMERGENCY tx_ok=0 tx_ng=65[0m
+[0;32mI (310606) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (320606) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=ACTIVE last=EMERGENCY tx_ok=0 tx_ng=67[0m
+[0;32mI (320606) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (328477) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (328477) NODE_C: 응급 자동 해제 (쿨다운 30초 경과)[0m
+[0;32mI (330606) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=70[0m
+[0;32mI (330606) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (340615) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=72[0m
+[0;32mI (340615) NODE_C: DHT11: H=44% T=27°C  hum_emg=no[0m
+[0;32mI (350623) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=74[0m
+[0;32mI (350623) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (360632) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=76[0m
+[0;32mI (360632) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (370639) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=78[0m
+[0;32mI (370639) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (380646) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=80[0m
+[0;32mI (380646) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (390653) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=82[0m
+[0;32mI (390653) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (400660) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=84[0m
+[0;32mI (400660) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (410667) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=86[0m
+[0;32mI (410667) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (420674) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=88[0m
+[0;32mI (420674) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (430681) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=90[0m
+[0;32mI (430681) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (440689) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=92[0m
+[0;32mI (440689) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (450696) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=94[0m
+[0;32mI (450696) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (460703) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=96[0m
+[0;32mI (460703) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (470710) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=98[0m
+[0;32mI (470710) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (480718) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=100[0m
+[0;32mI (480718) NODE_C: DHT11: H=43% T=27°C  hum_emg=no[0m
+[0;32mI (490726) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=102[0m
+[0;32mI (490726) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (500734) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=104[0m
+[0;32mI (500734) NODE_C: DHT11: H=42% T=27°C  hum_emg=no[0m
+[0;32mI (510742) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=106[0m
+[0;32mI (510742) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (520750) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=108[0m
+[0;32mI (520750) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (530758) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=110[0m
+[0;32mI (530758) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (540766) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=0 tx_ng=112[0m
+[0;32mI (540766) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (550774) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=1 tx_ng=113[0m
+[0;32mI (550774) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (560782) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=3 tx_ng=113[0m
+[0;32mI (560782) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (570789) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=5 tx_ng=113[0m
+[0;32mI (570789) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (580796) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=7 tx_ng=113[0m
+[0;32mI (580796) NODE_C: DHT11: H=42% T=27°C  hum_emg=no[0m
+[0;32mI (590803) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=113[0m
+[0;32mI (590803) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (600810) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=115[0m
+[0;32mI (600810) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (610818) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=117[0m
+[0;32mI (610818) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (620826) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=119[0m
+[0;32mI (620826) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (630834) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=121[0m
+[0;32mI (630834) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (640842) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=123[0m
+[0;32mI (640842) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (650850) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=125[0m
+[0;32mI (650850) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (660858) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=127[0m
+[0;32mI (660858) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (670866) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=129[0m
+[0;32mI (670866) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (680874) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=131[0m
+[0;32mI (680874) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (690882) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=133[0m
+[0;32mI (690882) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (700891) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=135[0m
+[0;32mI (700891) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (710900) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=137[0m
+[0;32mI (710900) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (720900) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=139[0m
+[0;32mI (720900) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (730909) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=141[0m
+[0;32mI (730910) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (740918) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=143[0m
+[0;32mI (740918) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (750926) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=145[0m
+[0;32mI (750926) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (760934) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=148[0m
+[0;32mI (760934) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (770941) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=150[0m
+[0;32mI (770941) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (780948) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=152[0m
+[0;32mI (780948) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (790955) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=154[0m
+[0;32mI (790955) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (800962) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=156[0m
+[0;32mI (800962) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (810969) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=158[0m
+[0;32mI (810969) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (820976) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=160[0m
+[0;32mI (820976) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (830983) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=162[0m
+[0;32mI (830983) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (840990) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=164[0m
+[0;32mI (840990) NODE_C: DHT11: H=44% T=28°C  hum_emg=no[0m
+[0;32mI (850997) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=166[0m
+[0;32mI (850997) NODE_C: DHT11: H=44% T=28°C  hum_emg=no[0m
+[0;32mI (861004) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=168[0m
+[0;32mI (861004) NODE_C: DHT11: H=44% T=28°C  hum_emg=no[0m
+[0;32mI (871011) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=170[0m
+[0;32mI (871011) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (881018) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=172[0m
+[0;32mI (881018) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (891025) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=174[0m
+[0;32mI (891025) NODE_C: DHT11: H=44% T=28°C  hum_emg=no[0m
+[0;32mI (901032) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=176[0m
+[0;32mI (901032) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (911039) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=178[0m
+[0;32mI (911039) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (921046) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=180[0m
+[0;32mI (921046) NODE_C: DHT11: H=44% T=28°C  hum_emg=no[0m
+[0;32mI (931053) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=182[0m
+[0;32mI (931053) NODE_C: DHT11: H=44% T=28°C  hum_emg=no[0m
+[0;32mI (941060) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=184[0m
+[0;32mI (941060) NODE_C: DHT11: H=44% T=28°C  hum_emg=no[0m
+[0;32mI (951067) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=186[0m
+[0;32mI (951067) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (961074) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=188[0m
+[0;32mI (961074) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (971081) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=190[0m
+[0;32mI (971081) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (981088) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=192[0m
+[0;32mI (981088) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (991095) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=194[0m
+[0;32mI (991095) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1001102) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=196[0m
+[0;32mI (1001102) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1011109) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=198[0m
+[0;32mI (1011109) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1021116) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=200[0m
+[0;32mI (1021116) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1031123) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=202[0m
+[0;32mI (1031123) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1041130) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=204[0m
+[0;32mI (1041130) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1051137) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=206[0m
+[0;32mI (1051137) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1061144) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=208[0m
+[0;32mI (1061144) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1071151) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=210[0m
+[0;32mI (1071151) NODE_C: DHT11: H=44% T=28°C  hum_emg=no[0m
+[0;32mI (1081158) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=212[0m
+[0;32mI (1081158) NODE_C: DHT11: H=44% T=28°C  hum_emg=no[0m
+[0;32mI (1091165) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=214[0m
+[0;32mI (1091165) NODE_C: DHT11: H=46% T=28°C  hum_emg=no[0m
+[0;32mI (1101172) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=216[0m
+[0;32mI (1101172) NODE_C: DHT11: H=46% T=28°C  hum_emg=no[0m
+[0;32mI (1111179) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=218[0m
+[0;32mI (1111179) NODE_C: DHT11: H=46% T=28°C  hum_emg=no[0m
+[0;32mI (1121186) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=220[0m
+[0;32mI (1121186) NODE_C: DHT11: H=46% T=28°C  hum_emg=no[0m
+[0;32mI (1131193) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=222[0m
+[0;32mI (1131193) NODE_C: DHT11: H=45% T=28°C  hum_emg=no[0m
+[0;32mI (1141200) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=224[0m
+[0;32mI (1141200) NODE_C: DHT11: H=45% T=28°C  hum_emg=no[0m
+[0;32mI (1151207) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=226[0m
+[0;32mI (1151207) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1161214) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=228[0m
+[0;32mI (1161214) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1171221) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=230[0m
+[0;32mI (1171221) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1181228) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=232[0m
+[0;32mI (1181228) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1191235) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=234[0m
+[0;32mI (1191235) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1201242) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=236[0m
+[0;32mI (1201242) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1211249) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=238[0m
+[0;32mI (1211249) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1221256) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=240[0m
+[0;32mI (1221256) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1231263) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=242[0m
+[0;32mI (1231263) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1241270) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=244[0m
+[0;32mI (1241270) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1251277) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=246[0m
+[0;32mI (1251277) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1261284) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=248[0m
+[0;32mI (1261284) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1261440) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1261440) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1262678) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (1262679) NODE_C: 응급 수동 해제 (정상 버튼)[0m
+[0;32mI (1265365) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (1266623) NODE_C: 트리거 전송 — 응급[0m
+[0;33mW (1266623) NODE_C: 응급 활성화 — 30초 후 자동 해제[0m
+[0;32mI (1267761) NODE_C: 트리거 전송 — 정상[0m
+[0;32mI (1267762) NODE_C: 응급 수동 해제 (정상 버튼)[0m
+[0;32mI (1271290) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=255[0m
+[0;32mI (1271290) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1281297) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=257[0m
+[0;32mI (1281297) NODE_C: DHT11: H=43% T=28°C  hum_emg=no[0m
+[0;32mI (1291304) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=259[0m
+[0;32mI (1291304) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1301311) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=261[0m
+[0;32mI (1301311) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1311318) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=263[0m
+[0;32mI (1311318) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1321325) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=265[0m
+[0;32mI (1321325) NODE_C: DHT11: H=42% T=28°C  hum_emg=no[0m
+[0;32mI (1331333) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=267[0m
+[0;32mI (1331333) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1341340) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=269[0m
+[0;32mI (1341340) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1351347) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=271[0m
+[0;32mI (1351347) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1361347) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=273[0m
+[0;32mI (1361347) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1371354) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=275[0m
+[0;32mI (1371354) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1381361) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=277[0m
+[0;32mI (1381361) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1391368) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=279[0m
+[0;32mI (1391368) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1401375) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=281[0m
+[0;32mI (1401375) NODE_C: DHT11: H=41% T=28°C  hum_emg=no[0m
+[0;32mI (1411382) NODE_C: IO [BTN_N|BTN_E]=[1|1] emg=idle last=NORMAL tx_ok=9 tx_ng=283[0m
+[0;32mI (1411382) NODE_C: DHT11: H=42% T=29°C  hum_emg=no[0m
